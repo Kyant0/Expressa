@@ -41,7 +41,7 @@ data class CornerShapes(
 
         @Stable
         fun RoundedCornerOmniShape.smoothed(
-            @FloatRange(from = 0.0, to = 1.0) smoothing: Float
+            @FloatRange(from = 0.0, to = 1.0) smoothing: Float = 0.48f
         ): RoundedCornerOmniShape =
             this.copy(
                 topStartSmoothing = smoothing,

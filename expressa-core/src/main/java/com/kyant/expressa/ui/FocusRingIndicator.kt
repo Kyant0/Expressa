@@ -21,7 +21,7 @@ fun Modifier.focusRingIndicator(
     shape: () -> Shape,
     color: Color,
     thickness: Dp,
-    outlineOffset: Dp,
+    outlineOffset: Dp
 ): Modifier {
     val isFocused by interactionSource.collectIsFocusedAsState()
 
