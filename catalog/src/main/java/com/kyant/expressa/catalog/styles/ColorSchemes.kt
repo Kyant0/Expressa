@@ -29,12 +29,12 @@ import com.kyant.expressa.catalog.ui.PageContainer
 import com.kyant.expressa.catalog.ui.SectionContainer
 import com.kyant.expressa.catalog.ui.Subtitle
 import com.kyant.expressa.catalog.ui.TopBar
-import com.kyant.expressa.component.button.Button
-import com.kyant.expressa.component.text.Text
+import com.kyant.expressa.components.button.Button
 import com.kyant.expressa.m3.LocalColorScheme
 import com.kyant.expressa.m3.color.ColorScheme
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.LocalContentColor
+import com.kyant.expressa.ui.Text
 import com.kyant.m3color.dynamiccolor.Variant
 
 @Composable

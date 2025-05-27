@@ -22,11 +22,11 @@ import com.kyant.expressa.catalog.styles.Elevation
 import com.kyant.expressa.catalog.styles.MotionSchemes
 import com.kyant.expressa.catalog.styles.Shapes
 import com.kyant.expressa.catalog.styles.Typography
-import com.kyant.expressa.component.text.Text
 import com.kyant.expressa.m3.motion.EaseEmphasized
 import com.kyant.expressa.m3.motion.EaseEmphasizedAccelerate
 import com.kyant.expressa.m3.motion.EaseEmphasizedDecelerate
 import com.kyant.expressa.prelude.*
+import com.kyant.expressa.ui.Text
 
 @Composable
 fun NavContent() {

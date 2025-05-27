@@ -18,9 +18,9 @@ import androidx.compose.ui.unit.dp
 import com.kyant.expressa.catalog.ui.PageContainer
 import com.kyant.expressa.catalog.ui.SectionContainer
 import com.kyant.expressa.catalog.ui.TopBar
-import com.kyant.expressa.component.text.Text
 import com.kyant.expressa.m3.elevation.Elevation
 import com.kyant.expressa.prelude.*
+import com.kyant.expressa.ui.Text
 
 @Composable
 fun Elevation() {

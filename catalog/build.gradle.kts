@@ -89,5 +89,6 @@ dependencies {
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.kotlinx.serialization.core)
     implementation(libs.kotlinx.serialization.protobuf)
-    implementation(project(":expressa"))
+    implementation(project(":expressa-core"))
+    implementation(project(":expressa-components"))
 }

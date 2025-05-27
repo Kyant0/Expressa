@@ -22,4 +22,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Expressa"
 include(":catalog")
-include(":expressa")
+include(":expressa-core")
+include(":expressa-components")

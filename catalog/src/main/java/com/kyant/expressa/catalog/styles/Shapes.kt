@@ -18,10 +18,10 @@ import androidx.graphics.shapes.RoundedPolygon
 import com.kyant.expressa.catalog.ui.PageContainer
 import com.kyant.expressa.catalog.ui.SectionContainer
 import com.kyant.expressa.catalog.ui.TopBar
-import com.kyant.expressa.component.text.Text
 import com.kyant.expressa.m3.shape.MaterialShapes
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.shape.toOmniShape
+import com.kyant.expressa.ui.Text
 
 @Composable
 fun Shapes() {

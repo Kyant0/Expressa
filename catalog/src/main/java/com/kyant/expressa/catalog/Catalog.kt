@@ -16,9 +16,9 @@ import androidx.compose.ui.unit.dp
 import com.kyant.expressa.catalog.ui.PageContainer
 import com.kyant.expressa.catalog.ui.Subtitle
 import com.kyant.expressa.catalog.ui.TopBar
-import com.kyant.expressa.component.text.ProvideTextStyle
-import com.kyant.expressa.component.text.Text
 import com.kyant.expressa.prelude.*
+import com.kyant.expressa.ui.ProvideTextStyle
+import com.kyant.expressa.ui.Text
 
 @Composable
 fun Catalog(backStack: MutableList<Any>) {

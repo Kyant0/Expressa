@@ -11,7 +11,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/catalog" />
-            <option value="$PROJECT_DIR$/expressa" />
+            <option value="$PROJECT_DIR$/expressa-components" />
+            <option value="$PROJECT_DIR$/expressa-core" />
           </set>
         </option>
       </GradleProjectSettings>

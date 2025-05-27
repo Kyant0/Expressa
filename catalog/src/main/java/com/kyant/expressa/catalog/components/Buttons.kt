@@ -22,17 +22,17 @@ import com.kyant.expressa.catalog.ui.SectionContainer
 import com.kyant.expressa.catalog.ui.Subtitle
 import com.kyant.expressa.catalog.ui.Title
 import com.kyant.expressa.catalog.ui.TopBar
-import com.kyant.expressa.component.button.Button
-import com.kyant.expressa.component.button.ButtonColors
-import com.kyant.expressa.component.button.ButtonDensity
-import com.kyant.expressa.component.button.ButtonElevation
-import com.kyant.expressa.component.button.ButtonShape
-import com.kyant.expressa.component.button.ButtonSizes
-import com.kyant.expressa.component.icon.Icon
-import com.kyant.expressa.component.text.Text
+import com.kyant.expressa.components.button.Button
+import com.kyant.expressa.components.button.ButtonColors
+import com.kyant.expressa.components.button.ButtonDensity
+import com.kyant.expressa.components.button.ButtonElevation
+import com.kyant.expressa.components.button.ButtonShape
+import com.kyant.expressa.components.button.ButtonSizes
 import com.kyant.expressa.m3.elevation.Elevation
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.shape.RoundedCornerOmniShape
+import com.kyant.expressa.ui.Icon
+import com.kyant.expressa.ui.Text
 
 @Composable
 fun Buttons() {

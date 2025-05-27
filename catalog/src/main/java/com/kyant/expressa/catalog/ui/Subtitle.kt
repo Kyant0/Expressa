@@ -6,9 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.kyant.expressa.component.text.ProvideTextStyle
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.LocalContentColor
+import com.kyant.expressa.ui.ProvideTextStyle
 
 @Composable
 fun Subtitle(
