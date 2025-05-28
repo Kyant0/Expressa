@@ -10,7 +10,6 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.util.lerp
 import androidx.graphics.shapes.Morph
 import androidx.graphics.shapes.RoundedPolygon
 
@@ -66,40 +65,7 @@ data class ShapeMorph(
                 } catch (_: IllegalArgumentException) {
                     return if (fraction < 0.5f) start else end
                 }
-            val pivotX =
-                lerp(
-                    start.transformOrigin.pivotFractionX,
-                    end.transformOrigin.pivotFractionX,
-                    fraction
-                )
-            val pivotY =
-                lerp(
-                    start.transformOrigin.pivotFractionY,
-                    end.transformOrigin.pivotFractionY,
-                    fraction
-                )
-            val rotation =
-                lerp(
-                    startNormalized.getRotation(
-                        startAngle = start.startAngle,
-                        rotationPivotX = pivotX,
-                        rotationPivotY = pivotY
-                    ),
-                    endNormalized.getRotation(
-                        startAngle = end.startAngle,
-                        rotationPivotX = pivotX,
-                        rotationPivotY = pivotY
-                    ),
-                    fraction
-                )
-            val morphPath =
-                morph.toPath(
-                    progress = fraction,
-                    path = path,
-                    startAngle = 0,
-                    rotationPivotX = pivotX,
-                    rotationPivotY = pivotY
-                )
+            val morphPath = morph.toPath(fraction, path)
 
             object : Shape {
                 override fun createOutline(
@@ -113,11 +79,10 @@ data class ShapeMorph(
 
                     workingPath.transform(Matrix().apply {
                         resetToPivotedTransform(
-                            pivotX = pivotX,
-                            pivotY = pivotY,
+                            pivotX = 0.5f,
+                            pivotY = 0.5f,
                             translationX = size.center.x,
                             translationY = size.center.y,
-                            rotationZ = rotation,
                             scaleX = size.width,
                             scaleY = size.height
                         )
@@ -162,54 +127,9 @@ data class ShapeMorph(
                                     density = density
                                 )
                         }
-                    val pivotX =
-                        lerp(
-                            start.transformOrigin.pivotFractionX * size.width,
-                            end.transformOrigin.pivotFractionX * size.width,
-                            fraction
-                        )
-                    val pivotY =
-                        lerp(
-                            start.transformOrigin.pivotFractionY * size.height,
-                            end.transformOrigin.pivotFractionY * size.height,
-                            fraction
-                        )
-                    val rotation =
-                        lerp(
-                            startPolygon.getRotation(
-                                startAngle = start.startAngle,
-                                rotationPivotX = pivotX,
-                                rotationPivotY = pivotY
-                            ),
-                            endPolygon.getRotation(
-                                startAngle = end.startAngle,
-                                rotationPivotX = pivotX,
-                                rotationPivotY = pivotY
-                            ),
-                            fraction
-                        )
-                    val morphPath =
-                        morph.toPath(
-                            progress = fraction,
-                            path = path,
-                            startAngle = 0,
-                            rotationPivotX = pivotX,
-                            rotationPivotY = pivotY
-                        )
+                    val morphPath = morph.toPath(fraction, path)
 
-                    val workingPath = _workingPath ?: Path().also { _workingPath = it }
-                    workingPath.rewind()
-                    workingPath.addPath(morphPath)
-
-                    workingPath.transform(Matrix().apply {
-                        resetToPivotedTransform(
-                            pivotX = pivotX,
-                            pivotY = pivotY,
-                            rotationZ = rotation
-                        )
-                    })
-
-                    return Outline.Generic(workingPath)
+                    return Outline.Generic(morphPath)
                 }
             }
         }

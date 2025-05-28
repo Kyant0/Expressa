@@ -11,7 +11,7 @@ import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.toRect
 import androidx.compose.ui.graphics.Outline
-import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
@@ -40,9 +40,7 @@ open class RoundedCornerOmniShape(
         bottomStart = bottomStart
     ), OmniShape {
 
-    override val startAngle: Int = 0
-
-    override val transformOrigin: TransformOrigin = TransformOrigin.Center
+    private val path = Path()
 
     init {
         requirePrecondition(
@@ -128,9 +126,7 @@ open class RoundedCornerOmniShape(
                         bottomStart = bottomStart,
                         layoutDirection = layoutDirection
                     )
-                    .toPath(
-                        startAngle = startAngle
-                    )
+                    .toPath(path)
             )
         }
     }

@@ -3,7 +3,6 @@ package com.kyant.expressa.shape
 import androidx.annotation.FloatRange
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Stable
-import androidx.compose.ui.graphics.TransformOrigin
 import androidx.graphics.shapes.RoundedPolygon
 
 @Stable
@@ -40,12 +39,5 @@ fun RoundedCornerShape.toOmniShape(
     )
 
 @Stable
-fun RoundedPolygon.toOmniShape(
-    startAngle: Int = 0,
-    transformOrigin: TransformOrigin = TransformOrigin.Center
-): RoundedPolygonOmniShape =
-    RoundedPolygonOmniShape(
-        roundedPolygon = this,
-        startAngle = startAngle,
-        transformOrigin = transformOrigin
-    )
+fun RoundedPolygon.toOmniShape(): RoundedPolygonOmniShape =
+    RoundedPolygonOmniShape(roundedPolygon = this)
