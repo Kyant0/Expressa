@@ -150,77 +150,80 @@ fun materialColorScheme(
         Variant.CONTENT -> SchemeContent(hct, isDark, contrast, spec, platform)
     }
 
-    with(dynamicScheme) {
-        return ColorScheme(
-            // primary colors
-            primary = Color(primary),
-            onPrimary = Color(onPrimary),
-            primaryContainer = Color(primaryContainer),
-            onPrimaryContainer = Color(onPrimaryContainer),
+    return dynamicScheme.asColorScheme()
+}
 
-            // secondary colors
-            secondary = Color(secondary),
-            onSecondary = Color(onSecondary),
-            secondaryContainer = Color(secondaryContainer),
-            onSecondaryContainer = Color(onSecondaryContainer),
+@Stable
+fun DynamicScheme.asColorScheme(): ColorScheme {
+    return ColorScheme(
+        // primary colors
+        primary = Color(primary),
+        onPrimary = Color(onPrimary),
+        primaryContainer = Color(primaryContainer),
+        onPrimaryContainer = Color(onPrimaryContainer),
 
-            // tertiary colors
-            tertiary = Color(tertiary),
-            onTertiary = Color(onTertiary),
-            tertiaryContainer = Color(tertiaryContainer),
-            onTertiaryContainer = Color(onTertiaryContainer),
+        // secondary colors
+        secondary = Color(secondary),
+        onSecondary = Color(onSecondary),
+        secondaryContainer = Color(secondaryContainer),
+        onSecondaryContainer = Color(onSecondaryContainer),
 
-            // error colors
-            error = Color(error),
-            onError = Color(onError),
-            errorContainer = Color(errorContainer),
-            onErrorContainer = Color(onErrorContainer),
+        // tertiary colors
+        tertiary = Color(tertiary),
+        onTertiary = Color(onTertiary),
+        tertiaryContainer = Color(tertiaryContainer),
+        onTertiaryContainer = Color(onTertiaryContainer),
 
-            // surface colors
-            surface = Color(surface),
-            onSurface = Color(onSurface),
-            surfaceVariant = Color(surfaceVariant),
-            onSurfaceVariant = Color(onSurfaceVariant),
-            surfaceContainerHighest = Color(surfaceContainerHighest),
-            surfaceContainerHigh = Color(surfaceContainerHigh),
-            surfaceContainer = Color(surfaceContainer),
-            surfaceContainerLow = Color(surfaceContainerLow),
-            surfaceContainerLowest = Color(surfaceContainerLowest),
-            inverseSurface = Color(inverseSurface),
-            inverseOnSurface = Color(inverseOnSurface),
+        // error colors
+        error = Color(error),
+        onError = Color(onError),
+        errorContainer = Color(errorContainer),
+        onErrorContainer = Color(onErrorContainer),
 
-            // outline colors
-            outline = Color(outline),
-            outlineVariant = Color(outlineVariant),
+        // surface colors
+        surface = Color(surface),
+        onSurface = Color(onSurface),
+        surfaceVariant = Color(surfaceVariant),
+        onSurfaceVariant = Color(onSurfaceVariant),
+        surfaceContainerHighest = Color(surfaceContainerHighest),
+        surfaceContainerHigh = Color(surfaceContainerHigh),
+        surfaceContainer = Color(surfaceContainer),
+        surfaceContainerLow = Color(surfaceContainerLow),
+        surfaceContainerLowest = Color(surfaceContainerLowest),
+        inverseSurface = Color(inverseSurface),
+        inverseOnSurface = Color(inverseOnSurface),
 
-            // add-on primary colors
-            primaryFixed = Color(primaryFixed),
-            onPrimaryFixed = Color(onPrimaryFixed),
-            primaryFixedDim = Color(primaryFixedDim),
-            onPrimaryFixedVariant = Color(onPrimaryFixedVariant),
-            inversePrimary = Color(inversePrimary),
+        // outline colors
+        outline = Color(outline),
+        outlineVariant = Color(outlineVariant),
 
-            // add-on secondary colors
-            secondaryFixed = Color(secondaryFixed),
-            onSecondaryFixed = Color(onSecondaryFixed),
-            secondaryFixedDim = Color(secondaryFixedDim),
-            onSecondaryFixedVariant = Color(onSecondaryFixedVariant),
+        // add-on primary colors
+        primaryFixed = Color(primaryFixed),
+        onPrimaryFixed = Color(onPrimaryFixed),
+        primaryFixedDim = Color(primaryFixedDim),
+        onPrimaryFixedVariant = Color(onPrimaryFixedVariant),
+        inversePrimary = Color(inversePrimary),
 
-            // add-on tertiary colors
-            tertiaryFixed = Color(tertiaryFixed),
-            onTertiaryFixed = Color(onTertiaryFixed),
-            tertiaryFixedDim = Color(tertiaryFixedDim),
-            onTertiaryFixedVariant = Color(onTertiaryFixedVariant),
+        // add-on secondary colors
+        secondaryFixed = Color(secondaryFixed),
+        onSecondaryFixed = Color(onSecondaryFixed),
+        secondaryFixedDim = Color(secondaryFixedDim),
+        onSecondaryFixedVariant = Color(onSecondaryFixedVariant),
 
-            // add-on surface colors
-            background = Color(background),
-            onBackground = Color(onBackground),
-            surfaceBright = Color(surfaceBright),
-            surfaceDim = Color(surfaceDim),
-            scrim = Color(scrim),
-            shadow = Color(shadow)
-        )
-    }
+        // add-on tertiary colors
+        tertiaryFixed = Color(tertiaryFixed),
+        onTertiaryFixed = Color(onTertiaryFixed),
+        tertiaryFixedDim = Color(tertiaryFixedDim),
+        onTertiaryFixedVariant = Color(onTertiaryFixedVariant),
+
+        // add-on surface colors
+        background = Color(background),
+        onBackground = Color(onBackground),
+        surfaceBright = Color(surfaceBright),
+        surfaceDim = Color(surfaceDim),
+        scrim = Color(scrim),
+        shadow = Color(shadow)
+    )
 }
 
 @Composable
