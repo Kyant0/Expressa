@@ -7,7 +7,6 @@ import androidx.compose.ui.util.fastForEach
 import androidx.graphics.shapes.Morph
 import androidx.graphics.shapes.RoundedPolygon
 import androidx.graphics.shapes.TransformResult
-import kotlin.math.PI
 
 internal fun RoundedPolygon.transformed(matrix: Matrix): RoundedPolygon =
     transformed { x, y ->
@@ -55,8 +54,4 @@ internal fun Morph.toPath(progress: Float, path: Path = Path()): Path {
     }
     path.close()
     return path
-}
-
-private fun radiansToDegrees(radians: Float): Float {
-    return (radians * 180.0 / PI).toFloat()
 }
