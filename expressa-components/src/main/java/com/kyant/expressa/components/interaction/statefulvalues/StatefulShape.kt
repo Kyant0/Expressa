@@ -1,10 +1,10 @@
-package com.kyant.expressa.interaction.statefulvalues
+package com.kyant.expressa.components.interaction.statefulvalues
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
-import com.kyant.expressa.interaction.StateHolder
-import com.kyant.expressa.interaction.StatefulValue
-import com.kyant.expressa.interaction.StaticStatefulValue
+import com.kyant.expressa.components.interaction.StateHolder
+import com.kyant.expressa.components.interaction.StatefulValue
+import com.kyant.expressa.components.interaction.StaticStatefulValue
 import com.kyant.expressa.shape.OmniShape
 
 @Immutable

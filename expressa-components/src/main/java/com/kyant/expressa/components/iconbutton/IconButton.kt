@@ -1,5 +1,6 @@
 package com.kyant.expressa.components.iconbutton
 
+import androidx.compose.foundation.Indication
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -23,11 +24,12 @@ import androidx.compose.ui.unit.dp
 import com.kyant.expressa.components.button.ButtonDensity
 import com.kyant.expressa.components.button.ButtonShape
 import com.kyant.expressa.components.button.ButtonStateHolder
-import com.kyant.expressa.interaction.statefulvalues.animatedValueAsState
+import com.kyant.expressa.components.button.focusRingIndicator
+import com.kyant.expressa.components.interaction.statefulvalues.animatedValueAsState
 import com.kyant.expressa.prelude.*
+import com.kyant.expressa.ripple.ripple
 import com.kyant.expressa.ui.LocalContentColor
 import com.kyant.expressa.ui.LocalIconSize
-import com.kyant.expressa.ui.focusRingIndicator
 
 @Composable
 fun IconButton(
@@ -35,11 +37,12 @@ fun IconButton(
     modifier: Modifier = Modifier,
     enabled: () -> Boolean = { true },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    iconButtonSizes: IconButtonSizes = IconButtonSizes.small(),
-    buttonShape: ButtonShape = ButtonShape.Round,
-    iconButtonColors: IconButtonColors = IconButtonColors.filled(),
-    iconButtonWidth: IconButtonWidth = IconButtonWidth.Default,
-    buttonDensity: ButtonDensity = ButtonDensity.Standard,
+    indication: Indication? = ripple(bounded = false),
+    sizes: IconButtonSizes = IconButtonSizes.small(),
+    shape: ButtonShape = ButtonShape.Round,
+    colors: IconButtonColors = IconButtonColors.filled(),
+    width: IconButtonWidth = IconButtonWidth.Default,
+    density: ButtonDensity = ButtonDensity.Standard,
     content: @Composable () -> Unit
 ) {
     val disabledState = remember(enabled) {
@@ -54,11 +57,11 @@ fun IconButton(
         )
     }
 
-    val containerColor = { iconButtonColors.containerColor.resolvedValue(stateHolder) }
-    val containerShape by iconButtonSizes.resolvedShapes(buttonShape)
-        .animatedValueAsState(stateHolder, iconButtonSizes.shapeAnimationSpec)
-    val iconColor = iconButtonColors.iconColor.resolvedValue(stateHolder)
-    val outlineColor = { iconButtonColors.outlineColor.resolvedValue(stateHolder) }
+    val containerColor = { colors.containerColor.resolvedValue(stateHolder) }
+    val containerShape by sizes.resolvedShapes(shape)
+        .animatedValueAsState(stateHolder, sizes.shapeAnimationSpec)
+    val iconColor = colors.iconColor.resolvedValue(stateHolder)
+    val outlineColor = { colors.outlineColor.resolvedValue(stateHolder) }
 
     val focusRingIndicatorColor = secondary
     val focusRingIndicatorThickness = 3.dp
@@ -66,7 +69,7 @@ fun IconButton(
 
     CompositionLocalProvider(
         LocalContentColor provides iconColor,
-        LocalIconSize provides iconButtonSizes.iconSize
+        LocalIconSize provides sizes.iconSize
     ) {
         Row(
             modifier
@@ -79,7 +82,7 @@ fun IconButton(
                 )
                 .graphicsLayer {
                     clip = true
-                    shape = containerShape
+                    this.shape = containerShape
                 }
                 .drawBehind {
                     drawRect(color = containerColor())
@@ -87,23 +90,24 @@ fun IconButton(
                         outline = containerShape.createOutline(
                             size = size,
                             layoutDirection = layoutDirection,
-                            density = Density(density)
+                            density = Density(this.density)
                         ),
                         color = outlineColor(),
-                        style = Stroke(width = iconButtonSizes.outlineWidth.toPx())
+                        style = Stroke(width = sizes.outlineWidth.toPx())
                     )
                 }
                 .clickable(
+                    interactionSource = interactionSource,
+                    indication = indication,
                     enabled = enabled(),
                     role = Role.Button,
-                    interactionSource = interactionSource,
                     onClick = onClick
                 )
                 .padding(
-                    start = iconButtonSizes.resolvedLeadingSpace(iconButtonWidth),
-                    end = iconButtonSizes.resolvedTrailingSpace(iconButtonWidth)
+                    start = sizes.resolvedLeadingSpace(width),
+                    end = sizes.resolvedTrailingSpace(width)
                 )
-                .height(iconButtonSizes.resolvedContainerHeight(buttonDensity)),
+                .height(sizes.resolvedContainerHeight(density)),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {

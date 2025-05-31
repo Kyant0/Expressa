@@ -1,4 +1,4 @@
-package com.kyant.expressa.interaction
+package com.kyant.expressa.components.interaction
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec

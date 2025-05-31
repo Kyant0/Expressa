@@ -1,17 +1,11 @@
 package com.kyant.expressa.ripple
 
 import androidx.compose.foundation.IndicationNodeFactory
-import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material.ripple.createRippleModifierNode
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorProducer
 import androidx.compose.ui.graphics.takeOrElse
@@ -21,45 +15,6 @@ import androidx.compose.ui.node.DelegatingNode
 import androidx.compose.ui.node.currentValueOf
 import androidx.compose.ui.unit.Dp
 import com.kyant.expressa.ui.LocalContentColor
-
-val LocalBoundedRipple: ProvidableCompositionLocal<IndicationNodeFactory> =
-    staticCompositionLocalOf { ripple(bounded = true) }
-
-val LocalUnboundedRipple: ProvidableCompositionLocal<IndicationNodeFactory> =
-    staticCompositionLocalOf { ripple(bounded = false) }
-
-@Composable
-fun ProvideRipples(
-    radius: Dp = Dp.Unspecified,
-    color: Color = Color.Unspecified,
-    rippleAlpha: RippleAlpha = DefaultRippleAlpha,
-    content: @Composable () -> Unit
-) {
-    val boundedRipple = remember(radius, color, rippleAlpha) {
-        ripple(
-            bounded = true,
-            radius = radius,
-            color = color,
-            rippleAlpha = rippleAlpha
-        )
-    }
-
-    val unboundedRipple = remember(radius, color, rippleAlpha) {
-        ripple(
-            bounded = false,
-            radius = radius,
-            color = color,
-            rippleAlpha = rippleAlpha
-        )
-    }
-
-    CompositionLocalProvider(
-        LocalIndication provides boundedRipple,
-        LocalBoundedRipple provides boundedRipple,
-        LocalUnboundedRipple provides unboundedRipple,
-        content = content
-    )
-}
 
 @Stable
 fun ripple(

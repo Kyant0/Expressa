@@ -22,13 +22,12 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
-import com.kyant.expressa.interaction.animatedValueAsState
-import com.kyant.expressa.interaction.statefulvalues.animatedValueAsState
+import com.kyant.expressa.components.interaction.animatedValueAsState
+import com.kyant.expressa.components.interaction.statefulvalues.animatedValueAsState
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.LocalContentColor
 import com.kyant.expressa.ui.LocalIconSize
 import com.kyant.expressa.ui.ProvideTextStyle
-import com.kyant.expressa.ui.focusRingIndicator
 
 @Composable
 fun Button(
@@ -36,10 +35,10 @@ fun Button(
     modifier: Modifier = Modifier,
     enabled: () -> Boolean = { true },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    buttonSizes: ButtonSizes = ButtonSizes.small(),
-    buttonShape: ButtonShape = ButtonShape.Round,
-    buttonColors: ButtonColors = ButtonColors.filled(),
-    buttonDensity: ButtonDensity = ButtonDensity.Standard,
+    sizes: ButtonSizes = ButtonSizes.small(),
+    shape: ButtonShape = ButtonShape.Round,
+    colors: ButtonColors = ButtonColors.filled(),
+    density: ButtonDensity = ButtonDensity.Standard,
     icon: @Composable (() -> Unit)? = null,
     label: @Composable () -> Unit
 ) {
@@ -55,14 +54,14 @@ fun Button(
         )
     }
 
-    val containerColor = { buttonColors.containerColor.resolvedValue(stateHolder) }
-    val containerElevation by buttonColors.elevation
+    val containerColor = { colors.containerColor.resolvedValue(stateHolder) }
+    val containerElevation by colors.elevation
         .animatedValueAsState(stateHolder, motionSchemeFastEffects())
-    val containerShape by buttonSizes.resolvedShapes(buttonShape)
-        .animatedValueAsState(stateHolder, buttonSizes.shapeAnimationSpec)
-    val labelColor = buttonColors.labelColor.resolvedValue(stateHolder)
-    val iconColor = buttonColors.iconColor.resolvedValue(stateHolder)
-    val outlineColor = { buttonColors.outlineColor.resolvedValue(stateHolder) }
+    val containerShape by sizes.resolvedShapes(shape)
+        .animatedValueAsState(stateHolder, sizes.shapeAnimationSpec)
+    val labelColor = colors.labelColor.resolvedValue(stateHolder)
+    val iconColor = colors.iconColor.resolvedValue(stateHolder)
+    val outlineColor = { colors.outlineColor.resolvedValue(stateHolder) }
 
     val focusRingIndicatorColor = secondary
     val focusRingIndicatorThickness = 3.dp
@@ -82,10 +81,10 @@ fun Button(
                 )
                 .graphicsLayer {
                     clip = true
-                    shape = containerShape
+                    this.shape = containerShape
                     shadowElevation = containerElevation.toPx()
-                    ambientShadowColor = buttonColors.shadowColor
-                    spotShadowColor = buttonColors.shadowColor
+                    ambientShadowColor = colors.shadowColor
+                    spotShadowColor = colors.shadowColor
                 }
                 .drawBehind {
                     drawRect(color = containerColor())
@@ -93,10 +92,10 @@ fun Button(
                         outline = containerShape.createOutline(
                             size = size,
                             layoutDirection = layoutDirection,
-                            density = Density(density)
+                            density = Density(this.density)
                         ),
                         color = outlineColor(),
-                        style = Stroke(width = buttonSizes.outlineWidth.toPx())
+                        style = Stroke(width = sizes.outlineWidth.toPx())
                     )
                 }
                 .clickable(
@@ -106,24 +105,24 @@ fun Button(
                     onClick = onClick
                 )
                 .padding(
-                    start = buttonSizes.leadingSpace,
-                    end = buttonSizes.trailingSpace
+                    start = sizes.leadingSpace,
+                    end = sizes.trailingSpace
                 )
-                .height(buttonSizes.resolvedContainerHeight(buttonDensity)),
+                .height(sizes.resolvedContainerHeight(density)),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (icon != null) {
                 CompositionLocalProvider(
                     LocalContentColor provides iconColor,
-                    LocalIconSize provides buttonSizes.iconSize,
+                    LocalIconSize provides sizes.iconSize,
                     content = icon
                 )
-                Spacer(Modifier.width(buttonSizes.betweenIconLabelSpace))
+                Spacer(Modifier.width(sizes.betweenIconLabelSpace))
             }
 
             ProvideTextStyle(
-                buttonSizes.labelTextStyle,
+                sizes.labelTextStyle,
                 content = label
             )
         }

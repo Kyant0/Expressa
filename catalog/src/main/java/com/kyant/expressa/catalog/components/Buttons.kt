@@ -44,12 +44,12 @@ fun Buttons() {
         ComponentDisplay {
             Button(
                 {},
-                buttonSizes =
+                sizes =
                     ButtonSizes.large().copy(
                         shapePressed = RoundedCornerOmniShape(16.dp, 0.48f)
                     ),
-                buttonShape = ButtonShape.Round,
-                buttonColors =
+                shape = ButtonShape.Round,
+                colors =
                     ButtonColors.tonal(
                         containerColor = primaryContainer,
                         contentColor = onPrimaryContainer
@@ -72,11 +72,11 @@ fun Buttons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                Button({}, buttonSizes = ButtonSizes.extraSmall()) { Text("Extra small") }
-                Button({}, buttonSizes = ButtonSizes.small()) { Text("Small") }
-                Button({}, buttonSizes = ButtonSizes.medium()) { Text("Medium") }
-                Button({}, buttonSizes = ButtonSizes.large()) { Text("Large") }
-                Button({}, buttonSizes = ButtonSizes.extraLarge()) { Text("Extra large") }
+                Button({}, sizes = ButtonSizes.extraSmall()) { Text("Extra small") }
+                Button({}, sizes = ButtonSizes.small()) { Text("Small") }
+                Button({}, sizes = ButtonSizes.medium()) { Text("Medium") }
+                Button({}, sizes = ButtonSizes.large()) { Text("Large") }
+                Button({}, sizes = ButtonSizes.extraLarge()) { Text("Extra large") }
             }
         }
 
@@ -87,8 +87,8 @@ fun Buttons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                Button({}, buttonShape = ButtonShape.Round) { Text("Round") }
-                Button({}, buttonShape = ButtonShape.Square) { Text("Square") }
+                Button({}, shape = ButtonShape.Round) { Text("Round") }
+                Button({}, shape = ButtonShape.Square) { Text("Square") }
             }
         }
 
@@ -99,11 +99,11 @@ fun Buttons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                Button({}, buttonColors = ButtonColors.elevated()) { Text("Elevated") }
-                Button({}, buttonColors = ButtonColors.filled()) { Text("Filled") }
-                Button({}, buttonColors = ButtonColors.tonal()) { Text("Tonal") }
-                Button({}, buttonColors = ButtonColors.outlined()) { Text("Outlined") }
-                Button({}, buttonColors = ButtonColors.text()) { Text("Text") }
+                Button({}, colors = ButtonColors.elevated()) { Text("Elevated") }
+                Button({}, colors = ButtonColors.filled()) { Text("Filled") }
+                Button({}, colors = ButtonColors.tonal()) { Text("Tonal") }
+                Button({}, colors = ButtonColors.outlined()) { Text("Outlined") }
+                Button({}, colors = ButtonColors.text()) { Text("Text") }
             }
         }
 
@@ -114,10 +114,10 @@ fun Buttons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                Button({}, buttonDensity = ButtonDensity.Standard) { Text("Density 0") }
-                Button({}, buttonDensity = ButtonDensity.Negative1) { Text("Density -1") }
-                Button({}, buttonDensity = ButtonDensity.Negative2) { Text("Density -2") }
-                Button({}, buttonDensity = ButtonDensity.Negative3) { Text("Density -3") }
+                Button({}, density = ButtonDensity.Standard) { Text("Density 0") }
+                Button({}, density = ButtonDensity.Negative1) { Text("Density -1") }
+                Button({}, density = ButtonDensity.Negative2) { Text("Density -2") }
+                Button({}, density = ButtonDensity.Negative3) { Text("Density -3") }
             }
         }
 
@@ -130,11 +130,11 @@ fun Buttons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                Button({}, enabled = { true }, buttonColors = ButtonColors.elevated()) { Text("Elevated") }
-                Button({}, enabled = { true }, buttonColors = ButtonColors.filled()) { Text("Filled") }
-                Button({}, enabled = { true }, buttonColors = ButtonColors.tonal()) { Text("Tonal") }
-                Button({}, enabled = { true }, buttonColors = ButtonColors.outlined()) { Text("Outlined") }
-                Button({}, enabled = { true }, buttonColors = ButtonColors.text()) { Text("Text") }
+                Button({}, enabled = { true }, colors = ButtonColors.elevated()) { Text("Elevated") }
+                Button({}, enabled = { true }, colors = ButtonColors.filled()) { Text("Filled") }
+                Button({}, enabled = { true }, colors = ButtonColors.tonal()) { Text("Tonal") }
+                Button({}, enabled = { true }, colors = ButtonColors.outlined()) { Text("Outlined") }
+                Button({}, enabled = { true }, colors = ButtonColors.text()) { Text("Text") }
             }
         }
 
@@ -145,11 +145,11 @@ fun Buttons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                Button({}, enabled = { false }, buttonColors = ButtonColors.elevated()) { Text("Elevated") }
-                Button({}, enabled = { false }, buttonColors = ButtonColors.filled()) { Text("Filled") }
-                Button({}, enabled = { false }, buttonColors = ButtonColors.tonal()) { Text("Tonal") }
-                Button({}, enabled = { false }, buttonColors = ButtonColors.outlined()) { Text("Outlined") }
-                Button({}, enabled = { false }, buttonColors = ButtonColors.text()) { Text("Text") }
+                Button({}, enabled = { false }, colors = ButtonColors.elevated()) { Text("Elevated") }
+                Button({}, enabled = { false }, colors = ButtonColors.filled()) { Text("Filled") }
+                Button({}, enabled = { false }, colors = ButtonColors.tonal()) { Text("Tonal") }
+                Button({}, enabled = { false }, colors = ButtonColors.outlined()) { Text("Outlined") }
+                Button({}, enabled = { false }, colors = ButtonColors.text()) { Text("Text") }
             }
         }
 
@@ -167,19 +167,19 @@ fun Buttons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                Button({}, interactionSource = source, buttonColors = ButtonColors.elevated()) {
+                Button({}, interactionSource = source, colors = ButtonColors.elevated()) {
                     Text("Elevated")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.filled()) {
+                Button({}, interactionSource = source, colors = ButtonColors.filled()) {
                     Text("Filled")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.tonal()) {
+                Button({}, interactionSource = source, colors = ButtonColors.tonal()) {
                     Text("Tonal")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.outlined()) {
+                Button({}, interactionSource = source, colors = ButtonColors.outlined()) {
                     Text("Outlined")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.text()) {
+                Button({}, interactionSource = source, colors = ButtonColors.text()) {
                     Text("Text")
                 }
             }
@@ -202,19 +202,19 @@ fun Buttons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                Button({}, interactionSource = source, buttonColors = ButtonColors.elevated()) {
+                Button({}, interactionSource = source, colors = ButtonColors.elevated()) {
                     Text("Elevated")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.filled()) {
+                Button({}, interactionSource = source, colors = ButtonColors.filled()) {
                     Text("Filled")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.tonal()) {
+                Button({}, interactionSource = source, colors = ButtonColors.tonal()) {
                     Text("Tonal")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.outlined()) {
+                Button({}, interactionSource = source, colors = ButtonColors.outlined()) {
                     Text("Outlined")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.text()) {
+                Button({}, interactionSource = source, colors = ButtonColors.text()) {
                     Text("Text")
                 }
             }
@@ -231,19 +231,19 @@ fun Buttons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                Button({}, interactionSource = source, buttonColors = ButtonColors.elevated()) {
+                Button({}, interactionSource = source, colors = ButtonColors.elevated()) {
                     Text("Elevated")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.filled()) {
+                Button({}, interactionSource = source, colors = ButtonColors.filled()) {
                     Text("Filled")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.tonal()) {
+                Button({}, interactionSource = source, colors = ButtonColors.tonal()) {
                     Text("Tonal")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.outlined()) {
+                Button({}, interactionSource = source, colors = ButtonColors.outlined()) {
                     Text("Outlined")
                 }
-                Button({}, interactionSource = source, buttonColors = ButtonColors.text()) {
+                Button({}, interactionSource = source, colors = ButtonColors.text()) {
                     Text("Text")
                 }
             }

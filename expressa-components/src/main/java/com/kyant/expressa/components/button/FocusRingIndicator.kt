@@ -1,4 +1,4 @@
-package com.kyant.expressa.ui
+package com.kyant.expressa.components.button
 
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 
 @Composable
-fun Modifier.focusRingIndicator(
+internal fun Modifier.focusRingIndicator(
     interactionSource: InteractionSource,
     shape: () -> Shape,
     color: Color,

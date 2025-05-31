@@ -1,4 +1,4 @@
-package com.kyant.expressa.interaction
+package com.kyant.expressa.components.interaction
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable

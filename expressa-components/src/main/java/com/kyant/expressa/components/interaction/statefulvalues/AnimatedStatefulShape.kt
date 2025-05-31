@@ -1,4 +1,4 @@
-package com.kyant.expressa.interaction.statefulvalues
+package com.kyant.expressa.components.interaction.statefulvalues
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
@@ -10,12 +10,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.graphics.Shape
-import com.kyant.expressa.interaction.InteractionState
-import com.kyant.expressa.interaction.StateHolder
-import com.kyant.expressa.interaction.StaticStatefulValue
-import com.kyant.expressa.interaction.interactionStateFlow
-import com.kyant.expressa.interaction.resolvedInteractionValueOrDefault
-import com.kyant.expressa.interaction.resolvedValueAsState
+import com.kyant.expressa.components.interaction.InteractionState
+import com.kyant.expressa.components.interaction.StateHolder
+import com.kyant.expressa.components.interaction.StaticStatefulValue
+import com.kyant.expressa.components.interaction.interactionStateFlow
+import com.kyant.expressa.components.interaction.resolvedInteractionValueOrDefault
+import com.kyant.expressa.components.interaction.resolvedValueAsState
 import com.kyant.expressa.shape.OmniShapeAnimator
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.mapNotNull

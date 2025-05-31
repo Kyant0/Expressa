@@ -1,4 +1,4 @@
-package com.kyant.expressa.interaction.statefulvalues
+package com.kyant.expressa.components.interaction.statefulvalues
 
 import androidx.compose.animation.VectorConverter
 import androidx.compose.animation.core.AnimationVector4D
@@ -7,9 +7,9 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.colorspace.ColorSpace
-import com.kyant.expressa.interaction.AnimatableStatefulValue
-import com.kyant.expressa.interaction.StateHolder
-import com.kyant.expressa.interaction.StaticStatefulValue
+import com.kyant.expressa.components.interaction.AnimatableStatefulValue
+import com.kyant.expressa.components.interaction.StateHolder
+import com.kyant.expressa.components.interaction.StaticStatefulValue
 
 @Immutable
 interface StatefulColor<S : StateHolder> : AnimatableStatefulValue<Color, AnimationVector4D, S> {

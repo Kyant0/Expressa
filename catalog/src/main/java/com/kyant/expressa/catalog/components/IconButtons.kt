@@ -44,12 +44,12 @@ fun IconButtons() {
         ComponentDisplay {
             IconButton(
                 {},
-                iconButtonSizes =
+                sizes =
                     IconButtonSizes.large().copy(
                         containerShapeRound = MaterialShapes.Sunny.toOmniShape()
                     ),
-                buttonShape = ButtonShape.Round,
-                iconButtonColors =
+                shape = ButtonShape.Round,
+                colors =
                     IconButtonColors.tonal(
                         containerColor = primaryContainer,
                         contentColor = onPrimaryContainer
@@ -72,11 +72,11 @@ fun IconButtons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton({}, iconButtonSizes = IconButtonSizes.extraSmall(), content = iconContent)
-                IconButton({}, iconButtonSizes = IconButtonSizes.small(), content = iconContent)
-                IconButton({}, iconButtonSizes = IconButtonSizes.medium(), content = iconContent)
-                IconButton({}, iconButtonSizes = IconButtonSizes.large(), content = iconContent)
-                IconButton({}, iconButtonSizes = IconButtonSizes.extraLarge(), content = iconContent)
+                IconButton({}, sizes = IconButtonSizes.extraSmall(), content = iconContent)
+                IconButton({}, sizes = IconButtonSizes.small(), content = iconContent)
+                IconButton({}, sizes = IconButtonSizes.medium(), content = iconContent)
+                IconButton({}, sizes = IconButtonSizes.large(), content = iconContent)
+                IconButton({}, sizes = IconButtonSizes.extraLarge(), content = iconContent)
             }
         }
 
@@ -87,8 +87,8 @@ fun IconButtons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton({}, buttonShape = ButtonShape.Round, content = iconContent)
-                IconButton({}, buttonShape = ButtonShape.Square, content = iconContent)
+                IconButton({}, shape = ButtonShape.Round, content = iconContent)
+                IconButton({}, shape = ButtonShape.Square, content = iconContent)
             }
         }
 
@@ -99,10 +99,10 @@ fun IconButtons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton({}, iconButtonColors = IconButtonColors.filled(), content = iconContent)
-                IconButton({}, iconButtonColors = IconButtonColors.tonal(), content = iconContent)
-                IconButton({}, iconButtonColors = IconButtonColors.outlined(), content = iconContent)
-                IconButton({}, iconButtonColors = IconButtonColors.standard(), content = iconContent)
+                IconButton({}, colors = IconButtonColors.filled(), content = iconContent)
+                IconButton({}, colors = IconButtonColors.tonal(), content = iconContent)
+                IconButton({}, colors = IconButtonColors.outlined(), content = iconContent)
+                IconButton({}, colors = IconButtonColors.standard(), content = iconContent)
             }
         }
 
@@ -113,9 +113,9 @@ fun IconButtons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton({}, iconButtonWidth = IconButtonWidth.Narrow, content = iconContent)
-                IconButton({}, iconButtonWidth = IconButtonWidth.Default, content = iconContent)
-                IconButton({}, iconButtonWidth = IconButtonWidth.Wide, content = iconContent)
+                IconButton({}, width = IconButtonWidth.Narrow, content = iconContent)
+                IconButton({}, width = IconButtonWidth.Default, content = iconContent)
+                IconButton({}, width = IconButtonWidth.Wide, content = iconContent)
             }
         }
 
@@ -126,10 +126,10 @@ fun IconButtons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton({}, buttonDensity = ButtonDensity.Standard, content = iconContent)
-                IconButton({}, buttonDensity = ButtonDensity.Negative1, content = iconContent)
-                IconButton({}, buttonDensity = ButtonDensity.Negative2, content = iconContent)
-                IconButton({}, buttonDensity = ButtonDensity.Negative3, content = iconContent)
+                IconButton({}, density = ButtonDensity.Standard, content = iconContent)
+                IconButton({}, density = ButtonDensity.Negative1, content = iconContent)
+                IconButton({}, density = ButtonDensity.Negative2, content = iconContent)
+                IconButton({}, density = ButtonDensity.Negative3, content = iconContent)
             }
         }
 
@@ -143,19 +143,19 @@ fun IconButtons() {
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
-                    {}, enabled = { true }, iconButtonColors = IconButtonColors.filled(),
+                    {}, enabled = { true }, colors = IconButtonColors.filled(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, enabled = { true }, iconButtonColors = IconButtonColors.tonal(),
+                    {}, enabled = { true }, colors = IconButtonColors.tonal(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, enabled = { true }, iconButtonColors = IconButtonColors.outlined(),
+                    {}, enabled = { true }, colors = IconButtonColors.outlined(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, enabled = { true }, iconButtonColors = IconButtonColors.standard(),
+                    {}, enabled = { true }, colors = IconButtonColors.standard(),
                     content = iconContent
                 )
             }
@@ -169,19 +169,19 @@ fun IconButtons() {
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
-                    {}, enabled = { false }, iconButtonColors = IconButtonColors.filled(),
+                    {}, enabled = { false }, colors = IconButtonColors.filled(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, enabled = { false }, iconButtonColors = IconButtonColors.tonal(),
+                    {}, enabled = { false }, colors = IconButtonColors.tonal(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, enabled = { false }, iconButtonColors = IconButtonColors.outlined(),
+                    {}, enabled = { false }, colors = IconButtonColors.outlined(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, enabled = { false }, iconButtonColors = IconButtonColors.standard(),
+                    {}, enabled = { false }, colors = IconButtonColors.standard(),
                     content = iconContent
                 )
             }
@@ -202,19 +202,19 @@ fun IconButtons() {
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.filled(),
+                    {}, interactionSource = source, colors = IconButtonColors.filled(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.tonal(),
+                    {}, interactionSource = source, colors = IconButtonColors.tonal(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.outlined(),
+                    {}, interactionSource = source, colors = IconButtonColors.outlined(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.standard(),
+                    {}, interactionSource = source, colors = IconButtonColors.standard(),
                     content = iconContent
                 )
             }
@@ -238,19 +238,19 @@ fun IconButtons() {
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.filled(),
+                    {}, interactionSource = source, colors = IconButtonColors.filled(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.tonal(),
+                    {}, interactionSource = source, colors = IconButtonColors.tonal(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.outlined(),
+                    {}, interactionSource = source, colors = IconButtonColors.outlined(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.standard(),
+                    {}, interactionSource = source, colors = IconButtonColors.standard(),
                     content = iconContent
                 )
             }
@@ -268,19 +268,19 @@ fun IconButtons() {
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.filled(),
+                    {}, interactionSource = source, colors = IconButtonColors.filled(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.tonal(),
+                    {}, interactionSource = source, colors = IconButtonColors.tonal(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.outlined(),
+                    {}, interactionSource = source, colors = IconButtonColors.outlined(),
                     content = iconContent
                 )
                 IconButton(
-                    {}, interactionSource = source, iconButtonColors = IconButtonColors.standard(),
+                    {}, interactionSource = source, colors = IconButtonColors.standard(),
                     content = iconContent
                 )
             }

@@ -6,10 +6,10 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.graphics.Color
-import com.kyant.expressa.interaction.InteractionState
-import com.kyant.expressa.interaction.StateHolder
-import com.kyant.expressa.interaction.statefulvalues.StatefulElevation
-import com.kyant.expressa.interaction.statefulvalues.StatefulShape
+import com.kyant.expressa.components.interaction.InteractionState
+import com.kyant.expressa.components.interaction.StateHolder
+import com.kyant.expressa.components.interaction.statefulvalues.StatefulElevation
+import com.kyant.expressa.components.interaction.statefulvalues.StatefulShape
 import com.kyant.expressa.m3.elevation.Elevation
 import com.kyant.expressa.shape.OmniShape
 import kotlinx.coroutines.flow.Flow
