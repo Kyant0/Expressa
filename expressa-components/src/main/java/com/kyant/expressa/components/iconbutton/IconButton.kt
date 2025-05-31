@@ -1,6 +1,5 @@
 package com.kyant.expressa.components.iconbutton
 
-import androidx.compose.foundation.Indication
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -37,7 +36,6 @@ fun IconButton(
     modifier: Modifier = Modifier,
     enabled: () -> Boolean = { true },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    indication: Indication? = ripple(bounded = false),
     sizes: IconButtonSizes = IconButtonSizes.small(),
     shape: ButtonShape = ButtonShape.Round,
     colors: IconButtonColors = IconButtonColors.filled(),
@@ -98,7 +96,7 @@ fun IconButton(
                 }
                 .clickable(
                     interactionSource = interactionSource,
-                    indication = indication,
+                    indication = ripple(bounded = false),
                     enabled = enabled(),
                     role = Role.Button,
                     onClick = onClick

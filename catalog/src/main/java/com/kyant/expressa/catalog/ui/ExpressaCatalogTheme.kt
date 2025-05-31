@@ -11,6 +11,8 @@ import androidx.compose.ui.graphics.Color
 import com.kyant.expressa.m3.LocalColorScheme
 import com.kyant.expressa.m3.color.ColorScheme
 import com.kyant.expressa.overscroll.rememberOffsetOverscrollFactory
+import com.kyant.expressa.ripple.LocalRippleConfiguration
+import com.kyant.expressa.ripple.RippleConfiguration
 import com.kyant.expressa.ripple.ripple
 import com.kyant.expressa.ui.LocalContentColor
 
@@ -19,9 +21,8 @@ fun ExpressaCatalogTheme(
     content: @Composable () -> Unit
 ) {
     val isDark = isSystemInDarkTheme()
-    val ripple = remember {
-        ripple(
-            bounded = true,
+    val rippleConfiguration = remember {
+        RippleConfiguration(
             rippleAlpha = RippleAlpha(
                 hoveredAlpha = 2f * 0.08f,
                 focusedAlpha = 2f * 0.10f,
@@ -30,13 +31,13 @@ fun ExpressaCatalogTheme(
             )
         )
     }
-
     val overscrollFactory = rememberOffsetOverscrollFactory()
 
     CompositionLocalProvider(
         LocalColorScheme provides ColorScheme.systemDynamic(),
         LocalContentColor provides if (isDark) Color.White else Color.Black,
-        LocalIndication provides ripple,
+        LocalRippleConfiguration provides rippleConfiguration,
+        LocalIndication provides ripple(),
         LocalOverscrollFactory provides overscrollFactory,
         content = content
     )
