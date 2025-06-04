@@ -111,6 +111,7 @@ fun ColorSchemes() {
         Subtitle { Text("Light theme") }
         ProvideColorScheme(
             ColorSchemeProvider.systemDynamic(
+                isLazy = false,
                 variant = variant,
                 isDark = false,
                 contrastLevel = contrast
@@ -122,6 +123,7 @@ fun ColorSchemes() {
         Subtitle { Text("Dark theme") }
         ProvideColorScheme(
             ColorSchemeProvider.systemDynamic(
+                isLazy = false,
                 variant = variant,
                 isDark = true,
                 contrastLevel = contrast
