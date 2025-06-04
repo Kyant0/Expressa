@@ -22,7 +22,7 @@ fun ProvideColorScheme(
 
 @Composable
 fun ProvideColorScheme(
-    block: MutableColorSchemeProvider.() -> Unit,
+    block: MutableColorSchemeProvider.(provider: ColorSchemeProvider) -> Unit,
     content: @Composable () -> Unit
 ) {
     val currentProvider = LocalColorSchemeProvider.current
@@ -33,7 +33,7 @@ fun ProvideColorScheme(
                 variant = currentProvider.variant,
                 isDark = currentProvider.isDark,
                 contrastLevel = currentProvider.contrastLevel
-            ).apply(block)
+            ).apply { block(currentProvider) }
 
         ColorSchemeProvider(
             sourceHct = provider.sourceHct,
