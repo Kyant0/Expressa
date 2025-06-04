@@ -1,8 +1,6 @@
 package com.kyant.expressa.m3
 
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocal
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.referentialEqualityPolicy
@@ -12,18 +10,6 @@ import com.kyant.expressa.m3.color.ColorSchemeProvider
 import com.kyant.expressa.m3.motion.MotionScheme
 import com.kyant.expressa.m3.shape.CornerShapes
 import com.kyant.expressa.m3.typography.Typography
-
-@Composable
-fun ProvideColorScheme(
-    provider: ColorSchemeProvider,
-    content: @Composable () -> Unit
-) {
-    CompositionLocalProvider(
-        localColorSchemeProvider provides provider,
-        localColorScheme provides provider.toColorScheme(),
-        content = content
-    )
-}
 
 inline val LocalColorSchemeProvider: CompositionLocal<ColorSchemeProvider>
     get() = localColorSchemeProvider
