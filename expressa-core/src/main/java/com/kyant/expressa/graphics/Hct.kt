@@ -1,20 +1,9 @@
 package com.kyant.expressa.graphics
 
-import androidx.annotation.ColorInt
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-
-@Stable
-fun Hct(@ColorInt argb: Int): Hct {
-    val hct = com.kyant.m3color.hct.Hct.fromInt(argb)
-    return Hct(
-        hue = hct.hue,
-        chroma = hct.chroma,
-        tone = hct.tone
-    )
-}
 
 @Immutable
 data class Hct(
