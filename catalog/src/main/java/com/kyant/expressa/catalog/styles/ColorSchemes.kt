@@ -30,12 +30,12 @@ import com.kyant.expressa.catalog.ui.SectionContainer
 import com.kyant.expressa.catalog.ui.Subtitle
 import com.kyant.expressa.catalog.ui.TopBar
 import com.kyant.expressa.components.button.Button
-import com.kyant.expressa.m3.LocalColorScheme
-import com.kyant.expressa.m3.color.ColorScheme
+import com.kyant.expressa.m3.ProvideColorScheme
+import com.kyant.expressa.m3.color.ColorSchemeProvider
+import com.kyant.expressa.m3.color.DynamicSchemeVariant
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.LocalContentColor
 import com.kyant.expressa.ui.Text
-import com.kyant.m3color.dynamiccolor.Variant
 
 @Composable
 fun ColorSchemes() {
@@ -44,7 +44,7 @@ fun ColorSchemes() {
             title = { Text("Color schemes") }
         )
 
-        var variant by remember { mutableStateOf(Variant.TONAL_SPOT) }
+        var variant by remember { mutableStateOf(DynamicSchemeVariant.TonalSpot) }
         var contrast by remember { mutableFloatStateOf(0f) }
 
         Subtitle { Text("Variant") }
@@ -53,31 +53,31 @@ fun ColorSchemes() {
             Arrangement.spacedBy(4.dp),
             Arrangement.spacedBy(6.dp)
         ) {
-            Button({ variant = Variant.TONAL_SPOT }) {
+            Button({ variant = DynamicSchemeVariant.TonalSpot }) {
                 Text("Tonal spot")
             }
-            Button({ variant = Variant.VIBRANT }) {
+            Button({ variant = DynamicSchemeVariant.Vibrant }) {
                 Text("Vibrant")
             }
-            Button({ variant = Variant.EXPRESSIVE }) {
+            Button({ variant = DynamicSchemeVariant.Expressive }) {
                 Text("Expressive")
             }
-            Button({ variant = Variant.FIDELITY }) {
+            Button({ variant = DynamicSchemeVariant.Fidelity }) {
                 Text("Fidelity")
             }
-            Button({ variant = Variant.RAINBOW }) {
+            Button({ variant = DynamicSchemeVariant.Rainbow }) {
                 Text("Rainbow")
             }
-            Button({ variant = Variant.FRUIT_SALAD }) {
+            Button({ variant = DynamicSchemeVariant.FruitSalad }) {
                 Text("Fruit salad")
             }
-            Button({ variant = Variant.CONTENT }) {
+            Button({ variant = DynamicSchemeVariant.Content }) {
                 Text("Content")
             }
-            Button({ variant = Variant.NEUTRAL }) {
+            Button({ variant = DynamicSchemeVariant.Neutral }) {
                 Text("Neutral")
             }
-            Button({ variant = Variant.MONOCHROME }) {
+            Button({ variant = DynamicSchemeVariant.Monochrome }) {
                 Text("Monochrome")
             }
         }
@@ -109,8 +109,8 @@ fun ColorSchemes() {
         }
 
         Subtitle { Text("Light theme") }
-        CompositionLocalProvider(
-            LocalColorScheme provides ColorScheme.systemDynamic(
+        ProvideColorScheme(
+            ColorSchemeProvider.systemDynamic(
                 variant = variant,
                 isDark = false,
                 contrastLevel = contrast
@@ -120,8 +120,8 @@ fun ColorSchemes() {
         }
 
         Subtitle { Text("Dark theme") }
-        CompositionLocalProvider(
-            LocalColorScheme provides ColorScheme.systemDynamic(
+        ProvideColorScheme(
+            ColorSchemeProvider.systemDynamic(
                 variant = variant,
                 isDark = true,
                 contrastLevel = contrast
