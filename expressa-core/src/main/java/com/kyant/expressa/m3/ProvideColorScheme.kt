@@ -29,6 +29,7 @@ fun ProvideColorScheme(
     val modifiedProvider = remember(currentProvider, block) {
         val provider =
             MutableColorSchemeProvider(
+                isLazy = currentProvider.isLazy,
                 sourceHct = currentProvider.sourceHct,
                 variant = currentProvider.variant,
                 isDark = currentProvider.isDark,
@@ -36,6 +37,7 @@ fun ProvideColorScheme(
             ).apply { block(currentProvider) }
 
         ColorSchemeProvider(
+            isLazy = provider.isLazy,
             sourceHct = provider.sourceHct,
             variant = provider.variant,
             isDark = provider.isDark,
@@ -50,6 +52,7 @@ fun ProvideColorScheme(
 }
 
 class MutableColorSchemeProvider internal constructor(
+    var isLazy: Boolean,
     var sourceHct: Hct,
     var variant: DynamicSchemeVariant,
     var isDark: Boolean,

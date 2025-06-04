@@ -19,6 +19,7 @@ import com.kyant.m3color.dynamiccolor.DynamicScheme
 
 @Immutable
 data class ColorSchemeProvider(
+    val isLazy: Boolean,
     val sourceHct: Hct,
     val variant: DynamicSchemeVariant,
     val isDark: Boolean,
@@ -34,10 +35,71 @@ data class ColorSchemeProvider(
         get() = DynamicScheme.Platform.PHONE
 
     @Stable
+    val dynamicScheme: DynamicScheme
+        get() = variant.toDynamicScheme(this)
+
     fun toColorScheme(): ColorScheme {
-        val dynamicScheme = variant.toDynamicScheme(this)
-        return with(dynamicScheme) {
-            ColorScheme(
+        return if (isLazy) {
+            dynamicScheme.asLazyColorScheme()
+        } else {
+            dynamicScheme.toCachedColorScheme()
+        }
+    }
+
+    companion object {
+
+        @Stable
+        val Default: ColorSchemeProvider =
+            ColorSchemeProvider(
+                isLazy = true,
+                sourceHct = Color(0xFF475D92).toHct(),
+                variant = DynamicSchemeVariant.TonalSpot,
+                isDark = false,
+                contrastLevel = 0f
+            )
+
+        @Composable
+        @ReadOnlyComposable
+        fun systemDynamic(
+            isLazy: Boolean = true,
+            sourceHct: Hct = systemColor().toHct(),
+            variant: DynamicSchemeVariant = DynamicSchemeVariant.TonalSpot,
+            isDark: Boolean = isSystemInDarkTheme(),
+            @FloatRange(from = -1.0, to = 1.0) contrastLevel: Float = systemContrast()
+        ): ColorSchemeProvider =
+            ColorSchemeProvider(
+                isLazy = isLazy,
+                sourceHct = sourceHct,
+                variant = variant,
+                isDark = isDark,
+                contrastLevel = contrastLevel
+            )
+
+        @Composable
+        @ReadOnlyComposable
+        fun systemColor(): Color {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                colorResource(android.R.color.system_accent1_600)
+            } else {
+                Color(0xFF475D92)
+            }
+        }
+
+        @Composable
+        @ReadOnlyComposable
+        fun systemContrast(): Float {
+            val context = LocalContext.current
+            val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager?
+            return if (uiModeManager != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                uiModeManager.contrast
+            } else {
+                0f
+            }
+        }
+
+        @Stable
+        private fun DynamicScheme.toCachedColorScheme(): CachedColorScheme {
+            return CachedColorScheme(
                 // primary colors
                 primary = Color(primary),
                 onPrimary = Color(onPrimary),
@@ -107,55 +169,10 @@ data class ColorSchemeProvider(
                 shadow = Color(shadow)
             )
         }
-    }
-
-    companion object {
 
         @Stable
-        val Default: ColorSchemeProvider =
-            ColorSchemeProvider(
-                sourceHct = Color(0xFF475D92).toHct(),
-                variant = DynamicSchemeVariant.TonalSpot,
-                isDark = false,
-                contrastLevel = 0f
-            )
-
-        @Composable
-        @ReadOnlyComposable
-        fun systemDynamic(
-            sourceHct: Hct = systemColor().toHct(),
-            variant: DynamicSchemeVariant = DynamicSchemeVariant.TonalSpot,
-            isDark: Boolean = isSystemInDarkTheme(),
-            @FloatRange(from = -1.0, to = 1.0) contrastLevel: Float = systemContrast()
-        ): ColorSchemeProvider =
-            ColorSchemeProvider(
-                sourceHct = sourceHct,
-                variant = variant,
-                isDark = isDark,
-                contrastLevel = contrastLevel
-            )
-
-
-        @Composable
-        @ReadOnlyComposable
-        fun systemColor(): Color {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                colorResource(android.R.color.system_accent1_600)
-            } else {
-                Color(0xFF475D92)
-            }
-        }
-
-        @Composable
-        @ReadOnlyComposable
-        fun systemContrast(): Float {
-            val context = LocalContext.current
-            val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager?
-            return if (uiModeManager != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                uiModeManager.contrast
-            } else {
-                0f
-            }
+        private fun DynamicScheme.asLazyColorScheme(): LazyColorScheme {
+            return LazyColorScheme(this)
         }
     }
 }
