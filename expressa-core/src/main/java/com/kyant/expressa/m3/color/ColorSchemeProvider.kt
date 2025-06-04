@@ -38,6 +38,7 @@ data class ColorSchemeProvider(
     val dynamicScheme: DynamicScheme
         get() = variant.toDynamicScheme(this)
 
+    @Stable
     fun toColorScheme(): ColorScheme {
         return if (isLazy) {
             dynamicScheme.asLazyColorScheme()
