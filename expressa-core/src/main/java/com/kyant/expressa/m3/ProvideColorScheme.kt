@@ -51,6 +51,17 @@ fun ProvideColorScheme(
     )
 }
 
+@Composable
+fun ProvideSourceHct(
+    sourceHct: Hct,
+    content: @Composable () -> Unit
+) {
+    ProvideColorScheme(
+        provider = LocalColorSchemeProvider.current.copy(sourceHct = sourceHct),
+        content = content
+    )
+}
+
 class MutableColorSchemeProvider internal constructor(
     var isLazy: Boolean,
     var sourceHct: Hct,
