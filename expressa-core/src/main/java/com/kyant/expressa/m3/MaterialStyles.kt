@@ -3,7 +3,6 @@ package com.kyant.expressa.m3
 import androidx.compose.runtime.CompositionLocal
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.referentialEqualityPolicy
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.kyant.expressa.m3.color.ColorScheme
 import com.kyant.expressa.m3.color.ColorSchemeProvider
@@ -24,7 +23,7 @@ val LocalCornerShapes: ProvidableCompositionLocal<CornerShapes> =
     staticCompositionLocalOf { CornerShapes.Default }
 
 val LocalTypography: ProvidableCompositionLocal<Typography> =
-    staticCompositionLocalOf<Typography> { Typography.Default }
+    staticCompositionLocalOf { Typography.Default }
 
 @PublishedApi
 internal val localColorSchemeProvider: ProvidableCompositionLocal<ColorSchemeProvider> =
@@ -32,6 +31,4 @@ internal val localColorSchemeProvider: ProvidableCompositionLocal<ColorSchemePro
 
 @PublishedApi
 internal val localColorScheme: ProvidableCompositionLocal<ColorScheme> =
-    compositionLocalOf(policy = referentialEqualityPolicy()) {
-        ColorSchemeProvider.Default.toColorScheme()
-    }
+    compositionLocalOf { ColorSchemeProvider.Default.toColorScheme() }

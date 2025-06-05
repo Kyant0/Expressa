@@ -5,12 +5,12 @@ import androidx.compose.runtime.ReadOnlyComposable
 import com.kyant.expressa.m3.LocalCornerShapes
 import com.kyant.expressa.shape.RoundedCornerOmniShape
 
-val cornerShapeExtraSmall: RoundedCornerOmniShape @Composable @ReadOnlyComposable inline get() = LocalCornerShapes.current.extraSmall
-val cornerShapeSmall: RoundedCornerOmniShape @Composable @ReadOnlyComposable inline get() = LocalCornerShapes.current.small
-val cornerShapeMedium: RoundedCornerOmniShape @Composable @ReadOnlyComposable inline get() = LocalCornerShapes.current.medium
-val cornerShapeLarge: RoundedCornerOmniShape @Composable @ReadOnlyComposable inline get() = LocalCornerShapes.current.large
-val cornerShapeLargeIncreased: RoundedCornerOmniShape @Composable @ReadOnlyComposable inline get() = LocalCornerShapes.current.largeIncreased
-val cornerShapeExtraLarge: RoundedCornerOmniShape @Composable @ReadOnlyComposable inline get() = LocalCornerShapes.current.extraLarge
-val cornerShapeExtraLargeIncreased: RoundedCornerOmniShape @Composable @ReadOnlyComposable inline get() = LocalCornerShapes.current.extraLargeIncreased
-val cornerShapeExtraExtraLarge: RoundedCornerOmniShape @Composable @ReadOnlyComposable inline get() = LocalCornerShapes.current.extraExtraLarge
-val cornerShapeFull: RoundedCornerOmniShape @Composable @ReadOnlyComposable inline get() = LocalCornerShapes.current.full
+inline val cornerShapeExtraSmall: RoundedCornerOmniShape @Composable @ReadOnlyComposable get() = LocalCornerShapes.current.extraSmall
+inline val cornerShapeSmall: RoundedCornerOmniShape @Composable @ReadOnlyComposable get() = LocalCornerShapes.current.small
+inline val cornerShapeMedium: RoundedCornerOmniShape @Composable @ReadOnlyComposable get() = LocalCornerShapes.current.medium
+inline val cornerShapeLarge: RoundedCornerOmniShape @Composable @ReadOnlyComposable get() = LocalCornerShapes.current.large
+inline val cornerShapeLargeIncreased: RoundedCornerOmniShape @Composable @ReadOnlyComposable get() = LocalCornerShapes.current.largeIncreased
+inline val cornerShapeExtraLarge: RoundedCornerOmniShape @Composable @ReadOnlyComposable get() = LocalCornerShapes.current.extraLarge
+inline val cornerShapeExtraLargeIncreased: RoundedCornerOmniShape @Composable @ReadOnlyComposable get() = LocalCornerShapes.current.extraLargeIncreased
+inline val cornerShapeExtraExtraLarge: RoundedCornerOmniShape @Composable @ReadOnlyComposable get() = LocalCornerShapes.current.extraExtraLarge
+inline val cornerShapeFull: RoundedCornerOmniShape @Composable @ReadOnlyComposable get() = LocalCornerShapes.current.full
