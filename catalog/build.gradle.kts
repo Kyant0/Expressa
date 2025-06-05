@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.baselineprofile)
 }
 
 android {
@@ -91,4 +92,6 @@ dependencies {
     implementation(libs.kotlinx.serialization.protobuf)
     implementation(project(":expressa-core"))
     implementation(project(":expressa-components"))
+    implementation(libs.androidx.profileinstaller)
+    "baselineProfile"(project(":baselineprofile"))
 }

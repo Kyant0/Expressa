@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("androidx.baselineprofile")
     id("dev.shreyaspatil.compose-compiler-report-generator")
 }
 
@@ -49,6 +50,17 @@ android {
     }
 }
 
+baselineProfile {
+    saveInSrc = true
+    filter {
+        exclude("com.kyant.expressa.catalog.**")
+        exclude("com.kyant.expressa.components.**")
+        include("com.kyant.expressa.**")
+        include("com.kyant.m3color.**")
+        include("androidx.graphics.shapes.**")
+    }
+}
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(platform(libs.androidx.compose.bom))
@@ -59,4 +71,5 @@ dependencies {
     api(libs.androidx.window)
     api(libs.androidx.graphics.shapes)
     api(libs.m3color)
+    baselineProfile(project(":baselineprofile"))
 }

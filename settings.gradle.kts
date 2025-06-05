@@ -24,3 +24,4 @@ rootProject.name = "Expressa"
 include(":catalog")
 include(":expressa-core")
 include(":expressa-components")
+include(":baselineprofile")
