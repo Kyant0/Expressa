@@ -1,6 +1,6 @@
 package com.kyant.expressa.mcu
 
-enum class MaterialColorRole {
+internal enum class MaterialColorRole {
     // primary colors
     Primary,
     OnPrimary,

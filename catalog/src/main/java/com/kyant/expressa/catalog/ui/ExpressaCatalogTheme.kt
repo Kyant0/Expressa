@@ -6,8 +6,8 @@ import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
-import com.kyant.expressa.m3.ProvideColorScheme
-import com.kyant.expressa.m3.color.ColorSchemeProvider
+import com.kyant.expressa.m3.LocalColorScheme
+import com.kyant.expressa.m3.color.ColorScheme
 import com.kyant.expressa.overscroll.rememberOffsetOverscrollFactory
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ripple.LocalRippleConfiguration
@@ -31,7 +31,9 @@ fun ExpressaCatalogTheme(
     }
     val overscrollFactory = rememberOffsetOverscrollFactory()
 
-    ProvideColorScheme(ColorSchemeProvider.systemDynamic()) {
+    CompositionLocalProvider(
+        LocalColorScheme provides ColorScheme.systemDynamic()
+    ) {
         CompositionLocalProvider(
             LocalContentColor provides onSurface,
             LocalRippleConfiguration provides rippleConfiguration,

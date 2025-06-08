@@ -6,7 +6,7 @@ import com.kyant.expressa.graphics.Hct
 import dalvik.annotation.optimization.FastNative
 
 @Immutable
-data class DynamicScheme(
+internal data class DynamicScheme(
     val sourceHct: Hct,
     val variant: DynamicSchemeVariant,
     val isDark: Boolean,

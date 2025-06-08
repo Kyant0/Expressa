@@ -30,8 +30,8 @@ import com.kyant.expressa.catalog.ui.SectionContainer
 import com.kyant.expressa.catalog.ui.Subtitle
 import com.kyant.expressa.catalog.ui.TopBar
 import com.kyant.expressa.components.button.Button
-import com.kyant.expressa.m3.ProvideColorScheme
-import com.kyant.expressa.m3.color.ColorSchemeProvider
+import com.kyant.expressa.m3.LocalColorScheme
+import com.kyant.expressa.m3.color.ColorScheme
 import com.kyant.expressa.mcu.DynamicSchemeVariant
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.LocalContentColor
@@ -94,9 +94,8 @@ fun ColorSchemes() {
         }
 
         Subtitle { Text("Light theme") }
-        ProvideColorScheme(
-            ColorSchemeProvider.systemDynamic(
-                isLazy = false,
+        CompositionLocalProvider(
+            LocalColorScheme provides ColorScheme.systemDynamic(
                 variant = variant,
                 isDark = false,
                 contrastLevel = contrast
@@ -106,9 +105,8 @@ fun ColorSchemes() {
         }
 
         Subtitle { Text("Dark theme") }
-        ProvideColorScheme(
-            ColorSchemeProvider.systemDynamic(
-                isLazy = false,
+        CompositionLocalProvider(
+            LocalColorScheme provides ColorScheme.systemDynamic(
                 variant = variant,
                 isDark = true,
                 contrastLevel = contrast
