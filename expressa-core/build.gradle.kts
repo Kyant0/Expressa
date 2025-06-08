@@ -63,7 +63,6 @@ baselineProfile {
         exclude("com.kyant.expressa.catalog.**")
         exclude("com.kyant.expressa.components.**")
         include("com.kyant.expressa.**")
-        include("com.kyant.m3color.**")
         include("androidx.graphics.shapes.**")
     }
 }
@@ -75,8 +74,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.foundation)
     api(libs.androidx.material.ripple)
-    api(libs.androidx.window)
     api(libs.androidx.graphics.shapes)
-    api(libs.m3color)
     baselineProfile(project(":baselineprofile"))
 }

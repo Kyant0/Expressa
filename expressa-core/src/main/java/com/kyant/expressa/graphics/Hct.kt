@@ -16,11 +16,7 @@ data class Hct(
 
     @Stable
     fun toArgb(): Int {
-        return if (USE_NATIVE) {
-            hctToInt(hue, chroma, tone)
-        } else {
-            com.kyant.m3color.hct.Hct.from(hue, chroma, tone).toInt()
-        }
+        return hctToInt(hue, chroma, tone)
     }
 
     @Stable
@@ -30,34 +26,23 @@ data class Hct(
 
     companion object {
 
-        private const val USE_NATIVE = true
-
         init {
             System.loadLibrary("mcu_jni")
         }
 
         @Stable
         fun Color.toHct(): Hct {
-            if (USE_NATIVE) {
-                val hct = hctFromInt(this.toArgb())
-                    ?: throw IllegalStateException("Failed to convert Color to HCT")
+            val hct = hctFromInt(this.toArgb())
 
-                if (hct.size != 3) {
-                    throw IllegalStateException("Expected HCT array of size 3, got ${hct.size}")
-                }
-                return Hct(
-                    hue = hct[0],
-                    chroma = hct[1],
-                    tone = hct[2]
-                )
-            } else {
-                val hct = com.kyant.m3color.hct.Hct.fromInt(this.toArgb())
-                return Hct(
-                    hue = hct.hue,
-                    chroma = hct.chroma,
-                    tone = hct.tone
-                )
+            if (hct == null || hct.size != 3) {
+                throw IllegalStateException("Failed to convert Color to HCT")
             }
+
+            return Hct(
+                hue = hct[0],
+                chroma = hct[1],
+                tone = hct[2]
+            )
         }
 
         @FastNative
