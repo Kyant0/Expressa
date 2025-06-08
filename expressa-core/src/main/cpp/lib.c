@@ -46,7 +46,12 @@ Java_com_kyant_expressa_mcu_DynamicScheme_00024Companion_nativeInit(
 ) {
     Hct source_color_hct;
     hct_from_int(argb, &source_color_hct);
-    void *dynamic_scheme = dynamic_scheme_init(&source_color_hct, (Variant) variant, is_dark, contrast_level);
+    void *dynamic_scheme = dynamic_scheme_init(
+            &source_color_hct,
+            (Variant) variant,
+            is_dark,
+            contrast_level
+    );
     return (jlong) dynamic_scheme;
 }
 
@@ -66,7 +71,9 @@ Java_com_kyant_expressa_mcu_DynamicScheme_00024Companion_nativeGetMaterialDynami
         jint material_color_role
 ) {
     void *dynamic_scheme = (void *) native_handle;
-    const uint32_t color = dynamic_scheme_get_material_dynamic_color(dynamic_scheme,
-                                                                     (MaterialColorRole) material_color_role);
+    const uint32_t color = dynamic_scheme_get_material_dynamic_color(
+            dynamic_scheme,
+            (MaterialColorRole) material_color_role
+    );
     return (jint) color;
 }

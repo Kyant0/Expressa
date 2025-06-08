@@ -9,7 +9,7 @@ import com.kyant.expressa.m3.shape.CornerShapes
 import com.kyant.expressa.m3.typography.Typography
 
 val LocalColorScheme: ProvidableCompositionLocal<ColorScheme> =
-    compositionLocalOf { ColorScheme.Default }
+    compositionLocalOf { error("CompositionLocal LocalColorScheme not present") }
 
 val LocalMotionScheme: ProvidableCompositionLocal<MotionScheme> =
     staticCompositionLocalOf { MotionScheme.Expressive }

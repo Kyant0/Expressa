@@ -1,17 +1,20 @@
 package com.kyant.expressa.mcu
 
+import android.util.Log
 import androidx.annotation.Keep
 import androidx.compose.runtime.Immutable
 import com.kyant.expressa.graphics.Hct
 import dalvik.annotation.optimization.FastNative
 
+@OptIn(LeakableObject::class)
 @Immutable
-internal data class DynamicScheme(
+internal data class DynamicScheme
+@LeakableObject constructor(
     val sourceHct: Hct,
     val variant: DynamicSchemeVariant,
     val isDark: Boolean,
     val contrastLevel: Double
-) {
+) : Leakable {
 
     @Keep
     private var nativeHandle: Long = 0L
@@ -21,12 +24,18 @@ internal data class DynamicScheme(
         if (nativeHandle == 0L) {
             throw IllegalStateException("Failed to initialize DynamicScheme")
         }
+        Log.d("MCU", "Initialized DynamicScheme: $this")
     }
 
-    fun free() {
+    override fun isFreed(): Boolean {
+        return nativeHandle == 0L
+    }
+
+    override fun free() {
         if (nativeHandle != 0L) {
             nativeFree(nativeHandle)
             nativeHandle = 0L
+            Log.d("MCU", "Freed DynamicScheme: $this")
         }
     }
 
