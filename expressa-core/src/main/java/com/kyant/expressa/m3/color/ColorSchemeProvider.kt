@@ -14,8 +14,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import com.kyant.expressa.graphics.Hct
 import com.kyant.expressa.graphics.Hct.Companion.toHct
-import com.kyant.m3color.dynamiccolor.ColorSpec
-import com.kyant.m3color.dynamiccolor.DynamicScheme
+import com.kyant.expressa.mcu.DynamicScheme
+import com.kyant.expressa.mcu.DynamicSchemeVariant
 
 @Immutable
 data class ColorSchemeProvider(
@@ -27,16 +27,13 @@ data class ColorSchemeProvider(
 ) {
 
     @Stable
-    val spec: ColorSpec.SpecVersion
-        get() = ColorSpec.SpecVersion.SPEC_2025
-
-    @Stable
-    val platform: DynamicScheme.Platform
-        get() = DynamicScheme.Platform.PHONE
-
-    @Stable
     val dynamicScheme: DynamicScheme
-        get() = variant.toDynamicScheme(this)
+        get() = DynamicScheme(
+            sourceHct = sourceHct,
+            variant = variant,
+            isDark = isDark,
+            contrastLevel = contrastLevel.toDouble()
+        )
 
     @Stable
     fun toColorScheme(): ColorScheme {

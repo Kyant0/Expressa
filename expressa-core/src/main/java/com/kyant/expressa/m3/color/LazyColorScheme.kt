@@ -3,7 +3,7 @@ package com.kyant.expressa.m3.color
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
-import com.kyant.m3color.dynamiccolor.DynamicScheme
+import com.kyant.expressa.mcu.DynamicScheme
 
 @Immutable
 data class LazyColorScheme(

@@ -67,6 +67,12 @@ class BaselineProfileGenerator {
 
             device.findObject(By.text("Color schemes")).click()
             Thread.sleep(500)
+            device.findObject(By.text("Neutral")).click()
+            Thread.sleep(250)
+            device.findObject(By.text("Vibrant")).click()
+            Thread.sleep(250)
+            device.findObject(By.text("Expressive")).click()
+            Thread.sleep(250)
             device.pressBack()
 
             device.findObject(By.text("Elevation")).click()

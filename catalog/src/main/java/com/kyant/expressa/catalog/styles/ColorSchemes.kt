@@ -32,7 +32,7 @@ import com.kyant.expressa.catalog.ui.TopBar
 import com.kyant.expressa.components.button.Button
 import com.kyant.expressa.m3.ProvideColorScheme
 import com.kyant.expressa.m3.color.ColorSchemeProvider
-import com.kyant.expressa.m3.color.DynamicSchemeVariant
+import com.kyant.expressa.mcu.DynamicSchemeVariant
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.LocalContentColor
 import com.kyant.expressa.ui.Text
@@ -53,6 +53,9 @@ fun ColorSchemes() {
             Arrangement.spacedBy(4.dp),
             Arrangement.spacedBy(6.dp)
         ) {
+            Button({ variant = DynamicSchemeVariant.Neutral }) {
+                Text("Neutral")
+            }
             Button({ variant = DynamicSchemeVariant.TonalSpot }) {
                 Text("Tonal spot")
             }
@@ -61,24 +64,6 @@ fun ColorSchemes() {
             }
             Button({ variant = DynamicSchemeVariant.Expressive }) {
                 Text("Expressive")
-            }
-            Button({ variant = DynamicSchemeVariant.Fidelity }) {
-                Text("Fidelity")
-            }
-            Button({ variant = DynamicSchemeVariant.Rainbow }) {
-                Text("Rainbow")
-            }
-            Button({ variant = DynamicSchemeVariant.FruitSalad }) {
-                Text("Fruit salad")
-            }
-            Button({ variant = DynamicSchemeVariant.Content }) {
-                Text("Content")
-            }
-            Button({ variant = DynamicSchemeVariant.Neutral }) {
-                Text("Neutral")
-            }
-            Button({ variant = DynamicSchemeVariant.Monochrome }) {
-                Text("Monochrome")
             }
         }
 

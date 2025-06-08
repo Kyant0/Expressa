@@ -13,6 +13,7 @@ android {
     namespace = "com.kyant.expressa"
     compileSdk = 36
     buildToolsVersion = "36.0.0"
+    ndkVersion = "29.0.13113456"
 
     defaultConfig {
         minSdk = 21
@@ -25,6 +26,12 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path("src/main/cpp/CMakeLists.txt")
+            version = "4.0.2"
         }
     }
     compileOptions {

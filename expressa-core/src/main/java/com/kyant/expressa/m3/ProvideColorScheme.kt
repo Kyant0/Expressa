@@ -6,7 +6,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import com.kyant.expressa.graphics.Hct
 import com.kyant.expressa.m3.color.ColorSchemeProvider
-import com.kyant.expressa.m3.color.DynamicSchemeVariant
+import com.kyant.expressa.mcu.DynamicSchemeVariant
 
 @Composable
 fun ProvideColorScheme(
