@@ -1,6 +1,8 @@
 #!/bin/sh
 
-yes | sdkmanager --licenses
+ls $ANDROID_HOME/cmdline-tools
+
+yes | $ANDROID_HOME/cmdline-tools/19.0/bin/sdkmanager --licenses
 
 #
 # Copyright © 2015-2021 the original authors.
