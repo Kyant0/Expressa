@@ -17,8 +17,11 @@ mv "$TMP_DIR/cmdline-tools"/* "$ANDROID_HOME/cmdline-tools/latest/"
 rmdir "$TMP_DIR/cmdline-tools"
 rmdir "$TMP_DIR"
 
-ls $ANDROID_HOME/cmdline-tools/latest
 yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
+yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "cmake;4.0.2"
+
+export CMAKE_EXECUTABLE=${ANDROID_SDK_HOME}/cmake/4.0.2/bin/cmake
+
 
 #
 # Copyright © 2015-2021 the original authors.
