@@ -1,6 +1,6 @@
 #!/bin/sh
 
-yes | $ANDROID_HOME/tools/bin/sdkmanager "ndk;29.0.13113456"
+yes | $ANDROID_HOME/cmdline-tools/19.0/bin/sdkmanager "ndk;29.0.13113456"
 
 #
 # Copyright © 2015-2021 the original authors.
