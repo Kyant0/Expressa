@@ -22,6 +22,7 @@ import com.kyant.expressa.mcu.DynamicScheme
 import com.kyant.expressa.mcu.DynamicSchemeVariant
 import com.kyant.expressa.mcu.Leakable
 import com.kyant.expressa.mcu.LeakableObject
+import com.kyant.expressa.mcu.TonalPalette
 
 @OptIn(LeakableObject::class)
 @Composable
@@ -140,6 +141,13 @@ class ColorScheme
     private var _surfaceDim = Color.Unspecified
     private var _scrim = Color.Unspecified
     private var _shadow = Color.Unspecified
+
+    val primaryTonalPalette: TonalPalette get() = dynamicScheme.primaryTonalPalette
+    val secondaryTonalPalette: TonalPalette get() = dynamicScheme.secondaryTonalPalette
+    val tertiaryTonalPalette: TonalPalette get() = dynamicScheme.tertiaryTonalPalette
+    val neutralTonalPalette: TonalPalette get() = dynamicScheme.neutralTonalPalette
+    val neutralVariantTonalPalette: TonalPalette get() = dynamicScheme.neutralVariantTonalPalette
+    val errorTonalPalette: TonalPalette get() = dynamicScheme.errorTonalPalette
 
     // primary colors
 

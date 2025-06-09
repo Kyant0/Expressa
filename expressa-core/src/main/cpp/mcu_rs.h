@@ -11,8 +11,15 @@ typedef struct {
     double hue;
     double chroma;
     double tone;
-    uint32_t argb;
 } Hct;
+
+typedef struct {
+    double hue;
+    double chroma;
+    double key_color_hue;
+    double key_color_chroma;
+    double key_color_tone;
+} TonalPalette;
 
 __attribute__((unused))
 typedef enum {
@@ -21,6 +28,16 @@ typedef enum {
     Vibrant,
     Expressive,
 } Variant;
+
+__attribute__((unused))
+typedef enum {
+    TonalPalettePrimary,
+    TonalPaletteSecondary,
+    TonalPaletteTertiary,
+    TonalPaletteNeutral,
+    TonalPaletteNeutralVariant,
+    TonalPaletteError,
+} DynamicSchemeTonalPalette;
 
 __attribute__((unused))
 typedef enum {
@@ -109,6 +126,12 @@ void dynamic_scheme_free(void *dynamic_scheme);
 uint32_t dynamic_scheme_get_material_dynamic_color(
         const void *dynamic_scheme,
         MaterialColorRole material_color_role
+);
+
+void dynamic_scheme_get_tonal_palette(
+        const void *dynamic_scheme,
+        DynamicSchemeTonalPalette palette,
+        TonalPalette *out
 );
 
 #ifdef __cplusplus

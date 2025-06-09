@@ -77,3 +77,33 @@ Java_com_kyant_expressa_mcu_DynamicScheme_00024Companion_nativeGetMaterialDynami
     );
     return (jint) color;
 }
+
+JNIEXPORT jdoubleArray JNICALL
+Java_com_kyant_expressa_mcu_DynamicScheme_00024Companion_nativeGetTonalPalette(
+        JNIEnv *env, jobject,
+        jlong native_handle,
+        jint dynamic_scheme_tonal_palette
+) {
+    void *dynamic_scheme = (void *) native_handle;
+    TonalPalette tonal_palette;
+    dynamic_scheme_get_tonal_palette(
+            dynamic_scheme,
+            (DynamicSchemeTonalPalette) dynamic_scheme_tonal_palette,
+            &tonal_palette
+    );
+
+    jdoubleArray result = (*env)->NewDoubleArray(env, 5);
+    if (result == nullptr) {
+        return nullptr;
+    }
+
+    jdouble values[5] = {
+            tonal_palette.hue,
+            tonal_palette.chroma,
+            tonal_palette.key_color_hue,
+            tonal_palette.key_color_chroma,
+            tonal_palette.key_color_tone
+    };
+    (*env)->SetDoubleArrayRegion(env, result, 0, 5, values);
+    return result;
+}

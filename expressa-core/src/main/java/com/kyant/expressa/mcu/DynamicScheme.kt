@@ -36,10 +36,6 @@ internal data class DynamicScheme
         }
     }
 
-    fun getMaterialDynamicColor(materialColorRole: MaterialColorRole): Int {
-        return nativeGetMaterialDynamicColor(nativeHandle, materialColorRole.ordinal)
-    }
-
     // primary colors
     inline val primary: Int get() = getMaterialDynamicColor(MaterialColorRole.Primary)
     inline val onPrimary: Int get() = getMaterialDynamicColor(MaterialColorRole.OnPrimary)
@@ -108,6 +104,46 @@ internal data class DynamicScheme
     inline val scrim: Int get() = getMaterialDynamicColor(MaterialColorRole.Scrim)
     inline val shadow: Int get() = getMaterialDynamicColor(MaterialColorRole.Shadow)
 
+    val primaryTonalPalette: TonalPalette
+        get() = getTonalPalette(DynamicSchemeTonalPalette.Primary)
+
+    val secondaryTonalPalette: TonalPalette
+        get() = getTonalPalette(DynamicSchemeTonalPalette.Secondary)
+
+    val tertiaryTonalPalette: TonalPalette
+        get() = getTonalPalette(DynamicSchemeTonalPalette.Tertiary)
+
+    val neutralTonalPalette: TonalPalette
+        get() = getTonalPalette(DynamicSchemeTonalPalette.Neutral)
+
+    val neutralVariantTonalPalette: TonalPalette
+        get() = getTonalPalette(DynamicSchemeTonalPalette.NeutralVariant)
+
+    val errorTonalPalette: TonalPalette
+        get() = getTonalPalette(DynamicSchemeTonalPalette.Error)
+
+    private fun getMaterialDynamicColor(materialColorRole: MaterialColorRole): Int {
+        return nativeGetMaterialDynamicColor(nativeHandle, materialColorRole.ordinal)
+    }
+
+    private fun getTonalPalette(tonalPalette: DynamicSchemeTonalPalette): TonalPalette {
+        val array = nativeGetTonalPalette(nativeHandle, tonalPalette.ordinal)
+        return if (array != null && array.size == 5) {
+            TonalPalette(
+                hue = array[0],
+                chroma = array[1],
+                keyColor =
+                    Hct(
+                        hue = array[2],
+                        chroma = array[3],
+                        tone = array[4]
+                    )
+            )
+        } else {
+            throw IllegalStateException("Invalid tonal palette data")
+        }
+    }
+
     private companion object {
 
         init {
@@ -130,5 +166,11 @@ internal data class DynamicScheme
             nativeHandle: Long,
             materialColorRole: Int
         ): Int
+
+        @FastNative
+        external fun nativeGetTonalPalette(
+            nativeHandle: Long,
+            tonalPalette: Int
+        ): DoubleArray?
     }
 }

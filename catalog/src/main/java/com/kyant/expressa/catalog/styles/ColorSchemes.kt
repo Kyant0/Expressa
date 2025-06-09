@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -90,6 +91,46 @@ fun ColorSchemes() {
                 Modifier.weight(1f)
             ) {
                 Text("High")
+            }
+        }
+
+        Subtitle { Text("Key colors") }
+        SectionContainer {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                with(LocalColorScheme.current) {
+                    KeyColorCell(
+                        primaryTonalPalette.keyColor.toColor(),
+                        Color.White,
+                        "Primary key color"
+                    )
+                    KeyColorCell(
+                        secondaryTonalPalette.keyColor.toColor(),
+                        Color.White,
+                        "Secondary key color"
+                    )
+                    KeyColorCell(
+                        tertiaryTonalPalette.keyColor.toColor(),
+                        Color.White,
+                        "Tertiary key color"
+                    )
+                    KeyColorCell(
+                        neutralTonalPalette.keyColor.toColor(),
+                        Color.White,
+                        "Neutral key color"
+                    )
+                    KeyColorCell(
+                        neutralVariantTonalPalette.keyColor.toColor(),
+                        Color.White,
+                        "Neutral variant key color"
+                    )
+                    KeyColorCell(
+                        errorTonalPalette.keyColor.toColor(),
+                        Color.White,
+                        "Error key color"
+                    )
+                }
             }
         }
 
@@ -228,7 +269,7 @@ private fun ColorPalette(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun RowScope.ColorCell(
+private fun KeyColorCell(
     color: Color,
     labelColor: Color,
     label: String,
@@ -244,6 +285,35 @@ private fun RowScope.ColorCell(
                     color = labelColor,
                     shape = cornerShapeSmall
                 )
+                .clip(cornerShapeSmall)
+                .clickable {}
+                .background(color)
+                .height(56.dp)
+                .padding(4.dp)
+                .fillMaxWidth(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                label,
+                labelLarge.merge(textAlign = TextAlign.Center),
+                maxLines = 1
+            )
+        }
+    }
+}
+
+@Composable
+private fun RowScope.ColorCell(
+    color: Color,
+    labelColor: Color,
+    label: String,
+    modifier: Modifier = Modifier
+) {
+    CompositionLocalProvider(
+        LocalContentColor provides labelColor
+    ) {
+        Box(
+            modifier
                 .clip(cornerShapeSmall)
                 .clickable {}
                 .background(color)

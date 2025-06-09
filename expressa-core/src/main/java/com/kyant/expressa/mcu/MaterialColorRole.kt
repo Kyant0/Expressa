@@ -1,5 +1,8 @@
 package com.kyant.expressa.mcu
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 internal enum class MaterialColorRole {
     // primary colors
     Primary,
