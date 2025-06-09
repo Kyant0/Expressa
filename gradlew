@@ -1,8 +1,10 @@
 #!/bin/sh
 
-ls $ANDROID_HOME/cmdline-tools
-
-yes | $ANDROID_HOME/cmdline-tools/19.0/bin/sdkmanager --licenses
+curl -o /tmp/commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
+unzip -q /tmp/commandlinetools.zip -d "$ANDROID_HOME"
+rm -f /tmp/commandlinetools.zip
+ls $ANDROID_HOME
+yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --licenses
 
 #
 # Copyright © 2015-2021 the original authors.
