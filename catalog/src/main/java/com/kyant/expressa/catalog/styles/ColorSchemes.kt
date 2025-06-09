@@ -280,11 +280,6 @@ private fun KeyColorCell(
     ) {
         Box(
             modifier
-                .border(
-                    width = 1.dp,
-                    color = labelColor,
-                    shape = cornerShapeSmall
-                )
                 .clip(cornerShapeSmall)
                 .clickable {}
                 .background(color)
@@ -314,6 +309,11 @@ private fun RowScope.ColorCell(
     ) {
         Box(
             modifier
+                .border(
+                    width = 1.dp,
+                    color = labelColor,
+                    shape = cornerShapeSmall
+                )
                 .clip(cornerShapeSmall)
                 .clickable {}
                 .background(color)
