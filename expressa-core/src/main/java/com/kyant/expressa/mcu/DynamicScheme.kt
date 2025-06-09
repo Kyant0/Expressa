@@ -1,6 +1,5 @@
 package com.kyant.expressa.mcu
 
-import android.util.Log
 import androidx.annotation.Keep
 import androidx.compose.runtime.Immutable
 import com.kyant.expressa.graphics.Hct
@@ -24,7 +23,6 @@ internal data class DynamicScheme
         if (nativeHandle == 0L) {
             throw IllegalStateException("Failed to initialize DynamicScheme")
         }
-        Log.d("MCU", "Initialized DynamicScheme: $this")
     }
 
     override fun isFreed(): Boolean {
@@ -35,7 +33,6 @@ internal data class DynamicScheme
         if (nativeHandle != 0L) {
             nativeFree(nativeHandle)
             nativeHandle = 0L
-            Log.d("MCU", "Freed DynamicScheme: $this")
         }
     }
 
