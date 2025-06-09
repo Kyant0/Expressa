@@ -9,8 +9,14 @@ fi
 curl -o /tmp/commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
 unzip -q /tmp/commandlinetools.zip -d "$ANDROID_HOME"
 rm -f /tmp/commandlinetools.zip
+
+TMP_DIR=$(mktemp -d)
+mv "$ANDROID_HOME/cmdline-tools" "$TMP_DIR"
 mkdir -p "$ANDROID_HOME/cmdline-tools/latest"
-mv "$ANDROID_HOME/cmdline-tools/"* "$ANDROID_HOME/cmdline-tools/latest/"
+mv "$TMP_DIR/cmdline-tools"/* "$ANDROID_HOME/cmdline-tools/latest/"
+rmdir "$TMP_DIR/cmdline-tools"
+rmdir "$TMP_DIR"
+
 ls $ANDROID_HOME/cmdline-tools/latest
 yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
 
