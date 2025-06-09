@@ -1,9 +1,10 @@
 #!/bin/sh
 
 if [ "$JITPACK" = "true" ]; then
-    echo "Running on JitPack"
+  while true; do
+    :
+  done
 else
-    echo "Not running on JitPack"
 fi
 
 curl -o /tmp/commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
