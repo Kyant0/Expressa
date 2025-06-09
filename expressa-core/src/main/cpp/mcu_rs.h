@@ -130,7 +130,7 @@ uint32_t dynamic_scheme_get_material_dynamic_color(
 
 void dynamic_scheme_get_tonal_palette(
         const void *dynamic_scheme,
-        DynamicSchemeTonalPalette palette,
+        DynamicSchemeTonalPalette dynamic_scheme_tonal_palette,
         TonalPalette *out
 );
 
