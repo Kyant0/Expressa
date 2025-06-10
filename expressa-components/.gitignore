@@ -1,3 +1,7 @@
 !/build
 /build/*
+!/build/outputs/
+/build/outputs/*
+!/build/outputs/aar/
+/build/outputs/aar/*
 !/build/outputs/aar/expressa-components-release.aar
