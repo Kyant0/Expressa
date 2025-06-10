@@ -72,6 +72,14 @@ class ColorScheme
 
     override fun free() {
         dynamicScheme.free()
+        _staticColors.forEach { (_, staticColorScheme) ->
+            staticColorScheme.free()
+        }
+        _staticColors.clear()
+        _staticHcts.forEach { (_, staticColorScheme) ->
+            staticColorScheme.free()
+        }
+        _staticHcts.clear()
     }
 
     // primary colors
@@ -141,6 +149,10 @@ class ColorScheme
     private var _surfaceDim = Color.Unspecified
     private var _scrim = Color.Unspecified
     private var _shadow = Color.Unspecified
+
+    // static colors
+    private val _staticColors = mutableMapOf<Color, DynamicStaticColors>()
+    private val _staticHcts = mutableMapOf<Hct, DynamicStaticColors>()
 
     val primaryTonalPalette: TonalPalette get() = dynamicScheme.primaryTonalPalette
     val secondaryTonalPalette: TonalPalette get() = dynamicScheme.secondaryTonalPalette
@@ -457,43 +469,63 @@ class ColorScheme
             Color(dynamicScheme.shadow).also { _shadow = it }
         }
 
-    companion object {
+    // static colors
 
-        @Composable
-        fun systemDynamic(
-            sourceHct: Hct = systemColor().toHct(),
-            variant: DynamicSchemeVariant = DynamicSchemeVariant.TonalSpot,
-            isDark: Boolean = isSystemInDarkTheme(),
-            @FloatRange(from = -1.0, to = 1.0) contrastLevel: Float = systemContrast()
-        ): ColorScheme =
-            rememberColorScheme(
-                sourceHct = sourceHct,
-                variant = variant,
-                isDark = isDark,
-                contrastLevel = contrastLevel
-            )
+    @Stable
+    val blue: StaticColors get() = staticColorsOf(StaticPalettes.Blue40)
 
-        @Composable
-        @ReadOnlyComposable
-        fun systemColor(): Color {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                colorResource(android.R.color.system_accent1_600)
-            } else {
-                Color(0xFF475D92)
-            }
-        }
+    @Stable
+    val yellow: StaticColors get() = staticColorsOf(StaticPalettes.Yellow40)
 
-        @Composable
-        @ReadOnlyComposable
-        fun systemContrast(): Float {
-            val context = LocalContext.current
-            val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager?
-            return if (uiModeManager != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                uiModeManager.contrast
-            } else {
-                0f
-            }
-        }
+    @Stable
+    val red: StaticColors get() = staticColorsOf(StaticPalettes.Red40)
+
+    @Stable
+    val purple: StaticColors get() = staticColorsOf(StaticPalettes.Purple40)
+
+    @Stable
+    val blueVariant: StaticColors get() = staticColorsOf(StaticPalettes.BlueVariant40)
+
+    @Stable
+    val cyan: StaticColors get() = staticColorsOf(StaticPalettes.Cyan40)
+
+    @Stable
+    val green: StaticColors get() = staticColorsOf(StaticPalettes.Green40)
+
+    @Stable
+    val orange: StaticColors get() = staticColorsOf(StaticPalettes.Orange40)
+
+    @Stable
+    val pink: StaticColors get() = staticColorsOf(StaticPalettes.Pink40)
+
+    @Stable
+    fun staticColorsOf(sourceColor: Color): StaticColors = _staticColors.getOrPut(sourceColor) {
+        DynamicStaticColors(
+            sourceHct = sourceColor.toHct(),
+            variant = variant,
+            isDark = isDark,
+            contrastLevel = contrastLevel
+        )
+    }
+
+    @Stable
+    fun staticColorsOf(sourceHct: Hct): StaticColors = _staticHcts.getOrPut(sourceHct) {
+        DynamicStaticColors(
+            sourceHct = sourceHct,
+            variant = variant,
+            isDark = isDark,
+            contrastLevel = contrastLevel
+        )
+    }
+
+    @Stable
+    fun asStaticColors(): StaticColors {
+        return MappedStaticColors(
+            accent = primary,
+            onAccent = onPrimary,
+            accentContainer = primaryContainer,
+            onAccentContainer = onPrimaryContainer
+        )
     }
 
     @Composable
@@ -550,5 +582,44 @@ class ColorScheme
         result = 31 * result + isDark.hashCode()
         result = 31 * result + contrastLevel.hashCode()
         return result
+    }
+
+    companion object {
+
+        @Composable
+        fun systemDynamic(
+            sourceHct: Hct = systemColor().toHct(),
+            variant: DynamicSchemeVariant = DynamicSchemeVariant.TonalSpot,
+            isDark: Boolean = isSystemInDarkTheme(),
+            @FloatRange(from = -1.0, to = 1.0) contrastLevel: Float = systemContrast()
+        ): ColorScheme =
+            rememberColorScheme(
+                sourceHct = sourceHct,
+                variant = variant,
+                isDark = isDark,
+                contrastLevel = contrastLevel
+            )
+
+        @Composable
+        @ReadOnlyComposable
+        fun systemColor(): Color {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                colorResource(android.R.color.system_accent1_600)
+            } else {
+                Color(0xFF475D92)
+            }
+        }
+
+        @Composable
+        @ReadOnlyComposable
+        fun systemContrast(): Float {
+            val context = LocalContext.current
+            val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager?
+            return if (uiModeManager != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                uiModeManager.contrast
+            } else {
+                0f
+            }
+        }
     }
 }
