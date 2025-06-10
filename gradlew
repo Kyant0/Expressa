@@ -1,24 +1,5 @@
 #!/bin/sh
 
-sudo apt-get update
-sudo apt-get install -y ninja-build build-essential libtool make
-
-curl -o /tmp/commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
-unzip -q /tmp/commandlinetools.zip -d "$ANDROID_HOME"
-rm -f /tmp/commandlinetools.zip
-
-TMP_DIR=$(mktemp -d)
-mv "$ANDROID_HOME/cmdline-tools" "$TMP_DIR"
-mkdir -p "$ANDROID_HOME/cmdline-tools/latest"
-mv "$TMP_DIR/cmdline-tools"/* "$ANDROID_HOME/cmdline-tools/latest/"
-rmdir "$TMP_DIR/cmdline-tools"
-rmdir "$TMP_DIR"
-
-yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
-yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "cmake;4.0.2"
-
-export CMAKE_EXECUTABLE=${ANDROID_SDK_HOME}/cmake/4.0.2/bin/cmake
-
 #
 # Copyright © 2015-2021 the original authors.
 #
