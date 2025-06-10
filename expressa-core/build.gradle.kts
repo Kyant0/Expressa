@@ -63,7 +63,6 @@ baselineProfile {
         exclude("com.kyant.expressa.catalog.**")
         exclude("com.kyant.expressa.components.**")
         include("com.kyant.expressa.**")
-        include("androidx.graphics.shapes.**")
     }
 }
 

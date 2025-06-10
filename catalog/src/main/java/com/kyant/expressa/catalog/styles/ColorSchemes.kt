@@ -94,6 +94,28 @@ fun ColorSchemes() {
             }
         }
 
+        Subtitle { Text("Light theme") }
+        CompositionLocalProvider(
+            LocalColorScheme provides ColorScheme.systemDynamic(
+                variant = variant,
+                isDark = false,
+                contrastLevel = contrast
+            )
+        ) {
+            ColorPalette()
+        }
+
+        Subtitle { Text("Dark theme") }
+        CompositionLocalProvider(
+            LocalColorScheme provides ColorScheme.systemDynamic(
+                variant = variant,
+                isDark = true,
+                contrastLevel = contrast
+            )
+        ) {
+            ColorPalette()
+        }
+
         Subtitle { Text("Key colors") }
         SectionContainer {
             Column(
@@ -132,28 +154,6 @@ fun ColorSchemes() {
                     )
                 }
             }
-        }
-
-        Subtitle { Text("Light theme") }
-        CompositionLocalProvider(
-            LocalColorScheme provides ColorScheme.systemDynamic(
-                variant = variant,
-                isDark = false,
-                contrastLevel = contrast
-            )
-        ) {
-            ColorPalette()
-        }
-
-        Subtitle { Text("Dark theme") }
-        CompositionLocalProvider(
-            LocalColorScheme provides ColorScheme.systemDynamic(
-                variant = variant,
-                isDark = true,
-                contrastLevel = contrast
-            )
-        ) {
-            ColorPalette()
         }
     }
 }
