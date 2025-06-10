@@ -1,11 +1,7 @@
 #!/bin/sh
 
-if [ "$JITPACK" = "true" ]; then
-  while true; do
-    :
-  done
-else
-fi
+sudo apt-get update
+sudo apt-get install -y ninja-build build-essential libtool make
 
 curl -o /tmp/commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
 unzip -q /tmp/commandlinetools.zip -d "$ANDROID_HOME"
@@ -22,7 +18,6 @@ yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
 yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "cmake;4.0.2"
 
 export CMAKE_EXECUTABLE=${ANDROID_SDK_HOME}/cmake/4.0.2/bin/cmake
-
 
 #
 # Copyright © 2015-2021 the original authors.
