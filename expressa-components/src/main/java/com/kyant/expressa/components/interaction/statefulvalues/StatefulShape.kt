@@ -5,17 +5,17 @@ import androidx.compose.runtime.Stable
 import com.kyant.expressa.components.interaction.StateHolder
 import com.kyant.expressa.components.interaction.StatefulValue
 import com.kyant.expressa.components.interaction.StaticStatefulValue
-import com.kyant.expressa.shape.OmniShape
+import com.kyant.expressa.shape.InterpolableShape
 
 @Immutable
 interface StatefulShape<S : StateHolder> :
-    StatefulValue<OmniShape, S>
+    StatefulValue<InterpolableShape, S>
 
 @Immutable
-data class StaticStatefulShape<S : StateHolder>(override val default: OmniShape) :
-    StaticStatefulValue<OmniShape, S>(default), StatefulShape<S>
+data class StaticStatefulShape<S : StateHolder>(override val default: InterpolableShape) :
+    StaticStatefulValue<InterpolableShape, S>(default), StatefulShape<S>
 
 @Stable
-fun <S : StateHolder> OmniShape.asStaticStatefulValue(): StaticStatefulShape<S> {
+fun <S : StateHolder> InterpolableShape.asStaticStatefulValue(): StaticStatefulShape<S> {
     return StaticStatefulShape(this)
 }

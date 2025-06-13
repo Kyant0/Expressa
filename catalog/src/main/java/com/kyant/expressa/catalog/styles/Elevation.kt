@@ -19,6 +19,8 @@ import com.kyant.expressa.catalog.ui.PageContainer
 import com.kyant.expressa.catalog.ui.SectionContainer
 import com.kyant.expressa.catalog.ui.TopBar
 import com.kyant.expressa.m3.elevation.Elevation
+import com.kyant.expressa.m3.shape.CornerShape
+import com.kyant.expressa.m3.typography.Typography
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.Text
 
@@ -61,7 +63,7 @@ private fun ElevationItem(
             Modifier
                 .shadow(
                     elevation = elevation.value,
-                    shape = cornerShapeSmall,
+                    shape = CornerShape.small,
                     ambientColor = shadow,
                     spotColor = shadow
                 )
@@ -71,12 +73,12 @@ private fun ElevationItem(
         ) {
             Text(
                 "${elevation.value.value.toInt()}dp",
-                labelLarge
+                Typography.labelLarge
             )
         }
         Text(
             label,
-            labelLarge.merge(textAlign = TextAlign.Center)
+            Typography.labelLarge.merge(textAlign = TextAlign.Center)
         )
     }
 }

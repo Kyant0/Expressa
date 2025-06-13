@@ -36,7 +36,7 @@ fun IconButton(
     modifier: Modifier = Modifier,
     enabled: () -> Boolean = { true },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    sizes: IconButtonSizes = IconButtonSizes.small(),
+    sizes: IconButtonSizes = IconButtonSizes.small,
     shape: ButtonShape = ButtonShape.Round,
     colors: IconButtonColors = IconButtonColors.filled(),
     width: IconButtonWidth = IconButtonWidth.Default,
@@ -57,7 +57,7 @@ fun IconButton(
 
     val containerColor = { colors.containerColor.resolvedValue(stateHolder) }
     val containerShape by sizes.resolvedShapes(shape)
-        .animatedValueAsState(stateHolder, sizes.shapeAnimationSpec)
+        .animatedValueAsState(stateHolder, sizes.shapeSpringSpec)
     val iconColor = colors.iconColor.resolvedValue(stateHolder)
     val outlineColor = { colors.outlineColor.resolvedValue(stateHolder) }
 

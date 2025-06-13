@@ -30,7 +30,7 @@ import com.kyant.expressa.components.iconbutton.IconButtonSizes
 import com.kyant.expressa.components.iconbutton.IconButtonWidth
 import com.kyant.expressa.m3.shape.MaterialShapes
 import com.kyant.expressa.prelude.*
-import com.kyant.expressa.shape.toOmniShape
+import com.kyant.expressa.shape.asInterpolableRoundedPolygon
 import com.kyant.expressa.ui.Icon
 import com.kyant.expressa.ui.Text
 
@@ -45,8 +45,8 @@ fun IconButtons() {
             IconButton(
                 {},
                 sizes =
-                    IconButtonSizes.large().copy(
-                        containerShapeRound = MaterialShapes.Sunny.toOmniShape()
+                    IconButtonSizes.large.copy(
+                        containerShapeRound = MaterialShapes.Sunny.asInterpolableRoundedPolygon()
                     ),
                 shape = ButtonShape.Round,
                 colors =
@@ -72,11 +72,11 @@ fun IconButtons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton({}, sizes = IconButtonSizes.extraSmall(), content = iconContent)
-                IconButton({}, sizes = IconButtonSizes.small(), content = iconContent)
-                IconButton({}, sizes = IconButtonSizes.medium(), content = iconContent)
-                IconButton({}, sizes = IconButtonSizes.large(), content = iconContent)
-                IconButton({}, sizes = IconButtonSizes.extraLarge(), content = iconContent)
+                IconButton({}, sizes = IconButtonSizes.extraSmall, content = iconContent)
+                IconButton({}, sizes = IconButtonSizes.small, content = iconContent)
+                IconButton({}, sizes = IconButtonSizes.medium, content = iconContent)
+                IconButton({}, sizes = IconButtonSizes.large, content = iconContent)
+                IconButton({}, sizes = IconButtonSizes.extraLarge, content = iconContent)
             }
         }
 

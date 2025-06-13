@@ -14,7 +14,7 @@ internal fun RoundedPolygon.transformed(matrix: Matrix): RoundedPolygon =
         TransformResult(transformedPoint.x, transformedPoint.y)
     }
 
-internal fun RoundedPolygon.toPath(path: Path = Path()): Path {
+internal fun RoundedPolygon.toPath(path: Path): Path {
     var first = true
     path.rewind()
     cubics.fastForEach { cubic ->
@@ -35,7 +35,7 @@ internal fun RoundedPolygon.toPath(path: Path = Path()): Path {
     return path
 }
 
-internal fun Morph.toPath(progress: Float, path: Path = Path()): Path {
+internal fun Morph.toPath(progress: Float, path: Path): Path {
     var first = true
     path.rewind()
     forEachCubic(progress) { cubic ->

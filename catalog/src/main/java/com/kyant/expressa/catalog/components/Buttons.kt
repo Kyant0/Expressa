@@ -30,7 +30,7 @@ import com.kyant.expressa.components.button.ButtonShape
 import com.kyant.expressa.components.button.ButtonSizes
 import com.kyant.expressa.m3.elevation.Elevation
 import com.kyant.expressa.prelude.*
-import com.kyant.expressa.shape.RoundedCornerOmniShape
+import com.kyant.expressa.shape.RoundedRectangle
 import com.kyant.expressa.ui.Icon
 import com.kyant.expressa.ui.Text
 
@@ -44,10 +44,7 @@ fun Buttons() {
         ComponentDisplay {
             Button(
                 {},
-                sizes =
-                    ButtonSizes.large().copy(
-                        shapePressed = RoundedCornerOmniShape(16.dp, 0.48f)
-                    ),
+                sizes = ButtonSizes.large.copy(shapePressed = RoundedRectangle(16.dp)),
                 shape = ButtonShape.Round,
                 colors =
                     ButtonColors.tonal(
@@ -72,11 +69,11 @@ fun Buttons() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 itemVerticalAlignment = Alignment.CenterVertically
             ) {
-                Button({}, sizes = ButtonSizes.extraSmall()) { Text("Extra small") }
-                Button({}, sizes = ButtonSizes.small()) { Text("Small") }
-                Button({}, sizes = ButtonSizes.medium()) { Text("Medium") }
-                Button({}, sizes = ButtonSizes.large()) { Text("Large") }
-                Button({}, sizes = ButtonSizes.extraLarge()) { Text("Extra large") }
+                Button({}, sizes = ButtonSizes.extraSmall) { Text("Extra small") }
+                Button({}, sizes = ButtonSizes.small) { Text("Small") }
+                Button({}, sizes = ButtonSizes.medium) { Text("Medium") }
+                Button({}, sizes = ButtonSizes.large) { Text("Large") }
+                Button({}, sizes = ButtonSizes.extraLarge) { Text("Extra large") }
             }
         }
 

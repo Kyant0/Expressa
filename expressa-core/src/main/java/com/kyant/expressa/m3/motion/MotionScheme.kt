@@ -1,63 +1,78 @@
 package com.kyant.expressa.m3.motion
 
-import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.SpringSpec
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 
-@Immutable
-interface MotionScheme {
-
-    fun <T> fastSpatial(): FiniteAnimationSpec<T>
-    fun <T> defaultSpatial(): FiniteAnimationSpec<T>
-    fun <T> slowSpatial(): FiniteAnimationSpec<T>
-
-    fun <T> fastEffects(): FiniteAnimationSpec<T>
-    fun <T> defaultEffects(): FiniteAnimationSpec<T>
-    fun <T> slowEffects(): FiniteAnimationSpec<T>
-
-    companion object {
-
-        @Stable
-        val Standard: MotionScheme = StandardMotionScheme
-
-        @Stable
-        val Expressive: MotionScheme = ExpressiveMotionScheme
-    }
-}
-
 @Suppress("UNCHECKED_CAST")
 @Immutable
-private object StandardMotionScheme : MotionScheme {
+object MotionScheme {
 
-    override fun <T> fastSpatial(): FiniteAnimationSpec<T> = FastSpatial as FiniteAnimationSpec<T>
-    override fun <T> defaultSpatial(): FiniteAnimationSpec<T> = DefaultSpatial as FiniteAnimationSpec<T>
-    override fun <T> slowSpatial(): FiniteAnimationSpec<T> = SlowSpatial as FiniteAnimationSpec<T>
+    @Stable
+    fun <T> fastSpatial(): SpringSpec<T> = FastSpatial as SpringSpec<T>
 
-    override fun <T> fastEffects(): FiniteAnimationSpec<T> = FastEffects as FiniteAnimationSpec<T>
-    override fun <T> defaultEffects(): FiniteAnimationSpec<T> = DefaultEffects as FiniteAnimationSpec<T>
-    override fun <T> slowEffects(): FiniteAnimationSpec<T> = SlowEffects as FiniteAnimationSpec<T>
+    @Stable
+    fun <T> fastSpatial(visibilityThreshold: T): SpringSpec<T> =
+        SpringSpec(
+            stiffness = FastSpatial.stiffness,
+            dampingRatio = FastSpatial.dampingRatio,
+            visibilityThreshold = visibilityThreshold
+        )
 
-    private val FastSpatial = SpringSpec<Any>(0.9f, 1400f)
-    private val DefaultSpatial = SpringSpec<Any>(0.9f, 700f)
-    private val SlowSpatial = SpringSpec<Any>(0.9f, 300f)
+    @Stable
+    fun <T> defaultSpatial(): SpringSpec<T> = DefaultSpatial as SpringSpec<T>
 
-    private val FastEffects = SpringSpec<Any>(1f, 3800f)
-    private val DefaultEffects = SpringSpec<Any>(1f, 1600f)
-    private val SlowEffects = SpringSpec<Any>(1f, 800f)
-}
+    @Stable
+    fun <T> defaultSpatial(visibilityThreshold: T): SpringSpec<T> =
+        SpringSpec(
+            stiffness = DefaultSpatial.stiffness,
+            dampingRatio = DefaultSpatial.dampingRatio,
+            visibilityThreshold = visibilityThreshold
+        )
 
-@Suppress("UNCHECKED_CAST")
-@Immutable
-private object ExpressiveMotionScheme : MotionScheme {
+    @Stable
+    fun <T> slowSpatial(): SpringSpec<T> = SlowSpatial as SpringSpec<T>
 
-    override fun <T> fastSpatial(): FiniteAnimationSpec<T> = FastSpatial as FiniteAnimationSpec<T>
-    override fun <T> defaultSpatial(): FiniteAnimationSpec<T> = DefaultSpatial as FiniteAnimationSpec<T>
-    override fun <T> slowSpatial(): FiniteAnimationSpec<T> = SlowSpatial as FiniteAnimationSpec<T>
+    @Stable
+    fun <T> slowSpatial(visibilityThreshold: T): SpringSpec<T> =
+        SpringSpec(
+            stiffness = SlowSpatial.stiffness,
+            dampingRatio = SlowSpatial.dampingRatio,
+            visibilityThreshold = visibilityThreshold
+        )
 
-    override fun <T> fastEffects(): FiniteAnimationSpec<T> = FastEffects as FiniteAnimationSpec<T>
-    override fun <T> defaultEffects(): FiniteAnimationSpec<T> = DefaultEffects as FiniteAnimationSpec<T>
-    override fun <T> slowEffects(): FiniteAnimationSpec<T> = SlowEffects as FiniteAnimationSpec<T>
+    @Stable
+    fun <T> fastEffects(): SpringSpec<T> = FastEffects as SpringSpec<T>
+
+    @Stable
+    fun <T> fastEffects(visibilityThreshold: T): SpringSpec<T> =
+        SpringSpec(
+            stiffness = FastEffects.stiffness,
+            dampingRatio = FastEffects.dampingRatio,
+            visibilityThreshold = visibilityThreshold
+        )
+
+    @Stable
+    fun <T> defaultEffects(): SpringSpec<T> = DefaultEffects as SpringSpec<T>
+
+    @Stable
+    fun <T> defaultEffects(visibilityThreshold: T): SpringSpec<T> =
+        SpringSpec(
+            stiffness = DefaultEffects.stiffness,
+            dampingRatio = DefaultEffects.dampingRatio,
+            visibilityThreshold = visibilityThreshold
+        )
+
+    @Stable
+    fun <T> slowEffects(): SpringSpec<T> = SlowEffects as SpringSpec<T>
+
+    @Stable
+    fun <T> slowEffects(visibilityThreshold: T): SpringSpec<T> =
+        SpringSpec(
+            stiffness = SlowEffects.stiffness,
+            dampingRatio = SlowEffects.dampingRatio,
+            visibilityThreshold = visibilityThreshold
+        )
 
     private val FastSpatial = SpringSpec<Any>(0.6f, 800f)
     private val DefaultSpatial = SpringSpec<Any>(0.8f, 380f)

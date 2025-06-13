@@ -10,9 +10,9 @@ import androidx.graphics.shapes.RoundedPolygon
 import androidx.graphics.shapes.TransformResult
 
 @Immutable
-data class RoundedPolygonOmniShape(
+data class InterpolableRoundedPolygon(
     private val roundedPolygon: RoundedPolygon
-) : OmniShape {
+) : InterpolableShape {
 
     private val path = Path()
 

@@ -1,15 +1,15 @@
 package com.kyant.expressa.components.button
 
-import androidx.compose.animation.core.FiniteAnimationSpec
-import androidx.compose.runtime.Composable
+import androidx.compose.animation.core.SpringSpec
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.kyant.expressa.prelude.*
-import com.kyant.expressa.shape.OmniShape
+import com.kyant.expressa.m3.motion.MotionScheme
+import com.kyant.expressa.m3.shape.CornerShape
+import com.kyant.expressa.m3.typography.Typography
+import com.kyant.expressa.shape.InterpolableShape
 
 @Immutable
 data class ButtonSizes(
@@ -17,13 +17,13 @@ data class ButtonSizes(
     val outlineWidth: Dp,
     val labelTextStyle: TextStyle,
     val iconSize: Dp,
-    val shapeRound: OmniShape,
-    val shapeSquare: OmniShape,
+    val shapeRound: InterpolableShape,
+    val shapeSquare: InterpolableShape,
     val leadingSpace: Dp,
     val betweenIconLabelSpace: Dp,
     val trailingSpace: Dp,
-    val shapePressed: OmniShape,
-    val shapeAnimationSpec: FiniteAnimationSpec<Float>
+    val shapePressed: InterpolableShape,
+    val shapeSpringSpec: SpringSpec<Float>
 ) {
 
     @Stable
@@ -53,84 +53,79 @@ data class ButtonSizes(
 
     companion object {
 
-        @Composable
-        @ReadOnlyComposable
-        fun extraSmall(): ButtonSizes = ButtonSizes(
+        @Stable
+        val extraSmall: ButtonSizes = ButtonSizes(
             containerHeight = 32.dp,
             outlineWidth = 1.dp,
-            labelTextStyle = titleSmall,
+            labelTextStyle = Typography.titleSmall,
             iconSize = 16.dp,
-            shapeRound = cornerShapeFull,
-            shapeSquare = cornerShapeMedium,
+            shapeRound = CornerShape.full,
+            shapeSquare = CornerShape.medium,
             leadingSpace = 12.dp,
             betweenIconLabelSpace = 8.dp,
             trailingSpace = 12.dp,
-            shapePressed = cornerShapeSmall,
-            shapeAnimationSpec = motionSchemeFastSpatial()
+            shapePressed = CornerShape.small,
+            shapeSpringSpec = MotionScheme.fastSpatial()
         )
 
-        @Composable
-        @ReadOnlyComposable
-        fun small(): ButtonSizes = ButtonSizes(
+        @Stable
+        val small: ButtonSizes = ButtonSizes(
             containerHeight = 40.dp,
             outlineWidth = 1.dp,
-            labelTextStyle = titleSmall,
+            labelTextStyle = Typography.titleSmall,
             iconSize = 20.dp,
-            shapeRound = cornerShapeFull,
-            shapeSquare = cornerShapeMedium,
+            shapeRound = CornerShape.full,
+            shapeSquare = CornerShape.medium,
             leadingSpace = 12.dp,
             betweenIconLabelSpace = 8.dp,
             trailingSpace = 12.dp,
-            shapePressed = cornerShapeSmall,
-            shapeAnimationSpec = motionSchemeFastSpatial()
+            shapePressed = CornerShape.small,
+            shapeSpringSpec = MotionScheme.fastSpatial()
         )
 
-        @Composable
-        @ReadOnlyComposable
-        fun medium(): ButtonSizes = ButtonSizes(
+        @Stable
+        val medium: ButtonSizes = ButtonSizes(
             containerHeight = 56.dp,
             outlineWidth = 1.dp,
-            labelTextStyle = titleMedium,
+            labelTextStyle = Typography.titleMedium,
             iconSize = 24.dp,
-            shapeRound = cornerShapeFull,
-            shapeSquare = cornerShapeLarge,
+            shapeRound = CornerShape.full,
+            shapeSquare = CornerShape.large,
             leadingSpace = 24.dp,
             betweenIconLabelSpace = 8.dp,
             trailingSpace = 24.dp,
-            shapePressed = cornerShapeMedium,
-            shapeAnimationSpec = motionSchemeFastSpatial()
+            shapePressed = CornerShape.medium,
+            shapeSpringSpec = MotionScheme.fastSpatial()
         )
 
-        @Composable
-        @ReadOnlyComposable
-        fun large(): ButtonSizes = ButtonSizes(
+        @Stable
+        val large: ButtonSizes = ButtonSizes(
             containerHeight = 96.dp,
             outlineWidth = 2.dp,
-            labelTextStyle = headlineSmall,
+            labelTextStyle = Typography.headlineSmall,
             iconSize = 32.dp,
-            shapeRound = cornerShapeFull,
-            shapeSquare = cornerShapeExtraLarge,
+            shapeRound = CornerShape.full,
+            shapeSquare = CornerShape.extraLarge,
             leadingSpace = 48.dp,
             betweenIconLabelSpace = 12.dp,
             trailingSpace = 48.dp,
-            shapePressed = cornerShapeLarge,
-            shapeAnimationSpec = motionSchemeFastSpatial()
+            shapePressed = CornerShape.large,
+            shapeSpringSpec = MotionScheme.fastSpatial()
         )
 
-        @Composable
-        @ReadOnlyComposable
-        fun extraLarge(): ButtonSizes = ButtonSizes(
+        @Stable
+        val extraLarge: ButtonSizes = ButtonSizes(
             containerHeight = 136.dp,
             outlineWidth = 3.dp,
-            labelTextStyle = headlineLarge,
+            labelTextStyle = Typography.headlineLarge,
             iconSize = 40.dp,
-            shapeRound = cornerShapeFull,
-            shapeSquare = cornerShapeExtraLarge,
+            shapeRound = CornerShape.full,
+            shapeSquare = CornerShape.extraLarge,
             leadingSpace = 64.dp,
             betweenIconLabelSpace = 16.dp,
             trailingSpace = 64.dp,
-            shapePressed = cornerShapeLarge,
-            shapeAnimationSpec = motionSchemeFastSpatial()
+            shapePressed = CornerShape.large,
+            shapeSpringSpec = MotionScheme.fastSpatial()
         )
     }
 }

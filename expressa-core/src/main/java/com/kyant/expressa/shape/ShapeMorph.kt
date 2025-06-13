@@ -15,8 +15,8 @@ import androidx.graphics.shapes.RoundedPolygon
 
 @Immutable
 data class ShapeMorph(
-    val start: OmniShape,
-    val end: OmniShape
+    val start: InterpolableShape,
+    val end: InterpolableShape
 ) {
 
     private var _path: Path? = null
@@ -37,25 +37,25 @@ data class ShapeMorph(
             return start
         }
 
-        return if (start is RoundedCornerOmniShape && end is RoundedCornerOmniShape) {
-            LerpRoundedCornerOmniShape(
+        return if (start is RoundedRectangle && end is RoundedRectangle) {
+            LerpRoundedRectangle(
                 start = start,
                 stop = end,
                 fraction = fraction
             )
-        } else if (start == RectangleOmniShape && end is RoundedCornerOmniShape) {
-            LerpRoundedCornerOmniShape(
-                start = RoundedCornerOmniShape.Zero,
+        } else if (start == InterpolableRectangle && end is RoundedRectangle) {
+            LerpRoundedRectangle(
+                start = RoundedRectangle.Zero,
                 stop = end,
                 fraction = fraction
             )
-        } else if (start is RoundedCornerOmniShape && end == RectangleOmniShape) {
-            LerpRoundedCornerOmniShape(
+        } else if (start is RoundedRectangle && end == InterpolableRectangle) {
+            LerpRoundedRectangle(
                 start = start,
-                stop = RoundedCornerOmniShape.Zero,
+                stop = RoundedRectangle.Zero,
                 fraction = fraction
             )
-        } else if (start is RoundedPolygonOmniShape && end is RoundedPolygonOmniShape) {
+        } else if (start is InterpolableRoundedPolygon && end is InterpolableRoundedPolygon) {
             val path = _path ?: Path().also { _path = it }
             val startNormalized = _startPolygon ?: start.normalizedPolygon.also { _startPolygon = it }
             val endNormalized = _endPolygon ?: end.normalizedPolygon.also { _endPolygon = it }

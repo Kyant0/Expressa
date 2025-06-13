@@ -6,10 +6,10 @@ import androidx.compose.runtime.Stable
 import androidx.graphics.shapes.RoundedPolygon
 
 @Stable
-fun RoundedCornerShape.toOmniShape(
+fun RoundedCornerShape.asRoundedRectangle(
     @FloatRange(from = 0.0, to = 1.0) smoothing: Float = 0f
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+): RoundedRectangle =
+    RoundedRectangle(
         topStart = topStart,
         topEnd = topEnd,
         bottomEnd = bottomEnd,
@@ -21,13 +21,13 @@ fun RoundedCornerShape.toOmniShape(
     )
 
 @Stable
-fun RoundedCornerShape.toOmniShape(
+fun RoundedCornerShape.asRoundedRectangle(
     @FloatRange(from = 0.0, to = 1.0) topStartSmoothing: Float = 0f,
     @FloatRange(from = 0.0, to = 1.0) topEndSmoothing: Float = 0f,
     @FloatRange(from = 0.0, to = 1.0) bottomEndSmoothing: Float = 0f,
     @FloatRange(from = 0.0, to = 1.0) bottomStartSmoothing: Float = 0f
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+): RoundedRectangle =
+    RoundedRectangle(
         topStart = topStart,
         topEnd = topEnd,
         bottomEnd = bottomEnd,
@@ -39,5 +39,5 @@ fun RoundedCornerShape.toOmniShape(
     )
 
 @Stable
-fun RoundedPolygon.toOmniShape(): RoundedPolygonOmniShape =
-    RoundedPolygonOmniShape(roundedPolygon = this)
+fun RoundedPolygon.asInterpolableRoundedPolygon(): InterpolableRoundedPolygon =
+    InterpolableRoundedPolygon(this)

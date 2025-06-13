@@ -10,7 +10,7 @@ import androidx.graphics.shapes.RoundedPolygon
 import androidx.graphics.shapes.rectangle
 
 @Immutable
-data object RectangleOmniShape : OmniShape {
+data object InterpolableRectangle : InterpolableShape {
 
     override fun toRoundedPolygon(
         size: Size,

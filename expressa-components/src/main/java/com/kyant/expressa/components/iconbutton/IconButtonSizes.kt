@@ -1,17 +1,16 @@
 package com.kyant.expressa.components.iconbutton
 
-import androidx.compose.animation.core.FiniteAnimationSpec
-import androidx.compose.runtime.Composable
+import androidx.compose.animation.core.SpringSpec
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.kyant.expressa.components.button.ButtonContainerShape
 import com.kyant.expressa.components.button.ButtonDensity
 import com.kyant.expressa.components.button.ButtonShape
-import com.kyant.expressa.prelude.*
-import com.kyant.expressa.shape.OmniShape
+import com.kyant.expressa.m3.motion.MotionScheme
+import com.kyant.expressa.m3.shape.CornerShape
+import com.kyant.expressa.shape.InterpolableShape
 
 @Immutable
 data class IconButtonSizes(
@@ -23,11 +22,11 @@ data class IconButtonSizes(
     val defaultTrailingSpace: Dp,
     val wideLeadingSpace: Dp,
     val wideTrailingSpace: Dp,
-    val containerShapeRound: OmniShape,
-    val containerShapeSquare: OmniShape,
+    val containerShapeRound: InterpolableShape,
+    val containerShapeSquare: InterpolableShape,
     val outlineWidth: Dp,
-    val shapePressed: OmniShape,
-    val shapeAnimationSpec: FiniteAnimationSpec<Float>
+    val shapePressed: InterpolableShape,
+    val shapeSpringSpec: SpringSpec<Float>
 ) {
 
     @Stable
@@ -75,9 +74,8 @@ data class IconButtonSizes(
 
     companion object {
 
-        @Composable
-        @ReadOnlyComposable
-        fun extraSmall(): IconButtonSizes = IconButtonSizes(
+        @Stable
+        val extraSmall: IconButtonSizes = IconButtonSizes(
             containerHeight = 32.dp,
             iconSize = 20.dp,
             narrowLeadingSpace = 4.dp,
@@ -86,16 +84,15 @@ data class IconButtonSizes(
             defaultTrailingSpace = 6.dp,
             wideLeadingSpace = 10.dp,
             wideTrailingSpace = 10.dp,
-            containerShapeRound = cornerShapeFull,
-            containerShapeSquare = cornerShapeMedium,
+            containerShapeRound = CornerShape.full,
+            containerShapeSquare = CornerShape.medium,
             outlineWidth = 1.dp,
-            shapePressed = cornerShapeSmall,
-            shapeAnimationSpec = motionSchemeFastSpatial()
+            shapePressed = CornerShape.small,
+            shapeSpringSpec = MotionScheme.fastSpatial()
         )
 
-        @Composable
-        @ReadOnlyComposable
-        fun small(): IconButtonSizes = IconButtonSizes(
+        @Stable
+        val small: IconButtonSizes = IconButtonSizes(
             containerHeight = 40.dp,
             iconSize = 24.dp,
             narrowLeadingSpace = 4.dp,
@@ -104,16 +101,15 @@ data class IconButtonSizes(
             defaultTrailingSpace = 8.dp,
             wideLeadingSpace = 14.dp,
             wideTrailingSpace = 14.dp,
-            containerShapeRound = cornerShapeFull,
-            containerShapeSquare = cornerShapeMedium,
+            containerShapeRound = CornerShape.full,
+            containerShapeSquare = CornerShape.medium,
             outlineWidth = 1.dp,
-            shapePressed = cornerShapeSmall,
-            shapeAnimationSpec = motionSchemeFastSpatial()
+            shapePressed = CornerShape.small,
+            shapeSpringSpec = MotionScheme.fastSpatial()
         )
 
-        @Composable
-        @ReadOnlyComposable
-        fun medium(): IconButtonSizes = IconButtonSizes(
+        @Stable
+        val medium: IconButtonSizes = IconButtonSizes(
             containerHeight = 56.dp,
             iconSize = 24.dp,
             narrowLeadingSpace = 12.dp,
@@ -122,16 +118,15 @@ data class IconButtonSizes(
             defaultTrailingSpace = 16.dp,
             wideLeadingSpace = 24.dp,
             wideTrailingSpace = 24.dp,
-            containerShapeRound = cornerShapeFull,
-            containerShapeSquare = cornerShapeLarge,
+            containerShapeRound = CornerShape.full,
+            containerShapeSquare = CornerShape.large,
             outlineWidth = 1.dp,
-            shapePressed = cornerShapeMedium,
-            shapeAnimationSpec = motionSchemeFastSpatial()
+            shapePressed = CornerShape.medium,
+            shapeSpringSpec = MotionScheme.fastSpatial()
         )
 
-        @Composable
-        @ReadOnlyComposable
-        fun large(): IconButtonSizes = IconButtonSizes(
+        @Stable
+        val large: IconButtonSizes = IconButtonSizes(
             containerHeight = 96.dp,
             iconSize = 32.dp,
             narrowLeadingSpace = 16.dp,
@@ -140,16 +135,15 @@ data class IconButtonSizes(
             defaultTrailingSpace = 32.dp,
             wideLeadingSpace = 48.dp,
             wideTrailingSpace = 48.dp,
-            containerShapeRound = cornerShapeFull,
-            containerShapeSquare = cornerShapeExtraLarge,
+            containerShapeRound = CornerShape.full,
+            containerShapeSquare = CornerShape.extraLarge,
             outlineWidth = 2.dp,
-            shapePressed = cornerShapeLarge,
-            shapeAnimationSpec = motionSchemeFastSpatial()
+            shapePressed = CornerShape.large,
+            shapeSpringSpec = MotionScheme.fastSpatial()
         )
 
-        @Composable
-        @ReadOnlyComposable
-        fun extraLarge(): IconButtonSizes = IconButtonSizes(
+        @Stable
+        val extraLarge: IconButtonSizes = IconButtonSizes(
             containerHeight = 136.dp,
             iconSize = 40.dp,
             narrowLeadingSpace = 32.dp,
@@ -158,11 +152,11 @@ data class IconButtonSizes(
             defaultTrailingSpace = 48.dp,
             wideLeadingSpace = 72.dp,
             wideTrailingSpace = 72.dp,
-            containerShapeRound = cornerShapeFull,
-            containerShapeSquare = cornerShapeExtraLarge,
+            containerShapeRound = CornerShape.full,
+            containerShapeSquare = CornerShape.extraLarge,
             outlineWidth = 3.dp,
-            shapePressed = cornerShapeLarge,
-            shapeAnimationSpec = motionSchemeFastSpatial()
+            shapePressed = CornerShape.large,
+            shapeSpringSpec = MotionScheme.fastSpatial()
         )
     }
 }

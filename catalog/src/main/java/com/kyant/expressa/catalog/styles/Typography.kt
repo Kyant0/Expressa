@@ -20,6 +20,8 @@ import com.kyant.expressa.catalog.ui.PageContainer
 import com.kyant.expressa.catalog.ui.SectionContainer
 import com.kyant.expressa.catalog.ui.Subtitle
 import com.kyant.expressa.catalog.ui.TopBar
+import com.kyant.expressa.m3.shape.CornerShape
+import com.kyant.expressa.m3.typography.Typography
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.Text
 
@@ -35,21 +37,21 @@ fun Typography() {
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                TypographyItem(displayLarge, "Display", "L")
-                TypographyItem(displayMedium, "Display", "M")
-                TypographyItem(displaySmall, "Display", "S")
-                TypographyItem(headlineLarge, "Headline", "L")
-                TypographyItem(headlineMedium, "Headline", "M")
-                TypographyItem(headlineSmall, "Headline", "S")
-                TypographyItem(titleLarge, "Title", "L")
-                TypographyItem(titleMedium, "Title", "M")
-                TypographyItem(titleSmall, "Title", "S")
-                TypographyItem(bodyLarge, "Body", "L")
-                TypographyItem(bodyMedium, "Body", "M")
-                TypographyItem(bodySmall, "Body", "S")
-                TypographyItem(labelLarge, "Label", "L")
-                TypographyItem(labelMedium, "Label", "M")
-                TypographyItem(labelSmall, "Label", "S")
+                TypographyItem(Typography.displayLarge, "Display", "L")
+                TypographyItem(Typography.displayMedium, "Display", "M")
+                TypographyItem(Typography.displaySmall, "Display", "S")
+                TypographyItem(Typography.headlineLarge, "Headline", "L")
+                TypographyItem(Typography.headlineMedium, "Headline", "M")
+                TypographyItem(Typography.headlineSmall, "Headline", "S")
+                TypographyItem(Typography.titleLarge, "Title", "L")
+                TypographyItem(Typography.titleMedium, "Title", "M")
+                TypographyItem(Typography.titleSmall, "Title", "S")
+                TypographyItem(Typography.bodyLarge, "Body", "L")
+                TypographyItem(Typography.bodyMedium, "Body", "M")
+                TypographyItem(Typography.bodySmall, "Body", "S")
+                TypographyItem(Typography.labelLarge, "Label", "L")
+                TypographyItem(Typography.labelMedium, "Label", "M")
+                TypographyItem(Typography.labelSmall, "Label", "S")
             }
         }
 
@@ -58,21 +60,21 @@ fun Typography() {
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                TypographyItem(displayLargeEmphasized, "Display", "L")
-                TypographyItem(displayMediumEmphasized, "Display", "M")
-                TypographyItem(displaySmallEmphasized, "Display", "S")
-                TypographyItem(headlineLargeEmphasized, "Headline", "L")
-                TypographyItem(headlineMediumEmphasized, "Headline", "M")
-                TypographyItem(headlineSmallEmphasized, "Headline", "S")
-                TypographyItem(titleLargeEmphasized, "Title", "L")
-                TypographyItem(titleMediumEmphasized, "Title", "M")
-                TypographyItem(titleSmallEmphasized, "Title", "S")
-                TypographyItem(bodyLargeEmphasized, "Body", "L")
-                TypographyItem(bodyMediumEmphasized, "Body", "M")
-                TypographyItem(bodySmallEmphasized, "Body", "S")
-                TypographyItem(labelLargeEmphasized, "Label", "L")
-                TypographyItem(labelMediumEmphasized, "Label", "M")
-                TypographyItem(labelSmallEmphasized, "Label", "S")
+                TypographyItem(Typography.displayLargeEmphasized, "Display", "L")
+                TypographyItem(Typography.displayMediumEmphasized, "Display", "M")
+                TypographyItem(Typography.displaySmallEmphasized, "Display", "S")
+                TypographyItem(Typography.headlineLargeEmphasized, "Headline", "L")
+                TypographyItem(Typography.headlineMediumEmphasized, "Headline", "M")
+                TypographyItem(Typography.headlineSmallEmphasized, "Headline", "S")
+                TypographyItem(Typography.titleLargeEmphasized, "Title", "L")
+                TypographyItem(Typography.titleMediumEmphasized, "Title", "M")
+                TypographyItem(Typography.titleSmallEmphasized, "Title", "S")
+                TypographyItem(Typography.bodyLargeEmphasized, "Body", "L")
+                TypographyItem(Typography.bodyMediumEmphasized, "Body", "M")
+                TypographyItem(Typography.bodySmallEmphasized, "Body", "S")
+                TypographyItem(Typography.labelLargeEmphasized, "Label", "L")
+                TypographyItem(Typography.labelMediumEmphasized, "Label", "M")
+                TypographyItem(Typography.labelSmallEmphasized, "Label", "S")
             }
         }
     }
@@ -87,12 +89,12 @@ private fun TypographyItem(
 ) {
     Row(
         modifier
-            .clip(cornerShapeSmall)
+            .clip(CornerShape.small)
             .clickable {}
             .border(
                 width = 2.dp,
                 color = primaryFixedDim,
-                shape = cornerShapeSmall
+                shape = CornerShape.small
             )
             .fillMaxWidth()
             .padding(16.dp),
@@ -106,14 +108,14 @@ private fun TypographyItem(
         )
         Box(
             Modifier
-                .clip(cornerShapeExtraSmall)
+                .clip(CornerShape.extraSmall)
                 .background(primaryContainer)
                 .size(20.dp),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 scale,
-                labelLarge
+                Typography.labelLarge
             )
         }
     }

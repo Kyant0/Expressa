@@ -16,7 +16,7 @@ import com.kyant.expressa.components.interaction.StaticStatefulValue
 import com.kyant.expressa.components.interaction.interactionStateFlow
 import com.kyant.expressa.components.interaction.resolvedInteractionValueOrDefault
 import com.kyant.expressa.components.interaction.resolvedValueAsState
-import com.kyant.expressa.shape.OmniShapeAnimator
+import com.kyant.expressa.shape.ShapeAnimator
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
@@ -36,7 +36,7 @@ fun <S : StateHolder> StatefulShape<S>.animatedValueAsState(
     }
 
     LaunchedEffect(stateHolder) {
-        val valueAnimation = OmniShapeAnimator(defaultValue(stateHolder))
+        val valueAnimation = ShapeAnimator(defaultValue(stateHolder))
         val pressedFractionAnimation = Animatable(0f)
 
         interactionStateFlow(

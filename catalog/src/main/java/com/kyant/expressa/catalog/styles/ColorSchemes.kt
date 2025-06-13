@@ -33,6 +33,8 @@ import com.kyant.expressa.catalog.ui.TopBar
 import com.kyant.expressa.components.button.Button
 import com.kyant.expressa.m3.LocalColorScheme
 import com.kyant.expressa.m3.color.ColorScheme
+import com.kyant.expressa.m3.shape.CornerShape
+import com.kyant.expressa.m3.typography.Typography
 import com.kyant.expressa.mcu.DynamicSchemeVariant
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.LocalContentColor
@@ -280,7 +282,7 @@ private fun KeyColorCell(
     ) {
         Box(
             modifier
-                .clip(cornerShapeSmall)
+                .clip(CornerShape.small)
                 .clickable {}
                 .background(color)
                 .height(56.dp)
@@ -290,7 +292,7 @@ private fun KeyColorCell(
         ) {
             Text(
                 label,
-                labelLarge.merge(textAlign = TextAlign.Center),
+                Typography.labelLarge.merge(textAlign = TextAlign.Center),
                 maxLines = 1
             )
         }
@@ -312,9 +314,9 @@ private fun RowScope.ColorCell(
                 .border(
                     width = 1.dp,
                     color = labelColor,
-                    shape = cornerShapeSmall
+                    shape = CornerShape.small
                 )
-                .clip(cornerShapeSmall)
+                .clip(CornerShape.small)
                 .clickable {}
                 .background(color)
                 .height(56.dp)
@@ -324,7 +326,7 @@ private fun RowScope.ColorCell(
         ) {
             Text(
                 label,
-                labelSmall.merge(textAlign = TextAlign.Center),
+                Typography.labelSmall.merge(textAlign = TextAlign.Center),
                 maxLines = 3
             )
         }

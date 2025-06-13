@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -28,8 +27,9 @@ import com.kyant.expressa.catalog.ui.PageContainer
 import com.kyant.expressa.catalog.ui.SectionContainer
 import com.kyant.expressa.catalog.ui.Subtitle
 import com.kyant.expressa.catalog.ui.TopBar
-import com.kyant.expressa.m3.LocalMotionScheme
 import com.kyant.expressa.m3.motion.MotionScheme
+import com.kyant.expressa.m3.shape.CornerShape
+import com.kyant.expressa.m3.typography.Typography
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.Text
 import kotlinx.coroutines.Dispatchers
@@ -44,19 +44,8 @@ fun MotionSchemes() {
             title = { Text("Motion schemes") }
         )
 
-        Subtitle { Text("Standard") }
-        CompositionLocalProvider(
-            LocalMotionScheme provides MotionScheme.Standard
-        ) {
-            MotionScheme()
-        }
-
         Subtitle { Text("Expressive") }
-        CompositionLocalProvider(
-            LocalMotionScheme provides MotionScheme.Expressive
-        ) {
-            MotionScheme()
-        }
+        MotionScheme()
     }
 }
 
@@ -66,12 +55,12 @@ private fun MotionScheme(modifier: Modifier = Modifier) {
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            SpatialMotionItem(motionSchemeFastSpatial<Float>() as SpringSpec<Float>, "Fast spatial")
-            SpatialMotionItem(motionSchemeDefaultSpatial<Float>() as SpringSpec<Float>, "Default spatial")
-            SpatialMotionItem(motionSchemeSlowSpatial<Float>() as SpringSpec<Float>, "Slow spatial")
-            EffectsMotionItem(motionSchemeFastEffects<Color>() as SpringSpec<Color>, "Fast effects")
-            EffectsMotionItem(motionSchemeDefaultEffects<Color>() as SpringSpec<Color>, "Default effects")
-            EffectsMotionItem(motionSchemeSlowEffects<Color>() as SpringSpec<Color>, "Slow effects")
+            SpatialMotionItem(MotionScheme.fastSpatial(0.001f), "Fast spatial")
+            SpatialMotionItem(MotionScheme.defaultSpatial(0.001f), "Default spatial")
+            SpatialMotionItem(MotionScheme.slowSpatial(0.001f), "Slow spatial")
+            EffectsMotionItem(MotionScheme.fastEffects(), "Fast effects")
+            EffectsMotionItem(MotionScheme.defaultEffects(), "Default effects")
+            EffectsMotionItem(MotionScheme.slowEffects(), "Slow effects")
         }
     }
 }
@@ -89,11 +78,7 @@ private fun SpatialMotionItem(
                 val startTime = System.currentTimeMillis()
                 animation.animateTo(
                     targetValue = if (animation.targetValue == 0f) 1f else 0f,
-                    animationSpec = SpringSpec(
-                        stiffness = animationSpec.stiffness,
-                        dampingRatio = animationSpec.dampingRatio,
-                        visibilityThreshold = 0.001f
-                    )
+                    animationSpec = animationSpec
                 )
                 val elapsedTime = System.currentTimeMillis() - startTime
                 delay(1000L - elapsedTime)
@@ -103,12 +88,12 @@ private fun SpatialMotionItem(
 
     Column(
         modifier
-            .clip(cornerShapeSmall)
+            .clip(CornerShape.small)
             .clickable {}
             .border(
                 width = 2.dp,
                 color = primaryFixedDim,
-                shape = cornerShapeSmall
+                shape = CornerShape.small
             )
             .fillMaxWidth()
             .padding(16.dp),
@@ -145,7 +130,7 @@ private fun SpatialMotionItem(
         }
         Text(
             label,
-            labelLarge
+            Typography.labelLarge
         )
     }
 }
@@ -175,12 +160,12 @@ private fun EffectsMotionItem(
 
     Column(
         modifier
-            .clip(cornerShapeSmall)
+            .clip(CornerShape.small)
             .clickable {}
             .border(
                 width = 2.dp,
                 color = primaryFixedDim,
-                shape = cornerShapeSmall
+                shape = CornerShape.small
             )
             .fillMaxWidth()
             .padding(16.dp),
@@ -198,7 +183,7 @@ private fun EffectsMotionItem(
         }
         Text(
             label,
-            labelLarge
+            Typography.labelLarge
         )
     }
 }

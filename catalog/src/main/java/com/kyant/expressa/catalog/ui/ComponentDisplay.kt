@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.kyant.expressa.m3.shape.CornerShape
 import com.kyant.expressa.prelude.*
 
 @Composable
@@ -20,7 +21,7 @@ fun ComponentDisplay(
     Box(
         modifier
             .padding(16.dp, 8.dp)
-            .clip(cornerShapeExtraLarge)
+            .clip(CornerShape.extraLarge)
             .background(surfaceBright)
             .heightIn(min = 160.dp)
             .fillMaxWidth()

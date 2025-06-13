@@ -6,57 +6,348 @@ import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.GenericFontFamily
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.sp
 
 @Immutable
-data class Typography(
-    val displayLarge: TextStyle,
-    val displayMedium: TextStyle,
-    val displaySmall: TextStyle,
+object Typography {
 
-    val headlineLarge: TextStyle,
-    val headlineMedium: TextStyle,
-    val headlineSmall: TextStyle,
+    @Stable
+    val plainFontFamily: GenericFontFamily = FontFamily.SansSerif
 
-    val titleLarge: TextStyle,
-    val titleMedium: TextStyle,
-    val titleSmall: TextStyle,
+    @Stable
+    val brandFontFamily: GenericFontFamily = FontFamily.SansSerif
 
-    val bodyLarge: TextStyle,
-    val bodyMedium: TextStyle,
-    val bodySmall: TextStyle,
+    @Stable
+    val displayLarge: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 57.sp,
+        lineHeight = 64.sp,
+        letterSpacing = (-0.25).sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
 
-    val labelLarge: TextStyle,
-    val labelMedium: TextStyle,
-    val labelSmall: TextStyle,
+    @Stable
+    val displayMedium: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 45.sp,
+        lineHeight = 52.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
 
-    val displayLargeEmphasized: TextStyle,
-    val displayMediumEmphasized: TextStyle,
-    val displaySmallEmphasized: TextStyle,
+    @Stable
+    val displaySmall: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 36.sp,
+        lineHeight = 44.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
 
-    val headlineLargeEmphasized: TextStyle,
-    val headlineMediumEmphasized: TextStyle,
-    val headlineSmallEmphasized: TextStyle,
+    @Stable
+    val headlineLarge: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 32.sp,
+        lineHeight = 40.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
 
-    val titleLargeEmphasized: TextStyle,
-    val titleMediumEmphasized: TextStyle,
-    val titleSmallEmphasized: TextStyle,
+    @Stable
+    val headlineMedium: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 28.sp,
+        lineHeight = 36.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
 
-    val bodyLargeEmphasized: TextStyle,
-    val bodyMediumEmphasized: TextStyle,
-    val bodySmallEmphasized: TextStyle,
+    @Stable
+    val headlineSmall: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 24.sp,
+        lineHeight = 32.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
 
-    val labelLargeEmphasized: TextStyle,
-    val labelMediumEmphasized: TextStyle,
-    val labelSmallEmphasized: TextStyle
-) {
+    @Stable
+    val titleLarge: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 22.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
 
-    companion object {
+    @Stable
+    val titleMedium: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.15.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
 
-        @Stable
-        val Default: Typography = materialTypography()
-    }
+    @Stable
+    val titleSmall: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.1.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val bodyLarge: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val bodyMedium: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.25.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val bodySmall: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.4.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val labelLarge: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.1.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val labelMedium: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val labelSmall: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 11.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val displayLargeEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 57.sp,
+        lineHeight = 64.sp,
+        letterSpacing = (-0.25).sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val displayMediumEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 45.sp,
+        lineHeight = 52.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val displaySmallEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 36.sp,
+        lineHeight = 44.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val headlineLargeEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 32.sp,
+        lineHeight = 40.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val headlineMediumEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 28.sp,
+        lineHeight = 36.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val headlineSmallEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 24.sp,
+        lineHeight = 32.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val titleLargeEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = brandFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 22.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val titleMediumEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.15.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val titleSmallEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.1.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val bodyLargeEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val bodyMediumEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.25.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val bodySmallEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.4.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val labelLargeEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.1.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val labelMediumEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
+
+    @Stable
+    val labelSmallEmphasized: TextStyle = TextStyle.Default.copy(
+        fontFamily = plainFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 11.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp,
+        platformStyle = DefaultPlatformTextStyle,
+        lineHeightStyle = DefaultLineHeightStyle
+    )
 }
 
 @Stable
@@ -75,291 +366,4 @@ internal val DefaultTextStyle =
     TextStyle.Default.copy(
         platformStyle = DefaultPlatformTextStyle,
         lineHeightStyle = DefaultLineHeightStyle
-    )
-
-@Stable
-fun materialTypography(
-    brandFontFamily: FontFamily = FontFamily.SansSerif,
-    plainFontFamily: FontFamily = FontFamily.SansSerif
-): Typography =
-    Typography(
-        displayLarge = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Normal,
-            fontSize = 57.sp,
-            lineHeight = 64.sp,
-            letterSpacing = (-0.25).sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        displayMedium = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Normal,
-            fontSize = 45.sp,
-            lineHeight = 52.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        displaySmall = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Normal,
-            fontSize = 36.sp,
-            lineHeight = 44.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-
-        headlineLarge = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Normal,
-            fontSize = 32.sp,
-            lineHeight = 40.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        headlineMedium = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Normal,
-            fontSize = 28.sp,
-            lineHeight = 36.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        headlineSmall = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Normal,
-            fontSize = 24.sp,
-            lineHeight = 32.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-
-        titleLarge = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Normal,
-            fontSize = 22.sp,
-            lineHeight = 28.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        titleMedium = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 16.sp,
-            lineHeight = 24.sp,
-            letterSpacing = 0.15.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        titleSmall = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 14.sp,
-            lineHeight = 20.sp,
-            letterSpacing = 0.1.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-
-        bodyLarge = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Normal,
-            fontSize = 16.sp,
-            lineHeight = 24.sp,
-            letterSpacing = 0.5.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        bodyMedium = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Normal,
-            fontSize = 14.sp,
-            lineHeight = 20.sp,
-            letterSpacing = 0.25.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        bodySmall = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Normal,
-            fontSize = 12.sp,
-            lineHeight = 16.sp,
-            letterSpacing = 0.4.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-
-        labelLarge = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 14.sp,
-            lineHeight = 20.sp,
-            letterSpacing = 0.1.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        labelMedium = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 12.sp,
-            lineHeight = 16.sp,
-            letterSpacing = 0.5.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        labelSmall = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 11.sp,
-            lineHeight = 16.sp,
-            letterSpacing = 0.5.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-
-        displayLargeEmphasized = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 57.sp,
-            lineHeight = 64.sp,
-            letterSpacing = (-0.25).sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        displayMediumEmphasized = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 45.sp,
-            lineHeight = 52.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        displaySmallEmphasized = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 36.sp,
-            lineHeight = 44.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-
-        headlineLargeEmphasized = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 32.sp,
-            lineHeight = 40.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        headlineMediumEmphasized = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 28.sp,
-            lineHeight = 36.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        headlineSmallEmphasized = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 24.sp,
-            lineHeight = 32.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-
-        titleLargeEmphasized = TextStyle.Default.copy(
-            fontFamily = brandFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 22.sp,
-            lineHeight = 28.sp,
-            letterSpacing = 0.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        titleMediumEmphasized = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Bold,
-            fontSize = 16.sp,
-            lineHeight = 24.sp,
-            letterSpacing = 0.15.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        titleSmallEmphasized = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Bold,
-            fontSize = 14.sp,
-            lineHeight = 20.sp,
-            letterSpacing = 0.1.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-
-        bodyLargeEmphasized = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 16.sp,
-            lineHeight = 24.sp,
-            letterSpacing = 0.5.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        bodyMediumEmphasized = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 14.sp,
-            lineHeight = 20.sp,
-            letterSpacing = 0.25.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        bodySmallEmphasized = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 12.sp,
-            lineHeight = 16.sp,
-            letterSpacing = 0.4.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-
-        labelLargeEmphasized = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Bold,
-            fontSize = 14.sp,
-            lineHeight = 20.sp,
-            letterSpacing = 0.1.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        labelMediumEmphasized = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Bold,
-            fontSize = 12.sp,
-            lineHeight = 16.sp,
-            letterSpacing = 0.5.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        ),
-        labelSmallEmphasized = TextStyle.Default.copy(
-            fontFamily = plainFontFamily,
-            fontWeight = FontWeight.Bold,
-            fontSize = 11.sp,
-            lineHeight = 16.sp,
-            letterSpacing = 0.5.sp,
-            platformStyle = DefaultPlatformTextStyle,
-            lineHeightStyle = DefaultLineHeightStyle
-        )
     )

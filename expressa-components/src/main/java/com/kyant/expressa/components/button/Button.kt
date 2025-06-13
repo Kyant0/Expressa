@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.kyant.expressa.components.interaction.animatedValueAsState
 import com.kyant.expressa.components.interaction.statefulvalues.animatedValueAsState
+import com.kyant.expressa.m3.motion.MotionScheme
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.LocalContentColor
 import com.kyant.expressa.ui.LocalIconSize
@@ -35,7 +36,7 @@ fun Button(
     modifier: Modifier = Modifier,
     enabled: () -> Boolean = { true },
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    sizes: ButtonSizes = ButtonSizes.small(),
+    sizes: ButtonSizes = ButtonSizes.small,
     shape: ButtonShape = ButtonShape.Round,
     colors: ButtonColors = ButtonColors.filled(),
     density: ButtonDensity = ButtonDensity.Standard,
@@ -56,9 +57,9 @@ fun Button(
 
     val containerColor = { colors.containerColor.resolvedValue(stateHolder) }
     val containerElevation by colors.elevation
-        .animatedValueAsState(stateHolder, motionSchemeFastEffects())
+        .animatedValueAsState(stateHolder, MotionScheme.fastEffects())
     val containerShape by sizes.resolvedShapes(shape)
-        .animatedValueAsState(stateHolder, sizes.shapeAnimationSpec)
+        .animatedValueAsState(stateHolder, sizes.shapeSpringSpec)
     val labelColor = colors.labelColor.resolvedValue(stateHolder)
     val iconColor = colors.iconColor.resolvedValue(stateHolder)
     val outlineColor = { colors.outlineColor.resolvedValue(stateHolder) }

@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.graphics.shapes.RoundedPolygon
 
 @Immutable
-sealed interface OmniShape : Shape {
+sealed interface InterpolableShape : Shape {
 
     fun toRoundedPolygon(
         size: Size,

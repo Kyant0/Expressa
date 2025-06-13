@@ -11,7 +11,7 @@ import com.kyant.expressa.components.interaction.StateHolder
 import com.kyant.expressa.components.interaction.statefulvalues.StatefulElevation
 import com.kyant.expressa.components.interaction.statefulvalues.StatefulShape
 import com.kyant.expressa.m3.elevation.Elevation
-import com.kyant.expressa.shape.OmniShape
+import com.kyant.expressa.shape.InterpolableShape
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.merge
 
@@ -79,15 +79,15 @@ data class ButtonElevation(
 
 @Immutable
 data class ButtonContainerShape(
-    val default: OmniShape,
-    val pressed: OmniShape
+    val default: InterpolableShape,
+    val pressed: InterpolableShape
 ) : StatefulShape<ButtonStateHolder> {
 
-    override fun defaultValue(stateHolder: ButtonStateHolder): OmniShape {
+    override fun defaultValue(stateHolder: ButtonStateHolder): InterpolableShape {
         return default
     }
 
-    override fun resolvedValue(stateHolder: ButtonStateHolder, interactionState: InteractionState): OmniShape? {
+    override fun resolvedValue(stateHolder: ButtonStateHolder, interactionState: InteractionState): InterpolableShape? {
         return when {
             else -> when (interactionState) {
                 InteractionState.Pressed -> pressed

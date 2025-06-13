@@ -16,13 +16,13 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 @Stable
-class OmniShapeAnimator(
-    private val initialValue: OmniShape
+class ShapeAnimator(
+    private val initialValue: InterpolableShape
 ) {
 
     private val animationState = Animatable(0f)
-    private var startShape: OmniShape? = null
-    private var targetShape: OmniShape? = null
+    private var startShape: InterpolableShape? = null
+    private var targetShape: InterpolableShape? = null
     private var shapeMorph: ShapeMorph? = null
     private var currentShape: Shape by mutableStateOf(initialValue)
     private var isRunningReverse by mutableStateOf(false)
@@ -30,7 +30,7 @@ class OmniShapeAnimator(
     val value: Shape
         get() = currentShape
 
-    val targetValue: OmniShape
+    val targetValue: InterpolableShape
         get() = targetShape ?: initialValue
 
     val fraction: Float by derivedStateOf {
@@ -42,7 +42,7 @@ class OmniShapeAnimator(
     }
 
     suspend fun animateTo(
-        targetValue: OmniShape,
+        targetValue: InterpolableShape,
         animationSpec: AnimationSpec<Float> = spring(),
         block: ((Shape) -> Unit)? = null
     ) {
@@ -60,7 +60,7 @@ class OmniShapeAnimator(
                 block?.invoke(currentShape)
             }
         } else {
-            val startShape = (currentShape as? OmniShape) ?: awaitCurrentOmniShape()
+            val startShape = (currentShape as? InterpolableShape) ?: awaitInterpolableShape()
             val shapeMorph = ShapeMorph(startShape, targetValue)
 
             this.startShape = startShape
@@ -81,7 +81,7 @@ class OmniShapeAnimator(
 
     suspend fun animateTo(
         coroutineScope: CoroutineScope,
-        targetValue: OmniShape,
+        targetValue: InterpolableShape,
         animationSpec: AnimationSpec<Float> = spring(),
         block: ((Shape) -> Unit)? = null
     ) {
@@ -101,13 +101,13 @@ class OmniShapeAnimator(
                 }
             }
         } else {
-            val startShape = (currentShape as? OmniShape) ?: awaitCurrentOmniShape()
+            val startShape = (currentShape as? InterpolableShape) ?: awaitInterpolableShape()
             coroutineScope.launch {
                 val shapeMorph = ShapeMorph(startShape, targetValue)
 
-                this@OmniShapeAnimator.startShape = startShape
+                this@ShapeAnimator.startShape = startShape
                 targetShape = targetValue
-                this@OmniShapeAnimator.shapeMorph = shapeMorph
+                this@ShapeAnimator.shapeMorph = shapeMorph
                 isRunningReverse = false
 
                 animationState.snapTo(0f)
@@ -122,9 +122,9 @@ class OmniShapeAnimator(
         }
     }
 
-    private suspend fun awaitCurrentOmniShape(): OmniShape {
+    private suspend fun awaitInterpolableShape(): InterpolableShape {
         return snapshotFlow { currentShape }
-            .filterIsInstance<OmniShape>()
+            .filterIsInstance<InterpolableShape>()
             .first()
     }
 }

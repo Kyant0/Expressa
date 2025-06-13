@@ -4,6 +4,7 @@ import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.geometry.CornerRadius
@@ -22,25 +23,27 @@ import androidx.graphics.shapes.RoundedPolygon
 import androidx.graphics.shapes.rectangle
 import com.kyant.expressa.requirePrecondition
 
+const val DefaultSmoothing: Float = 0.8f
+
 @Immutable
-open class RoundedCornerOmniShape(
+open class RoundedRectangle(
     topStart: CornerSize,
     topEnd: CornerSize,
     bottomEnd: CornerSize,
     bottomStart: CornerSize,
-    @param:FloatRange(from = 0.0, to = 1.0) val topStartSmoothing: Float = 0f,
-    @param:FloatRange(from = 0.0, to = 1.0) val topEndSmoothing: Float = 0f,
-    @param:FloatRange(from = 0.0, to = 1.0) val bottomEndSmoothing: Float = 0f,
-    @param:FloatRange(from = 0.0, to = 1.0) val bottomStartSmoothing: Float = 0f
+    @param:FloatRange(from = 0.0, to = 1.0) val topStartSmoothing: Float = DefaultSmoothing,
+    @param:FloatRange(from = 0.0, to = 1.0) val topEndSmoothing: Float = DefaultSmoothing,
+    @param:FloatRange(from = 0.0, to = 1.0) val bottomEndSmoothing: Float = DefaultSmoothing,
+    @param:FloatRange(from = 0.0, to = 1.0) val bottomStartSmoothing: Float = DefaultSmoothing
 ) :
     CornerBasedShape(
         topStart = topStart,
         topEnd = topEnd,
         bottomEnd = bottomEnd,
         bottomStart = bottomStart
-    ), OmniShape {
+    ), InterpolableShape {
 
-    private val path = Path()
+    private var path: Path? = null
 
     init {
         requirePrecondition(
@@ -54,6 +57,81 @@ open class RoundedCornerOmniShape(
                     "$bottomStartSmoothing)!"
         }
     }
+
+    @Stable
+    fun start(): RoundedRectangle =
+        this.copy(
+            topEnd = ZeroCornerSize,
+            bottomEnd = ZeroCornerSize
+        )
+
+    @Stable
+    fun top(): RoundedRectangle =
+        this.copy(
+            bottomStart = ZeroCornerSize,
+            bottomEnd = ZeroCornerSize
+        )
+
+    @Stable
+    fun end(): RoundedRectangle =
+        this.copy(
+            topStart = ZeroCornerSize,
+            bottomStart = ZeroCornerSize
+        )
+
+    @Stable
+    fun bottom(): RoundedRectangle =
+        this.copy(
+            topStart = ZeroCornerSize,
+            topEnd = ZeroCornerSize
+        )
+
+    @Stable
+    fun startOnly(): RoundedRectangle =
+        this.copy(
+            topEnd = ZeroCornerSize,
+            bottomEnd = ZeroCornerSize,
+            bottomStart = ZeroCornerSize
+        )
+
+    @Stable
+    fun endOnly(): RoundedRectangle =
+        this.copy(
+            topStart = ZeroCornerSize,
+            bottomStart = ZeroCornerSize,
+            topEnd = ZeroCornerSize
+        )
+
+    @Stable
+    fun topOnly(): RoundedRectangle =
+        this.copy(
+            bottomEnd = ZeroCornerSize,
+            bottomStart = ZeroCornerSize,
+            topStart = ZeroCornerSize
+        )
+
+    @Stable
+    fun bottomOnly(): RoundedRectangle =
+        this.copy(
+            topStart = ZeroCornerSize,
+            topEnd = ZeroCornerSize,
+            bottomEnd = ZeroCornerSize
+        )
+
+    @Stable
+    fun smoothed(
+        @FloatRange(from = 0.0, to = 1.0) smoothing: Float = DefaultSmoothing
+    ): RoundedRectangle =
+        this.copy(
+            topStartSmoothing = smoothing,
+            topEndSmoothing = smoothing,
+            bottomEndSmoothing = smoothing,
+            bottomStartSmoothing = smoothing
+        )
+
+    @Stable
+    fun inner(innerPadding: Dp): RoundedRectangle =
+        InnerRoundedRectangle(this, innerPadding)
 
     final override fun toRoundedPolygon(
         size: Size,
@@ -74,7 +152,7 @@ open class RoundedCornerOmniShape(
                 centerY = size.height / 2
             )
         } else {
-            toRoundedPolygon(
+            this.toRoundedPolygon(
                 size = size,
                 topStart = topStart,
                 topEnd = topEnd,
@@ -126,7 +204,7 @@ open class RoundedCornerOmniShape(
                         bottomStart = bottomStart,
                         layoutDirection = layoutDirection
                     )
-                    .toPath(path)
+                    .toPath(Path())
             )
         }
     }
@@ -136,8 +214,8 @@ open class RoundedCornerOmniShape(
         topEnd: CornerSize,
         bottomEnd: CornerSize,
         bottomStart: CornerSize
-    ): RoundedCornerOmniShape {
-        return RoundedCornerOmniShape(
+    ): RoundedRectangle {
+        return RoundedRectangle(
             topStart = topStart,
             topEnd = topEnd,
             bottomEnd = bottomEnd,
@@ -190,8 +268,8 @@ open class RoundedCornerOmniShape(
         topEndSmoothing: Float = this.topEndSmoothing,
         bottomEndSmoothing: Float = this.bottomEndSmoothing,
         bottomStartSmoothing: Float = this.bottomStartSmoothing
-    ): RoundedCornerOmniShape {
-        return RoundedCornerOmniShape(
+    ): RoundedRectangle {
+        return RoundedRectangle(
             topStart = topStart,
             topEnd = topEnd,
             bottomEnd = bottomEnd,
@@ -204,7 +282,7 @@ open class RoundedCornerOmniShape(
     }
 
     override fun toString(): String {
-        return "RoundedCornerOmniShape(topStart = $topStart, topEnd = $topEnd, bottomEnd = $bottomEnd, bottomStart = " +
+        return "RoundedRectangle(topStart = $topStart, topEnd = $topEnd, bottomEnd = $bottomEnd, bottomStart = " +
                 "$bottomStart, topStartSmoothing = $topStartSmoothing, topEndSmoothing = $topEndSmoothing, " +
                 "bottomEndSmoothing = $bottomEndSmoothing, bottomStartSmoothing = $bottomStartSmoothing)"
     }
@@ -213,7 +291,7 @@ open class RoundedCornerOmniShape(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as RoundedCornerOmniShape
+        other as RoundedRectangle
 
         if (topStart != other.topStart) return false
         if (topEnd != other.topEnd) return false
@@ -242,8 +320,8 @@ open class RoundedCornerOmniShape(
     internal companion object {
 
         @Stable
-        val Zero: RoundedCornerOmniShape =
-            RoundedCornerOmniShape(
+        val Zero: RoundedRectangle =
+            RoundedRectangle(
                 topStart = CornerSize(0f),
                 topEnd = CornerSize(0f),
                 bottomEnd = CornerSize(0f),
@@ -253,19 +331,14 @@ open class RoundedCornerOmniShape(
 }
 
 @Stable
-val CircleOmniShape: RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
-        topStartPercent = 50,
-        topEndPercent = 50,
-        bottomEndPercent = 50,
-        bottomStartPercent = 50
-    )
+val CapsuleShape: RoundedRectangle =
+    CapsuleShape()
 
 @Stable
-fun CircleOmniShape(
-    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = 0f
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+fun CapsuleShape(
+    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = DefaultSmoothing
+): RoundedRectangle =
+    RoundedRectangle(
         topStartPercent = 50,
         topEndPercent = 50,
         bottomEndPercent = 50,
@@ -277,11 +350,11 @@ fun CircleOmniShape(
     )
 
 @Stable
-fun RoundedCornerOmniShape(
+fun RoundedRectangle(
     corner: CornerSize,
-    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = 0f
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = DefaultSmoothing
+): RoundedRectangle =
+    RoundedRectangle(
         topStart = corner,
         topEnd = corner,
         bottomEnd = corner,
@@ -293,44 +366,44 @@ fun RoundedCornerOmniShape(
     )
 
 @Stable
-fun RoundedCornerOmniShape(
+fun RoundedRectangle(
     size: Dp,
-    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = 0f
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = DefaultSmoothing
+): RoundedRectangle =
+    RoundedRectangle(
         corner = CornerSize(size),
         smoothing = smoothing
     )
 
 @Stable
-fun RoundedCornerOmniShape(
+fun RoundedRectangle(
     @FloatRange(from = 0.0) size: Float,
-    @FloatRange(from = 0.0, to = 1.0) smoothing: Float
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = DefaultSmoothing
+): RoundedRectangle =
+    RoundedRectangle(
         corner = CornerSize(size),
         smoothing = smoothing
     )
 
 @Stable
-fun RoundedCornerOmniShape(
+fun RoundedRectangle(
     @IntRange(from = 0, to = 100) percent: Int,
-    @FloatRange(from = 0.0, to = 1.0) smoothing: Float
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = DefaultSmoothing
+): RoundedRectangle =
+    RoundedRectangle(
         corner = CornerSize(percent),
         smoothing = smoothing
     )
 
 @Stable
-fun RoundedCornerOmniShape(
+fun RoundedRectangle(
     topStart: Dp = 0.dp,
     topEnd: Dp = 0.dp,
     bottomEnd: Dp = 0.dp,
     bottomStart: Dp = 0.dp,
-    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = 0f
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = DefaultSmoothing
+): RoundedRectangle =
+    RoundedRectangle(
         topStart = CornerSize(topStart),
         topEnd = CornerSize(topEnd),
         bottomEnd = CornerSize(bottomEnd),
@@ -342,17 +415,17 @@ fun RoundedCornerOmniShape(
     )
 
 @Stable
-fun RoundedCornerOmniShape(
+fun RoundedRectangle(
     topStart: Dp = 0.dp,
     topEnd: Dp = 0.dp,
     bottomEnd: Dp = 0.dp,
     bottomStart: Dp = 0.dp,
-    @FloatRange(from = 0.0, to = 1.0) topStartSmoothing: Float = 0f,
-    @FloatRange(from = 0.0, to = 1.0) topEndSmoothing: Float = 0f,
-    @FloatRange(from = 0.0, to = 1.0) bottomEndSmoothing: Float = 0f,
-    @FloatRange(from = 0.0, to = 1.0) bottomStartSmoothing: Float = 0f
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+    @FloatRange(from = 0.0, to = 1.0) topStartSmoothing: Float = DefaultSmoothing,
+    @FloatRange(from = 0.0, to = 1.0) topEndSmoothing: Float = DefaultSmoothing,
+    @FloatRange(from = 0.0, to = 1.0) bottomEndSmoothing: Float = DefaultSmoothing,
+    @FloatRange(from = 0.0, to = 1.0) bottomStartSmoothing: Float = DefaultSmoothing
+): RoundedRectangle =
+    RoundedRectangle(
         topStart = CornerSize(topStart),
         topEnd = CornerSize(topEnd),
         bottomEnd = CornerSize(bottomEnd),
@@ -364,14 +437,14 @@ fun RoundedCornerOmniShape(
     )
 
 @Stable
-fun RoundedCornerOmniShape(
+fun RoundedRectangle(
     @FloatRange(from = 0.0) topStart: Float = 0f,
     @FloatRange(from = 0.0) topEnd: Float = 0f,
     @FloatRange(from = 0.0) bottomEnd: Float = 0f,
     @FloatRange(from = 0.0) bottomStart: Float = 0f,
-    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = 0f
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = DefaultSmoothing
+): RoundedRectangle =
+    RoundedRectangle(
         topStart = CornerSize(topStart),
         topEnd = CornerSize(topEnd),
         bottomEnd = CornerSize(bottomEnd),
@@ -383,17 +456,17 @@ fun RoundedCornerOmniShape(
     )
 
 @Stable
-fun RoundedCornerOmniShape(
+fun RoundedRectangle(
     @FloatRange(from = 0.0) topStart: Float = 0f,
     @FloatRange(from = 0.0) topEnd: Float = 0f,
     @FloatRange(from = 0.0) bottomEnd: Float = 0f,
     @FloatRange(from = 0.0) bottomStart: Float = 0f,
-    @FloatRange(from = 0.0, to = 1.0) topStartSmoothing: Float = 0f,
-    @FloatRange(from = 0.0, to = 1.0) topEndSmoothing: Float = 0f,
-    @FloatRange(from = 0.0, to = 1.0) bottomEndSmoothing: Float = 0f,
-    @FloatRange(from = 0.0, to = 1.0) bottomStartSmoothing: Float = 0f
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+    @FloatRange(from = 0.0, to = 1.0) topStartSmoothing: Float = DefaultSmoothing,
+    @FloatRange(from = 0.0, to = 1.0) topEndSmoothing: Float = DefaultSmoothing,
+    @FloatRange(from = 0.0, to = 1.0) bottomEndSmoothing: Float = DefaultSmoothing,
+    @FloatRange(from = 0.0, to = 1.0) bottomStartSmoothing: Float = DefaultSmoothing
+): RoundedRectangle =
+    RoundedRectangle(
         topStart = CornerSize(topStart),
         topEnd = CornerSize(topEnd),
         bottomEnd = CornerSize(bottomEnd),
@@ -405,14 +478,14 @@ fun RoundedCornerOmniShape(
     )
 
 @Stable
-fun RoundedCornerOmniShape(
+fun RoundedRectangle(
     @IntRange(from = 0, to = 100) topStartPercent: Int = 0,
     @IntRange(from = 0, to = 100) topEndPercent: Int = 0,
     @IntRange(from = 0, to = 100) bottomEndPercent: Int = 0,
     @IntRange(from = 0, to = 100) bottomStartPercent: Int = 0,
-    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = 0f
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+    @FloatRange(from = 0.0, to = 1.0) smoothing: Float = DefaultSmoothing
+): RoundedRectangle =
+    RoundedRectangle(
         topStart = CornerSize(topStartPercent),
         topEnd = CornerSize(topEndPercent),
         bottomEnd = CornerSize(bottomEndPercent),
@@ -424,17 +497,17 @@ fun RoundedCornerOmniShape(
     )
 
 @Stable
-fun RoundedCornerOmniShape(
+fun RoundedRectangle(
     @IntRange(from = 0, to = 100) topStartPercent: Int = 0,
     @IntRange(from = 0, to = 100) topEndPercent: Int = 0,
     @IntRange(from = 0, to = 100) bottomEndPercent: Int = 0,
     @IntRange(from = 0, to = 100) bottomStartPercent: Int = 0,
-    @FloatRange(from = 0.0, to = 1.0) topStartSmoothing: Float = 0f,
-    @FloatRange(from = 0.0, to = 1.0) topEndSmoothing: Float = 0f,
-    @FloatRange(from = 0.0, to = 1.0) bottomEndSmoothing: Float = 0f,
-    @FloatRange(from = 0.0, to = 1.0) bottomStartSmoothing: Float = 0f
-): RoundedCornerOmniShape =
-    RoundedCornerOmniShape(
+    @FloatRange(from = 0.0, to = 1.0) topStartSmoothing: Float = DefaultSmoothing,
+    @FloatRange(from = 0.0, to = 1.0) topEndSmoothing: Float = DefaultSmoothing,
+    @FloatRange(from = 0.0, to = 1.0) bottomEndSmoothing: Float = DefaultSmoothing,
+    @FloatRange(from = 0.0, to = 1.0) bottomStartSmoothing: Float = DefaultSmoothing
+): RoundedRectangle =
+    RoundedRectangle(
         topStart = CornerSize(topStartPercent),
         topEnd = CornerSize(topEndPercent),
         bottomEnd = CornerSize(bottomEndPercent),
