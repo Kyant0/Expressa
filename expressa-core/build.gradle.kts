@@ -13,7 +13,7 @@ android {
     namespace = "com.kyant.expressa"
     compileSdk = 36
     buildToolsVersion = "36.0.0"
-    ndkVersion = "29.0.13113456"
+    ndkVersion = "29.0.13599879"
 
     defaultConfig {
         minSdk = 21
