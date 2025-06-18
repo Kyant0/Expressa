@@ -20,7 +20,6 @@ import com.kyant.expressa.catalog.ui.SectionContainer
 import com.kyant.expressa.catalog.ui.TopBar
 import com.kyant.expressa.m3.elevation.Elevation
 import com.kyant.expressa.m3.shape.CornerShape
-import com.kyant.expressa.m3.typography.Typography
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.Text
 
@@ -73,12 +72,12 @@ private fun ElevationItem(
         ) {
             Text(
                 "${elevation.value.value.toInt()}dp",
-                Typography.labelLarge
+                labelLarge
             )
         }
         Text(
             label,
-            Typography.labelLarge.merge(textAlign = TextAlign.Center)
+            labelLarge.merge(textAlign = TextAlign.Center)
         )
     }
 }

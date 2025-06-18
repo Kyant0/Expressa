@@ -29,7 +29,6 @@ import com.kyant.expressa.catalog.ui.Subtitle
 import com.kyant.expressa.catalog.ui.TopBar
 import com.kyant.expressa.m3.motion.MotionScheme
 import com.kyant.expressa.m3.shape.CornerShape
-import com.kyant.expressa.m3.typography.Typography
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.ui.Text
 import kotlinx.coroutines.Dispatchers
@@ -130,7 +129,7 @@ private fun SpatialMotionItem(
         }
         Text(
             label,
-            Typography.labelLarge
+            labelLarge
         )
     }
 }
@@ -183,7 +182,7 @@ private fun EffectsMotionItem(
         }
         Text(
             label,
-            Typography.labelLarge
+            labelLarge
         )
     }
 }

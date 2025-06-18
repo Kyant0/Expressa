@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.kyant.expressa.m3.motion.MotionScheme
 import com.kyant.expressa.m3.shape.CornerShape
-import com.kyant.expressa.m3.typography.Typography
+import com.kyant.expressa.prelude.*
 import com.kyant.expressa.shape.InterpolableShape
 
 @Immutable
@@ -57,7 +57,7 @@ data class ButtonSizes(
         val extraSmall: ButtonSizes = ButtonSizes(
             containerHeight = 32.dp,
             outlineWidth = 1.dp,
-            labelTextStyle = Typography.titleSmall,
+            labelTextStyle = titleSmall,
             iconSize = 16.dp,
             shapeRound = CornerShape.full,
             shapeSquare = CornerShape.medium,
@@ -72,7 +72,7 @@ data class ButtonSizes(
         val small: ButtonSizes = ButtonSizes(
             containerHeight = 40.dp,
             outlineWidth = 1.dp,
-            labelTextStyle = Typography.titleSmall,
+            labelTextStyle = titleSmall,
             iconSize = 20.dp,
             shapeRound = CornerShape.full,
             shapeSquare = CornerShape.medium,
@@ -87,7 +87,7 @@ data class ButtonSizes(
         val medium: ButtonSizes = ButtonSizes(
             containerHeight = 56.dp,
             outlineWidth = 1.dp,
-            labelTextStyle = Typography.titleMedium,
+            labelTextStyle = titleMedium,
             iconSize = 24.dp,
             shapeRound = CornerShape.full,
             shapeSquare = CornerShape.large,
@@ -102,7 +102,7 @@ data class ButtonSizes(
         val large: ButtonSizes = ButtonSizes(
             containerHeight = 96.dp,
             outlineWidth = 2.dp,
-            labelTextStyle = Typography.headlineSmall,
+            labelTextStyle = headlineSmall,
             iconSize = 32.dp,
             shapeRound = CornerShape.full,
             shapeSquare = CornerShape.extraLarge,
@@ -117,7 +117,7 @@ data class ButtonSizes(
         val extraLarge: ButtonSizes = ButtonSizes(
             containerHeight = 136.dp,
             outlineWidth = 3.dp,
-            labelTextStyle = Typography.headlineLarge,
+            labelTextStyle = headlineLarge,
             iconSize = 40.dp,
             shapeRound = CornerShape.full,
             shapeSquare = CornerShape.extraLarge,

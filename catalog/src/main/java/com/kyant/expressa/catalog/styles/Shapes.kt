@@ -19,7 +19,6 @@ import com.kyant.expressa.catalog.ui.PageContainer
 import com.kyant.expressa.catalog.ui.SectionContainer
 import com.kyant.expressa.catalog.ui.TopBar
 import com.kyant.expressa.m3.shape.MaterialShapes
-import com.kyant.expressa.m3.typography.Typography
 import com.kyant.expressa.prelude.*
 import com.kyant.expressa.shape.asInterpolableRoundedPolygon
 import com.kyant.expressa.ui.Text
@@ -91,7 +90,7 @@ private fun ShapeItem(
         )
         Text(
             label,
-            Typography.labelLarge.merge(textAlign = TextAlign.Center)
+            labelLarge.merge(textAlign = TextAlign.Center)
         )
     }
 }
