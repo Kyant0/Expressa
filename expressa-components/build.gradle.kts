@@ -56,7 +56,6 @@ baselineProfile {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.foundation)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
