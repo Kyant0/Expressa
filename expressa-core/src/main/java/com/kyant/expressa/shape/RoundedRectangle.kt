@@ -23,7 +23,7 @@ import androidx.graphics.shapes.RoundedPolygon
 import androidx.graphics.shapes.rectangle
 import com.kyant.expressa.requirePrecondition
 
-const val DefaultSmoothing: Float = 0.8f
+const val DefaultSmoothing: Float = 1f
 
 @Immutable
 open class RoundedRectangle(

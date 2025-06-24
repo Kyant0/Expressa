@@ -45,7 +45,8 @@ android {
             jvmTarget = JvmTarget.JVM_21
             freeCompilerArgs.addAll(
                 "-jvm-default=no-compatibility",
-                "-Xcontext-parameters"
+                "-Xcontext-parameters",
+                "-Xcontext-sensetive-resolution",
             )
         }
     }
@@ -67,7 +68,6 @@ baselineProfile {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.foundation)

@@ -38,7 +38,8 @@ android {
             jvmTarget = JvmTarget.JVM_21
             freeCompilerArgs.addAll(
                 "-jvm-default=no-compatibility",
-                "-Xcontext-parameters"
+                "-Xcontext-parameters",
+                "-Xcontext-sensetive-resolution",
             )
         }
     }
