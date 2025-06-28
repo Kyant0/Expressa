@@ -6,12 +6,12 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import com.kyant.expressa.components.interaction.InteractionState
 import com.kyant.expressa.components.interaction.StateHolder
 import com.kyant.expressa.components.interaction.statefulvalues.StatefulElevation
 import com.kyant.expressa.components.interaction.statefulvalues.StatefulShape
 import com.kyant.expressa.m3.elevation.Elevation
-import com.kyant.expressa.shape.InterpolableShape
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.merge
 
@@ -79,15 +79,15 @@ data class ButtonElevation(
 
 @Immutable
 data class ButtonContainerShape(
-    val default: InterpolableShape,
-    val pressed: InterpolableShape
+    val default: Shape,
+    val pressed: Shape
 ) : StatefulShape<ButtonStateHolder> {
 
-    override fun defaultValue(stateHolder: ButtonStateHolder): InterpolableShape {
+    override fun defaultValue(stateHolder: ButtonStateHolder): Shape {
         return default
     }
 
-    override fun resolvedValue(stateHolder: ButtonStateHolder, interactionState: InteractionState): InterpolableShape? {
+    override fun resolvedValue(stateHolder: ButtonStateHolder, interactionState: InteractionState): Shape? {
         return when {
             else -> when (interactionState) {
                 InteractionState.Pressed -> pressed

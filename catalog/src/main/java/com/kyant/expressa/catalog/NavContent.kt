@@ -20,7 +20,6 @@ import com.kyant.expressa.catalog.components.IconButtons
 import com.kyant.expressa.catalog.styles.ColorSchemes
 import com.kyant.expressa.catalog.styles.Elevation
 import com.kyant.expressa.catalog.styles.MotionSchemes
-import com.kyant.expressa.catalog.styles.Shapes
 import com.kyant.expressa.catalog.styles.Typography
 import com.kyant.expressa.m3.motion.EaseEmphasized
 import com.kyant.expressa.m3.motion.EaseEmphasizedAccelerate
@@ -85,7 +84,6 @@ fun NavContent() {
             Styles.ColorSchemes -> NavEntry(key) { ColorSchemes() }
             Styles.Elevation -> NavEntry(key) { Elevation() }
             Styles.MotionSchemes -> NavEntry(key) { MotionSchemes() }
-            Styles.Shapes -> NavEntry(key) { Shapes() }
             Styles.Typography -> NavEntry(key) { Typography() }
 
             Components.Buttons -> NavEntry(key) { Buttons() }

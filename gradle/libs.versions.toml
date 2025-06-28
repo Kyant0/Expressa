@@ -7,7 +7,6 @@ lifecycle = "2.9.1"
 activity = "1.12.0-alpha03"
 compose = "1.9.0-beta01"
 navigation3 = "1.0.0-alpha04"
-graphicsShapes = "1.1.0-alpha01"
 nav3Lifecycle = "1.0.0-alpha02"
 serialization = "1.8.1"
 
@@ -28,7 +27,6 @@ androidx-foundation = { group = "androidx.compose.foundation", name = "foundatio
 androidx-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose" }
 androidx-material-ripple = { group = "androidx.compose.material", name = "material-ripple", version.ref = "compose" }
 androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
-androidx-graphics-shapes = { group = "androidx.graphics", name = "graphics-shapes", version.ref = "graphicsShapes" }
 androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "nav3Lifecycle" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
 kotlinx-serialization-protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "serialization" }

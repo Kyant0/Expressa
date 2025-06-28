@@ -2,12 +2,20 @@ package com.kyant.expressa.shape
 
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 
+@Stable
+fun RoundedRectangle.inner(
+    innerPadding: Dp
+): RoundedRectangle {
+    return InnerRoundedRectangle(this, innerPadding)
+}
+
 @Immutable
-internal data class InnerRoundedRectangle(
+private data class InnerRoundedRectangle(
     val outerShape: RoundedRectangle,
     val innerPadding: Dp
 ) :
@@ -16,11 +24,8 @@ internal data class InnerRoundedRectangle(
         topEnd = InnerCornerSize(outerShape.topEnd, innerPadding),
         bottomEnd = InnerCornerSize(outerShape.bottomEnd, innerPadding),
         bottomStart = InnerCornerSize(outerShape.bottomStart, innerPadding),
-        topStartSmoothing = outerShape.topStartSmoothing,
-        topEndSmoothing = outerShape.topEndSmoothing,
-        bottomEndSmoothing = outerShape.bottomEndSmoothing,
-        bottomStartSmoothing = outerShape.bottomStartSmoothing
-    ), InterpolableShape
+        cornerSmoothing = outerShape.cornerSmoothing
+    )
 
 @Immutable
 private data class InnerCornerSize(

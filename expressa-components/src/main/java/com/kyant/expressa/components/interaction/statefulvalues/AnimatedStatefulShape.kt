@@ -16,7 +16,9 @@ import com.kyant.expressa.components.interaction.StaticStatefulValue
 import com.kyant.expressa.components.interaction.interactionStateFlow
 import com.kyant.expressa.components.interaction.resolvedInteractionValueOrDefault
 import com.kyant.expressa.components.interaction.resolvedValueAsState
-import com.kyant.expressa.shape.ShapeAnimator
+import com.kyant.expressa.shape.RoundedRectangle
+import com.kyant.expressa.shape.lerp
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
@@ -32,11 +34,11 @@ fun <S : StateHolder> StatefulShape<S>.animatedValueAsState(
     }
 
     val state = remember(stateHolder) {
-        mutableStateOf<Shape>(defaultValue(stateHolder))
+        mutableStateOf(defaultValue(stateHolder))
     }
 
     LaunchedEffect(stateHolder) {
-        val valueAnimation = ShapeAnimator(defaultValue(stateHolder))
+        val valueAnimation = Animatable(0f)
         val pressedFractionAnimation = Animatable(0f)
 
         interactionStateFlow(
@@ -54,7 +56,7 @@ fun <S : StateHolder> StatefulShape<S>.animatedValueAsState(
                     resolvedInteractionValueOrDefault(stateHolder, interactionState) ?: return@mapNotNull null
                 )
             }
-            .collect { (interactionState, value) ->
+            .collectLatest { (interactionState, value) ->
                 launch {
                     pressedFractionAnimation.animateTo(
                         targetValue = if (interactionState == InteractionState.Pressed) 1f else 0f,
@@ -62,12 +64,15 @@ fun <S : StateHolder> StatefulShape<S>.animatedValueAsState(
                     )
                 }
 
-                valueAnimation.animateTo(
-                    coroutineScope = this,
-                    targetValue = value,
-                    animationSpec = animationSpec
-                ) { value ->
-                    state.value = value
+                val currentValue = state.value
+                if (currentValue is RoundedRectangle && value is RoundedRectangle) {
+                    valueAnimation.snapTo(0f)
+                    valueAnimation.animateTo(
+                        targetValue = 1f,
+                        animationSpec = animationSpec
+                    ) {
+                        state.value = lerp(currentValue, value, valueAnimation.value)
+                    }
                 }
             }
     }

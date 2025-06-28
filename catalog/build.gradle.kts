@@ -44,7 +44,7 @@ android {
             freeCompilerArgs.addAll(
                 "-jvm-default=no-compatibility",
                 "-Xcontext-parameters",
-                "-Xcontext-sensetive-resolution",
+                "-Xcontext-sensitive-resolution",
             )
         }
     }
@@ -85,7 +85,11 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.foundation)
-    implementation(libs.androidx.runtime)
+    implementation(libs.androidx.runtime) {
+        version {
+            strictly("1.9.0-alpha04")
+        }
+    }
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.navigation3.ui)

@@ -4,14 +4,14 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.dp
 import com.kyant.expressa.shape.CapsuleShape
-import com.kyant.expressa.shape.InterpolableRectangle
+import com.kyant.expressa.shape.RectangleShape
 import com.kyant.expressa.shape.RoundedRectangle
 
 @Immutable
 object CornerShape {
 
     @Stable
-    val none: InterpolableRectangle = InterpolableRectangle
+    val none: RoundedRectangle = RectangleShape
 
     @Stable
     val extraSmall: RoundedRectangle = RoundedRectangle(4.dp)

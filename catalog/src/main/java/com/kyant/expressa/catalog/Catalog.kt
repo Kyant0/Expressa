@@ -33,7 +33,6 @@ fun Catalog(backStack: MutableList<Any>) {
             CategoryItem({ backStack.add(Styles.ColorSchemes) }) { Text("Color schemes") }
             CategoryItem({ backStack.add(Styles.Elevation) }) { Text("Elevation") }
             CategoryItem({ backStack.add(Styles.MotionSchemes) }) { Text("Motion schemes") }
-            CategoryItem({ backStack.add(Styles.Shapes) }) { Text("Shapes") }
             CategoryItem({ backStack.add(Styles.Typography) }) { Text("Typography") }
         }
 

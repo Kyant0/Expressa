@@ -28,9 +28,7 @@ import com.kyant.expressa.components.iconbutton.IconButton
 import com.kyant.expressa.components.iconbutton.IconButtonColors
 import com.kyant.expressa.components.iconbutton.IconButtonSizes
 import com.kyant.expressa.components.iconbutton.IconButtonWidth
-import com.kyant.expressa.m3.shape.MaterialShapes
 import com.kyant.expressa.prelude.*
-import com.kyant.expressa.shape.asInterpolableRoundedPolygon
 import com.kyant.expressa.ui.Icon
 import com.kyant.expressa.ui.Text
 
@@ -44,10 +42,6 @@ fun IconButtons() {
         ComponentDisplay {
             IconButton(
                 {},
-                sizes =
-                    IconButtonSizes.large.copy(
-                        containerShapeRound = MaterialShapes.Sunny.asInterpolableRoundedPolygon()
-                    ),
                 shape = ButtonShape.Round,
                 colors =
                     IconButtonColors.tonal(

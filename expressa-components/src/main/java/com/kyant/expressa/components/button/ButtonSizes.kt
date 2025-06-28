@@ -3,13 +3,13 @@ package com.kyant.expressa.components.button
 import androidx.compose.animation.core.SpringSpec
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.kyant.expressa.m3.motion.MotionScheme
 import com.kyant.expressa.m3.shape.CornerShape
 import com.kyant.expressa.prelude.*
-import com.kyant.expressa.shape.InterpolableShape
 
 @Immutable
 data class ButtonSizes(
@@ -17,12 +17,12 @@ data class ButtonSizes(
     val outlineWidth: Dp,
     val labelTextStyle: TextStyle,
     val iconSize: Dp,
-    val shapeRound: InterpolableShape,
-    val shapeSquare: InterpolableShape,
+    val shapeRound: Shape,
+    val shapeSquare: Shape,
     val leadingSpace: Dp,
     val betweenIconLabelSpace: Dp,
     val trailingSpace: Dp,
-    val shapePressed: InterpolableShape,
+    val shapePressed: Shape,
     val shapeSpringSpec: SpringSpec<Float>
 ) {
 

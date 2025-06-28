@@ -46,7 +46,7 @@ android {
             freeCompilerArgs.addAll(
                 "-jvm-default=no-compatibility",
                 "-Xcontext-parameters",
-                "-Xcontext-sensetive-resolution",
+                "-Xcontext-sensitive-resolution",
             )
         }
     }
@@ -72,6 +72,5 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.foundation)
     api(libs.androidx.material.ripple)
-    api(libs.androidx.graphics.shapes)
     baselineProfile(project(":baselineprofile"))
 }

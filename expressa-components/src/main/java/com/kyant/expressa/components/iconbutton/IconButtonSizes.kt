@@ -3,6 +3,7 @@ package com.kyant.expressa.components.iconbutton
 import androidx.compose.animation.core.SpringSpec
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.kyant.expressa.components.button.ButtonContainerShape
@@ -10,7 +11,6 @@ import com.kyant.expressa.components.button.ButtonDensity
 import com.kyant.expressa.components.button.ButtonShape
 import com.kyant.expressa.m3.motion.MotionScheme
 import com.kyant.expressa.m3.shape.CornerShape
-import com.kyant.expressa.shape.InterpolableShape
 
 @Immutable
 data class IconButtonSizes(
@@ -22,10 +22,10 @@ data class IconButtonSizes(
     val defaultTrailingSpace: Dp,
     val wideLeadingSpace: Dp,
     val wideTrailingSpace: Dp,
-    val containerShapeRound: InterpolableShape,
-    val containerShapeSquare: InterpolableShape,
+    val containerShapeRound: Shape,
+    val containerShapeSquare: Shape,
     val outlineWidth: Dp,
-    val shapePressed: InterpolableShape,
+    val shapePressed: Shape,
     val shapeSpringSpec: SpringSpec<Float>
 ) {
 

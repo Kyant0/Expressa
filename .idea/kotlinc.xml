@@ -11,6 +11,6 @@
     <option name="languageVersion" value="2.3" />
   </component>
   <component name="KotlinJpsPluginSettings">
-    <option name="version" value="2.2.0-RC3" />
+    <option name="version" value="2.2.0" />
   </component>
 </project>

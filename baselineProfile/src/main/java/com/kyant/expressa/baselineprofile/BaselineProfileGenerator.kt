@@ -83,10 +83,6 @@ class BaselineProfileGenerator {
             Thread.sleep(500)
             device.pressBack()
 
-            device.findObject(By.text("Shapes")).click()
-            Thread.sleep(500)
-            device.pressBack()
-
             device.findObject(By.text("Typography")).click()
             Thread.sleep(500)
             device.pressBack()

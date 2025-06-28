@@ -39,7 +39,7 @@ android {
             freeCompilerArgs.addAll(
                 "-jvm-default=no-compatibility",
                 "-Xcontext-parameters",
-                "-Xcontext-sensetive-resolution",
+                "-Xcontext-sensitive-resolution",
             )
         }
     }
