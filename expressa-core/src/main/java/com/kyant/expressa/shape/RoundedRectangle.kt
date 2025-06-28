@@ -123,7 +123,7 @@ open class RoundedRectangle(
         topEnd: CornerSize,
         bottomEnd: CornerSize,
         bottomStart: CornerSize
-    ): CornerBasedShape {
+    ): RoundedRectangle {
         return RoundedRectangle(
             topStart = topStart,
             topEnd = topEnd,
