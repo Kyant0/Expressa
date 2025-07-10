@@ -57,7 +57,11 @@ open class RoundedRectangle(
             return Outline.Rectangle(size.toRect())
         }
 
-        if (cornerSmoothing.circleFraction >= 1f) {
+        if (cornerSmoothing.circleFraction >= 1f ||
+            (size.width == size.height &&
+                    topLeft == size.width / 2f &&
+                    topLeft == topRight && bottomLeft == bottomRight)
+        ) {
             return Outline.Rounded(
                 RoundRect(
                     rect = size.toRect(),
@@ -86,33 +90,41 @@ open class RoundedRectangle(
                     lineTo(width, topRight + topRightDy)
 
                     // top right corner
-                    topRightCorner0(size, topRight, -topRightDy)
-                    topRightCircle(size, topRight)
-                    topRightCorner1(size, topRight, topRightDx)
+                    if (topRight > 0f) {
+                        topRightCorner0(size, topRight, -topRightDy)
+                        topRightCircle(size, topRight)
+                        topRightCorner1(size, topRight, topRightDx)
+                    }
 
                     // top line
                     lineTo(topLeft + topLeftDx, 0f)
 
                     // top left corner
-                    topLeftCorner1(size, topLeft, topLeftDx)
-                    topLeftCircle(size, topLeft)
-                    topLeftCorner0(size, topLeft, topLeftDy)
+                    if (topLeft > 0f) {
+                        topLeftCorner1(size, topLeft, topLeftDx)
+                        topLeftCircle(size, topLeft)
+                        topLeftCorner0(size, topLeft, topLeftDy)
+                    }
 
                     // left line
                     lineTo(0f, height - bottomLeft - bottomLeftDy)
 
                     // bottom left corner
-                    bottomLeftCorner0(size, bottomLeft, bottomLeftDy)
-                    bottomLeftCircle(size, bottomLeft)
-                    bottomLeftCorner1(size, bottomLeft, -bottomLeftDx)
+                    if (bottomLeft > 0f) {
+                        bottomLeftCorner0(size, bottomLeft, bottomLeftDy)
+                        bottomLeftCircle(size, bottomLeft)
+                        bottomLeftCorner1(size, bottomLeft, -bottomLeftDx)
+                    }
 
                     // bottom line
                     lineTo(width - bottomRight - bottomRightDx, height)
 
                     // bottom right corner
-                    bottomRightCorner1(size, bottomRight, -bottomRightDx)
-                    bottomRightCircle(size, bottomRight)
-                    bottomRightCorner0(size, bottomRight, -bottomRightDy)
+                    if (bottomRight > 0f) {
+                        bottomRightCorner1(size, bottomRight, -bottomRightDx)
+                        bottomRightCircle(size, bottomRight)
+                        bottomRightCorner0(size, bottomRight, -bottomRightDy)
+                    }
                 }
             )
         }
@@ -183,6 +195,7 @@ val RectangleShape: RoundedRectangle = RoundedRectangle(0f)
 @Stable
 val CapsuleShape: RoundedRectangle = CapsuleShape()
 
+@Suppress("FunctionName")
 @Stable
 fun CapsuleShape(
     cornerSmoothing: CornerSmoothing = CornerSmoothing.Default

@@ -190,8 +190,8 @@ data class CornerSmoothing(
         @Stable
         val Default: CornerSmoothing =
             CornerSmoothing(
-                circleFraction = DefaultCircleFraction,
-                extendedFraction = DefaultExtendedFraction
+                circleFraction = 0f,
+                extendedFraction = 0.5f
             )
 
         @Stable
