@@ -180,6 +180,54 @@ data class CornerSmoothing(
         )
     }
 
+    internal fun Path.rightCircle(size: Size, r: Float) {
+        arcToRad(
+            rect = Rect(
+                center = Offset(size.width - r, r),
+                radius = r
+            ),
+            startAngleRadians = bezierRadians + circleRadians,
+            sweepAngleRadians = -(bezierRadians + circleRadians) * 2f,
+            forceMoveTo = false
+        )
+    }
+
+    internal fun Path.leftCircle(size: Size, r: Float) {
+        arcToRad(
+            rect = Rect(
+                center = Offset(r, r),
+                radius = r
+            ),
+            startAngleRadians = -(halfPI + bezierRadians),
+            sweepAngleRadians = -(bezierRadians + circleRadians) * 2f,
+            forceMoveTo = false
+        )
+    }
+
+    internal fun Path.topCircle(size: Size, r: Float) {
+        arcToRad(
+            rect = Rect(
+                center = Offset(r, r),
+                radius = r
+            ),
+            startAngleRadians = -bezierRadians,
+            sweepAngleRadians = -(bezierRadians + circleRadians) * 2f,
+            forceMoveTo = false
+        )
+    }
+
+    internal fun Path.bottomCircle(size: Size, r: Float) {
+        arcToRad(
+            rect = Rect(
+                center = Offset(r, size.height - r),
+                radius = r
+            ),
+            startAngleRadians = -(halfPI * 2f + bezierRadians),
+            sweepAngleRadians = -(bezierRadians + circleRadians) * 2f,
+            forceMoveTo = false
+        )
+    }
+
     companion object {
 
         // ~= 16.26 deg, bezierRadians = arcsin(0.6)
@@ -190,8 +238,8 @@ data class CornerSmoothing(
         @Stable
         val Default: CornerSmoothing =
             CornerSmoothing(
-                circleFraction = 0f,
-                extendedFraction = 0.5f
+                circleFraction = DefaultCircleFraction,
+                extendedFraction = DefaultExtendedFraction
             )
 
         @Stable

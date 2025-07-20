@@ -44,6 +44,10 @@ open class RoundedRectangle(
         bottomStart: Float,
         layoutDirection: LayoutDirection
     ): Outline {
+        if (topStart + topEnd + bottomEnd + bottomStart == 0f) {
+            return Outline.Rectangle(size.toRect())
+        }
+
         val (width, height) = size
         val (centerX, centerY) = size.center
 
@@ -53,13 +57,9 @@ open class RoundedRectangle(
         val bottomRight = (if (layoutDirection == Ltr) bottomEnd else bottomStart).fastCoerceIn(0f, maxR)
         val bottomLeft = (if (layoutDirection == Ltr) bottomStart else bottomEnd).fastCoerceIn(0f, maxR)
 
-        if (topLeft + topRight + bottomRight + bottomLeft == 0f) {
-            return Outline.Rectangle(size.toRect())
-        }
-
         if (cornerSmoothing.circleFraction >= 1f ||
-            (size.width == size.height &&
-                    topLeft == size.width / 2f &&
+            (width == height &&
+                    topLeft == centerX &&
                     topLeft == topRight && bottomLeft == bottomRight)
         ) {
             return Outline.Rounded(
@@ -85,45 +85,88 @@ open class RoundedRectangle(
 
             return Outline.Generic(
                 Path().apply {
-                    // right line
-                    moveTo(width, height - bottomRight - bottomRightDy)
-                    lineTo(width, topRight + topRightDy)
+                    when {
+                        topRight == maxR && topLeft == maxR && bottomLeft == maxR && bottomRight == maxR -> { // capsule
+                            if (width > height) {
+                                // right circle
+                                rightCircle(size, maxR)
+                                // top right corner
+                                topRightCorner1(size, topRight, topRightDx)
+                                // top line
+                                lineTo(topLeft + topLeftDx, 0f)
+                                // top left corner
+                                topLeftCorner1(size, topLeft, topLeftDx)
+                                // left circle
+                                leftCircle(size, maxR)
+                                // bottom left corner
+                                bottomLeftCorner1(size, bottomLeft, -bottomLeftDx)
+                                // bottom line
+                                lineTo(width - bottomRight - bottomRightDx, height)
+                                // bottom right corner
+                                bottomRightCorner1(size, bottomRight, -bottomRightDx)
+                            } else {
+                                // right line
+                                moveTo(width, height - bottomRight - bottomRightDy)
+                                lineTo(width, topRight + topRightDy)
+                                // top right corner
+                                topRightCorner0(size, topRight, -topRightDy)
+                                // top circle
+                                topCircle(size, maxR)
+                                // top left corner
+                                topLeftCorner0(size, topLeft, topLeftDy)
+                                // left line
+                                lineTo(0f, height - bottomLeft - bottomLeftDy)
+                                // bottom left corner
+                                bottomLeftCorner0(size, bottomLeft, bottomLeftDy)
+                                // bottom circle
+                                bottomCircle(size, maxR)
+                                // bottom right corner
+                                bottomRightCorner0(size, bottomRight, -bottomRightDy)
+                            }
+                        }
 
-                    // top right corner
-                    if (topRight > 0f) {
-                        topRightCorner0(size, topRight, -topRightDy)
-                        topRightCircle(size, topRight)
-                        topRightCorner1(size, topRight, topRightDx)
-                    }
+                        else -> {
+                            // right line
+                            moveTo(width, height - bottomRight - bottomRightDy)
+                            lineTo(width, topRight + topRightDy)
 
-                    // top line
-                    lineTo(topLeft + topLeftDx, 0f)
+                            // top right corner
+                            if (topRight > 0f) {
+                                topRightCorner0(size, topRight, -topRightDy)
+                                topRightCircle(size, topRight)
+                                topRightCorner1(size, topRight, topRightDx)
+                            }
 
-                    // top left corner
-                    if (topLeft > 0f) {
-                        topLeftCorner1(size, topLeft, topLeftDx)
-                        topLeftCircle(size, topLeft)
-                        topLeftCorner0(size, topLeft, topLeftDy)
-                    }
+                            // top line
+                            lineTo(topLeft + topLeftDx, 0f)
 
-                    // left line
-                    lineTo(0f, height - bottomLeft - bottomLeftDy)
+                            // top left corner
+                            if (topLeft > 0f) {
+                                topLeftCorner1(size, topLeft, topLeftDx)
+                                topLeftCircle(size, topLeft)
+                                topLeftCorner0(size, topLeft, topLeftDy)
+                            }
 
-                    // bottom left corner
-                    if (bottomLeft > 0f) {
-                        bottomLeftCorner0(size, bottomLeft, bottomLeftDy)
-                        bottomLeftCircle(size, bottomLeft)
-                        bottomLeftCorner1(size, bottomLeft, -bottomLeftDx)
-                    }
+                            // left line
+                            lineTo(0f, height - bottomLeft - bottomLeftDy)
 
-                    // bottom line
-                    lineTo(width - bottomRight - bottomRightDx, height)
+                            // bottom left corner
+                            if (bottomLeft > 0f) {
+                                bottomLeftCorner0(size, bottomLeft, bottomLeftDy)
+                                bottomLeftCircle(size, bottomLeft)
+                                bottomLeftCorner1(size, bottomLeft, -bottomLeftDx)
+                            }
 
-                    // bottom right corner
-                    if (bottomRight > 0f) {
-                        bottomRightCorner1(size, bottomRight, -bottomRightDx)
-                        bottomRightCircle(size, bottomRight)
-                        bottomRightCorner0(size, bottomRight, -bottomRightDy)
+                            // bottom line
+                            lineTo(width - bottomRight - bottomRightDx, height)
+
+                            // bottom right corner
+                            if (bottomRight > 0f) {
+                                bottomRightCorner1(size, bottomRight, -bottomRightDx)
+                                bottomRightCircle(size, bottomRight)
+                                bottomRightCorner0(size, bottomRight, -bottomRightDy)
+                            }
+                        }
                     }
                 }
             )
