@@ -27,8 +27,6 @@ android {
     }
     kotlin {
         compilerOptions {
-            apiVersion = KotlinVersion.KOTLIN_2_3
-            languageVersion = KotlinVersion.KOTLIN_2_3
             jvmTarget = JvmTarget.JVM_21
         }
     }

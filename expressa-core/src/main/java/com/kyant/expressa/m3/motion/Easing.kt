@@ -5,8 +5,8 @@ import android.view.animation.PathInterpolator
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.Easing
 
-val EaseEmphasized: Easing = { t -> EaseEmphasizedInterpolator.getInterpolation(t) }
-val EaseEmphasizedComplement: Easing = { t -> EaseEmphasizedComplementInterpolator.getInterpolation(t) }
+val EaseEmphasized: Easing = Easing { t -> EaseEmphasizedInterpolator.getInterpolation(t) }
+val EaseEmphasizedComplement: Easing = Easing { t -> EaseEmphasizedComplementInterpolator.getInterpolation(t) }
 val EaseEmphasizedDecelerate: Easing = CubicBezierEasing(0.05f, 0.7f, 0.1f, 1f)
 val EaseEmphasizedAccelerate: Easing = CubicBezierEasing(0.3f, 0f, 0.8f, 0.15f)
 
